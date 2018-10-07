@@ -1,0 +1,125 @@
+\chapter{Introduction}
+
+\section{Project background}
+The European Union Intellectual Property Office, in coolaboration with the
+OECD, estimated that in 2013 the value of imported counterfeit good is 461
+billions USD, which is 2.5\% of the total imports in the world trade (CIT
+SOURCE HERE). The report also calculates that 5\% of imported good in EU are
+counterfeit. Counterfeit is an unfair commercial practice which takes advantage
+of the brand identity and presence on the market built by the brand owner,
+without incurring in the same costs of brand development (product design,
+quality standards and marketing). Other than a financial damage for the original
+brands, counterfeit products may pose safety risks, since they evade the strict
+quality and safety standards set by national and international agencies around
+the world. From counterfeit iphone batteries that explode to counterfeit
+air-bags that do not trigger, they all can cause physical damage to consumers.
+
+E-commerce has been rapidly expanding since it's early days in mid '90 when
+online marketplaces like eBay and Amazon were launched. Although it is hard to
+make a global estimate of market share for e-commerce companies, if we take the
+US market, the Census Bureau estimated that in 2009 online sales accounted for
+4\% of all retail sales, whereas in 2017 the e-commerce market share went up to
+9\%. As legitimate retailers increase their presence online,
+shops selling counterfeit follow suit. In 2017 the Guarda custom identified xxx
+worth of counterfeit goods entering the Irish border, many of those destined for
+the European continental market.
+
+This tool is designed to help users to extract data related to a specific brand
+from online platforms such as eBay, Mercadolibre, Allegro, in a tabular format.
+Online marketplaces offer API open to developers in order to enable automated
+interaction with their platforms. This tool will focus on extracting sales and
+business registration data. The data will be stored in a database so that users
+can keep historical records of all their queries. At the same time, users will
+be able to leverage the growing dataset to link new investigations to old cases
+across all platforms whose data has already been stored in the database. For
+instance, serching the email address of a shop that deals counterfeit Diesel
+jeans may return details of multiple businesses registered on eBay and
+Mercadolibre at different times, as well as information about the administrator
+of a facebook page about counterfeit Raiban glasses. Users can use this tool to
+estimate brand damage caused based on the volume of sales, as well as a
+forensics platform to facilitate identity attribution of potential
+counterfeiters.
+
+\section{Background}
+Identifying online counterfeit items starts with reasearches of a brand or
+product online presence. The aim is to identify sellers that offer a branded
+product sold at a price point below average retail price. An investigator would
+ideally prioritize sellers with higher business turnover, and ideally located in
+jurisdictions where legal action is a dependable and impartial option. For
+instance countries like Russia and China, to name few, do not always offer
+adequate protection for European and North American companies, making it more difficul to pursue
+compensation from actors located withing their borders.
+
+There are already different online companies that offer brand monitoring
+services: they range from keyword web-crawlers, to consumer sentiment analytics
+based on social platforms, to anti-counterfeit detection. We will review those
+companies and their services in details in the next chapter.
+
+Private investigation legislation S.I. No. 195/2015 - Private Security
+(Licensing and Standards) (Private Investigator) Regulations 2015. Private
+Security Services Act 2004 (No.12 of 2004).
+
+GDPR is the latest Europen Union legislation about processing of personal
+identifiable, privacy protected data belonging to european citizens. GDPR
+affects the implementation of this project in two ways: first, and most obvious,
+because users will submit limited personal data in order to be able to access
+Linkero services. Something as simple as an email address required to get
+notification for password recovery or data collection completed confirmation, is
+considered a PII (personal identifiable information) and thus is protected under
+GDPR. But GDPR affects also the collection of public personal details available
+online. This is the compliance requirement that is specific to companies
+providing \emph{web scraping} services. When we deal with open source
+intelligence and attribution, PII are the most valuable data for
+anti-counterfeit investigations, therefore we will talk about how GDPR affects
+services like Linkero and what are the requirements to guarantee compliance
+(https://blog.scrapinghub.com/web-scraping-gdpr-compliance-guide).
+
+
+\section{Objectives}
+The goals set for this project fall in two main categories: business goals and
+personal goals.
+
+In relation to the first type, the goal is to build a business ready web
+application for brand monitoring investigations. Being \emph{business ready}
+means presenting a final application that run on a virtual server directly
+connected to the public internet, that implements all industry starndard
+security features to guarantee that only authorized users can access its
+functions, and is scalable, designed to accomodate an exponentially gowing
+number of users. The other aspect of the first goal refers to the ability to
+provide basic case management, data extraction and keyword searches capabilities
+tailerd for brand monitoring and anti-counterfeit investigations.
+
+On a personal level, I aim at gaining a hands-on understanding of specific web
+technologies (e.g. JQuery, Django framework, NGINX, uWsgi), NoSQL databases
+(MongoDB, Redis), ansychronous and non-blocking programming techniques
+(multi-threading, AJAX, Pjthon Celery), development methodologies and testing
+practices.
+
+
+\section{Scope}
+This project will consist of a ready to deploy and use system for case
+management and web scraping data using eBay public API.
+
+Regular users will be able to login, change password, set their preferred email
+address for general notifications and report delivery, launch queries, download unlimited times
+completed reports from the web interface, delete old queries, and search via
+keyword within all data collected and stored by any user in the database. Also
+the system will be configured to provide security protection against external
+unauthorized access and use of the system. Site administrators will manage the
+registration, password reset and deletion of users profiles.
+
+
+\section{Challenges and learning requirements}
+Young family committments, full time job and travel arrangements, SSL
+configuration, DKIM configuration, app specific issues.
+
+
+\section{Deliverables}
+Loren Ipsum
+
+\begin{itemize}
+  \item full documentation of the system design, development and functions;
+  \item a working implementation of the system;
+  \item a PowerPoint presentation of the project.
+\end{itemize}
+
