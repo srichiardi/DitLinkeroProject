@@ -1,0 +1,12 @@
+# .gitignore
+# eclipse project file
+.project
+
+# LaTex files
+.aux
+.tex
+.texlipse
+.bbl
+.blg
+.log
+.toc
