@@ -1,4 +1,4 @@
-\begin{thebibliography}{3}
+\begin{thebibliography}{4}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -19,5 +19,13 @@ Stewart~K. Bertrom.
 Joseph Hayes.
 \newblock \emph{Analytic Culture in the U.S. Intelligence Community}.
 \newblock Ed. Center for the Study of Intelligence, 2007.
+
+\bibitem[of~the Council(2015)]{CoEU956515}
+Presidency of~the Council.
+\newblock Proposal for a regulation of the european parliament and of the
+  council on the protection of individuals with regard to the processing of
+  personal data and on the free movement of such data (general data protection
+  regulation).
+\newblock \emph{Official Journal of the European Union}, 2015.
 
 \end{thebibliography}
