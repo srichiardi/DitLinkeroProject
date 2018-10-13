@@ -74,7 +74,117 @@ identifying the identity of the merchant as well as that of the manifacturer.
 
 
 \section{GDPR}
-Loren Ipsum \ldots
+The General Data Protection Regulation (EU) 2016/679 (a.k.a. GDPR) is the latest
+legislative effort of the Europea Union, that regulates the collection
+and use of European citizens' data. The two main goals that guided this new
+legislation were already set in 2015 by the Council of the European Union, which
+stated: ``The twofold aim of the Regulation is to enhance data protection rights
+of individuals and to improve business opportunities by facilitating the free
+flow of personal data in the digital single market'' \cite{CoEU956515}.
+Essentially the GDPR gives more control to European citizens over the use of
+their data, thus restricting the ability of private and public organizations to
+process Personally identifiable information (a.k.a. PII) data, and at the same
+time it becomes a legislative framework that standardizes personal data
+processing in every country member of the European Union. Let's see in more
+detail what this entails and what are the consequences for a product like
+Linkero.
+
+First off it is important to clarify some of the terminology used in the
+legislation. \emph{Personally identifiable information}, or PII, is defined in
+privacy laws as one single piece of data that alone can identify a single person. For
+instance first and last name, an email address, a physical address, a phone
+number, passport serial number, credit card number, a picture portraying an
+individual, a combiantion of username and password. GDPR applys to the
+collection, process and storage of PII. A \emph{Data Controller} is any
+organization that collects and manages PII from European citizens. That includes
+online private companies (e.g. Google, Facebook the most obvious), as well as
+public institutions like primary and secondary schools and hospitals to name
+few. Another party that is involved in the handling of private data is the
+\emph{Data Processor}, which in some cases it conicides the the Data Controller
+itself, when data is analysed internally, or with any other organization (e.g.
+contractors, vendors, suppiers, etc.) that receives PII from the Data Controller
+and processes it in its behalf. Finally the \emph{Data Protection Officer} is a
+public office that is appointed to overlook and audit every Data Controller in
+its area of control.
+
+What GDPR means for European citizens is that as of May 25\textsuperscript{th}
+2018, when it officially came into force, it grants much more rights over their
+own personal data, compared to previous legislations. These rights include
+\emph{data portability}, which is to say that any Data Controller has to
+structure the collection and storage of PII in such a way that those information
+can be removed, transferred and re-allocated to another Data Controller without
+any further modification. In other words, this is a way to guarantee
+interoperability between Data Controllers, preventing single Controllers to
+lock-in their users. GDPR also states that EU citizens have the \emph{right to
+information and transparency}, so that at any moment they can request their PII
+to be disclosed as it has been collected up to that point in time. Another right
+that generated a lot of discussion, is the \emph{right to be forgotten}, which
+states that users can have their information permanently erased from a Data
+Controller, if they no longer require their services.
+
+GDPR also set more stringent constraints to the operation of organization
+that fall within its scope. GDPR is self-declared \emph{transnational in scope},
+meaning that it applys to every company, anywhere in the world, as long as they hold EU
+citizens' PII data. Obviously, enforcement is an issue in cases such as
+companies that are based somewhere in the Cayman Islands. However this aspect is
+mainly ment at large multinational corporations, that could simply
+transfer their databases to another jurisdiction outside the EU. Those
+multinational would still be subjected to EU law and would still be
+accountable as long as they have legal presence in any EU member state,
+regardless of where the PII data actually sits. GDPR also establishes a stronger
+\emph{Data Subject consent}. This means that Data Controllers can no longer
+assume that their users data can be processed and used for whatever purpose,
+just because PII were given to them during the registration process, for
+instance, nor they can pre-tick the data consent acknoledgment box, or ask the
+user to tick a box only if they do not consent to the treatment of their data.
+On the contrary, Data Controllers have to explicitly ask and receive users
+consent, and consent has to be renewed over time. Finally, GDPR requires
+organization to \emph{report data breaches} within 72 hours after the breach was
+discovered. Data Controllers not only have to notify the supervisory authority
+and their users, but the notification has to carry adequate details to explain
+how the incident occurred, how many users are affected, and how is the
+organization going to respond.
+
+With all these new rights and obligations in place, the last part of the
+legislation concernes relative and proportionate \emph{sanctions} for
+organizations that fail to comply. There are three levels of penalties that can
+be imposed:
+\begin{enumerate}
+  \item a warning letter for the first time an organization is found in breach
+  of GDPR, and if the breach is non-intentional;
+  \item a more serious breach could result in the order to commit to regular
+  periodic data protection audits;
+  \item and finally, if the breach is deemed to be serious enough, GDPR the
+  prescribes two sets of financial fines depending of which obligations were
+  missed by the Data Controller, the harsher of which could amount to up to
+  \euro20 millions or up to 4\% of the annual turnover estimated from the
+  prior financial year.
+\end{enumerate}
+
+The question now is: how does GDPR affect online services that for their
+nature collect and process bits of PII that are publicly available? First and
+foremost, GDPR applys only to PII belonging to EU citizens, therefore we can say
+that an online service that collects PII can keep on providing its functions
+without nay further thought as long as it stays clear of EU citizens, as cynical
+as it may sound. But let's say some users will be pointing the service to PII of
+European users, will than that be sufficient to be found in breach of GDPR? The
+answer to this latter question is not a clear-cut \emph{no}, there are actually
+use-cases where collection can still be an option. Obviously those cases do not
+include when the Data Subject officially expressed consent to the organization
+scraping his or her PII, that is not how data scraping works, especially in the
+context of open source investigations. Although this may be a theoretical
+argument, organizations may have a \emph{legitimate interest} in scraping,
+storing and processing publicly available PII. In the specific context in which
+Linkero is designed, we are talking about an Intellectual Property owner, or an
+agent in their behalf, that has a vested interest in gathering information about
+an online shop that sells their products, under market value, or without being
+an officially approved reseller. Having said that, GDPR definitely limits and
+restricts, for better or worse, the ability to extract, store and process public
+PII.
+
+To conclude this section, it is interesting to mention how higher privacy
+protection is a difficult balance and has its own trade-offs. This is the case
+of PII that were once in the public WHOIS domain.
 
 \section{Server security standards}
 Loren Ipsum \ldots
