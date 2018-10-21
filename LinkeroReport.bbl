@@ -1,4 +1,4 @@
-\begin{thebibliography}{4}
+\begin{thebibliography}{6}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -19,6 +19,17 @@ Stewart~K. Bertrom.
 Joseph Hayes.
 \newblock \emph{Analytic Culture in the U.S. Intelligence Community}.
 \newblock Ed. Center for the Study of Intelligence, 2007.
+
+\bibitem[OECD(2016)]{OE16}
+EUIPO OECD.
+\newblock \emph{Trade in Counterfeit and Pirated Goods: Mapping the Economic
+  Impact}.
+\newblock OECD Publishing, Paris, 2016.
+
+\bibitem[of~Commerce(2018)]{USDC18}
+US~Department of~Commerce.
+\newblock Quarterly retaul e-commerce sales.
+\newblock \emph{US Census Bureau News}, 2018.
 
 \bibitem[of~the Council(2015)]{CoEU956515}
 Presidency of~the Council.
