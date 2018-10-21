@@ -19,15 +19,15 @@ from one another.
 
 \section{Open Source Intelligence}
 Open Source Intelligence (more commonly referred to as OSINT) is a relatively
-young discipline, that is concerne with the art of piecing together strategic
-intelligence from publich sources of information. Michael Bazzel, a leading OSINT expert,
+young discipline, that is concerned with the art of piecing together strategic
+intelligence from public sources of information. Michael Bazzel, a leading OSINT expert,
 defines it as:
 \begin{displayquote}
 any intelligence produced from publicly available information that is collected,
-explited, and disseminated in a timely manner to an appropriate audience for the
-purpose of addressing a specific intelligence requirement. for the CIA, it may
-mean information obteined from foreign news broadcasts. For an attorney, it may
-mean data obtained from official government documents that are available to the
+exploited, and disseminated in a timely manner to an appropriate audience for
+the purpose of addressing a specific intelligence requirement. [\ldots] For the
+CIA, it may mean information obtained from foreign news broadcasts. For an
+attorney, it may mean data obtained from official government documents that are available to the
 public. For most people, it is publicly available content obtained from the
 internet \cite{MB15}.
 \end{displayquote}
@@ -36,11 +36,11 @@ As Bezzell explains, OSINT is not necessarialy based on online sources, at least
 in its most broad definition. Journalistic style, old fashion dossiers filled
 with newspaper clippings are a form of OSINT. However it is fair to say that
 whenever OSINT is mentioned today, it will automatically produce the expectation
-that a large proportion of content is source through the internet. Another
+that a large proportion of content is sourced through the internet. Another
 important author in this field, Stewart K. Bertram, explains:
 \begin{displayquote}
 older OSINT research was limited by both the coverage of its information and the
-ability of the researcher to focus the capability on a speficic subject, be it
+ability of the researcher to focus the capability on a specific subject, be it
 a person, location or topic. [\ldots] What has changed this status quo is the
 arrival of the Internet, and particularly the explosion in the use of social
 media technology circa 2000. The rise of these two technologies created a
@@ -51,8 +51,8 @@ OSINT from a supporting role to finally sit alongside other more clandestine and
 less accessible investigative capabilities \cite{SB15}.
 \end{displayquote}
 
-These explosion of sources of information causes another problem: reliability.
-Unless we are sourcing information for a scientifical magazine which
+This explosion of sources of information causes another problem: reliability.
+Unless we are sourcing information from a scientifical magazine which
 follows the rigorous fact checking protocol of most scientific researches, then
 we are facing a vast landscape of information with various degrees of
 veridicity: reliable fact-checked sources on one side and \emph{fake news} at
@@ -78,12 +78,15 @@ The General Data Protection Regulation (EU) 2016/679 (a.k.a. GDPR) is the latest
 legislative effort of the Europea Union, that regulates the collection
 and use of European citizens' data. The two main goals that guided this new
 legislation were already set in 2015 by the Council of the European Union, which
-stated: ``The twofold aim of the Regulation is to enhance data protection rights
-of individuals and to improve business opportunities by facilitating the free
-flow of personal data in the digital single market'' \cite{CoEU956515}.
+stated:
+\begin{displayquote}
+The twofold aim of the Regulation is to enhance data
+protection rights of individuals and to improve business opportunities by facilitating the free
+flow of personal data in the digital single market \cite{CoEU956515}.
+\end{displayquote}
 Essentially the GDPR gives more control to European citizens over the use of
 their data, thus restricting the ability of private and public organizations to
-process Personally identifiable information (a.k.a. PII) data, and at the same
+process Personally Identifiable Information (a.k.a. PII) data, and at the same
 time it becomes a legislative framework that standardizes personal data
 processing in every country member of the European Union. Let's see in more
 detail what this entails and what are the consequences for a product like
@@ -92,16 +95,16 @@ Linkero.
 First off it is important to clarify some of the terminology used in the
 legislation. \emph{Personally identifiable information}, or PII, is defined in
 privacy laws as one single piece of data that alone can identify a single person. For
-instance first and last name, an email address, a physical address, a phone
-number, passport serial number, credit card number, a picture portraying an
+instance: the first and last name of a person, an email address, a physical
+address, a phone number, passport serial number, credit card number, a picture portraying an
 individual, a combiantion of username and password. GDPR applys to the
-collection, process and storage of PII. A \emph{Data Controller} is any
-organization that collects and manages PII from European citizens. That includes
-online private companies (e.g. Google, Facebook the most obvious), as well as
+collection, processing and storage of PII. A \emph{Data Controller} is any
+organization that collects and manages PII belonging to European citizens. That
+includes online private companies (e.g. Google, Facebook the most obvious), as well as
 public institutions like primary and secondary schools and hospitals to name
 few. Another party that is involved in the handling of private data is the
-\emph{Data Processor}, which in some cases it conicides the the Data Controller
-itself, when data is analysed internally, or with any other organization (e.g.
+\emph{Data Processor}, which in some cases conicides with the the Data
+Controller itself, when data is analysed internally, or with any other organization (e.g.
 contractors, vendors, suppiers, etc.) that receives PII from the Data Controller
 and processes it in its behalf. Finally the \emph{Data Protection Officer} is a
 public office that is appointed to overlook and audit every Data Controller in
@@ -117,38 +120,37 @@ any further modification. In other words, this is a way to guarantee
 interoperability between Data Controllers, preventing single Controllers to
 lock-in their users. GDPR also states that EU citizens have the \emph{right to
 information and transparency}, so that at any moment they can request their PII
-to be disclosed as it has been collected up to that point in time. Another right
-that generated a lot of discussion, is the \emph{right to be forgotten}, which
+to be disclosed as they have been collected up to that point in time. Another
+right that generated a lot of discussion, is the \emph{right to be forgotten}, which
 states that users can have their information permanently erased from a Data
 Controller, if they no longer require their services.
 
-GDPR also set more stringent constraints to the operation of organization
+GDPR also sets more stringent constraints to the operation of organizations
 that fall within its scope. GDPR is self-declared \emph{transnational in scope},
 meaning that it applys to every company, anywhere in the world, as long as they hold EU
 citizens' PII data. Obviously, enforcement is an issue in cases such as
 companies that are based somewhere in the Cayman Islands. However this aspect is
 mainly ment at large multinational corporations, that could simply
-transfer their databases to another jurisdiction outside the EU. Those
-multinational would still be subjected to EU law and would still be
+transfer their databases to another jurisdiction outside the EU in an attempt
+to circumvent its reach. Under the current definition of GDPR, those
+multinationals would still be subjected to EU law and would still be
 accountable as long as they have legal presence in any EU member state,
 regardless of where the PII data actually sits. GDPR also establishes a stronger
 \emph{Data Subject consent}. This means that Data Controllers can no longer
-assume that their users data can be processed and used for whatever purpose,
-just because PII were given to them during the registration process, for
-instance, nor they can pre-tick the data consent acknoledgment box, or ask the
-user to tick a box only if they do not consent to the treatment of their data.
-On the contrary, Data Controllers have to explicitly ask and receive users
-consent, and consent has to be renewed over time. Finally, GDPR requires
-organization to \emph{report data breaches} within 72 hours after the breach was
-discovered. Data Controllers not only have to notify the supervisory authority
-and their users, but the notification has to carry adequate details to explain
-how the incident occurred, how many users are affected, and how is the
-organization going to respond.
+assume that their users' data can be processed and used for whatever purpose,
+just because PII were given to them during the registration process. Nor they
+can pre-tick the data consent acknoledgment box, or ask the  user to tick a box
+only if they do not consent to the treatment of their data. On the contrary,
+Data Controllers have to explicitly ask and receive users' consent, and consent
+has to be renewed over time. Finally, GDPR requires organization to \emph{report
+data breaches} within 72 hours after the breach was discovered. Data Controllers
+not only have to notify the supervisory authority and their users, but the
+notification has to carry adequate details to explain  how the incident
+occurred, how many users are affected, and how is the organization going to respond.
 
 With all these new rights and obligations in place, the last part of the
-legislation concernes relative and proportionate \emph{sanctions} for
-organizations that fail to comply. There are three levels of penalties that can
-be imposed:
+legislation concernes to the \emph{sanctions} for organizations that fail to
+comply. There are three levels of penalties that can be imposed:
 \begin{enumerate}
   \item a warning letter for the first time an organization is found in breach
   of GDPR, and if the breach is non-intentional;
@@ -165,22 +167,22 @@ The question now is: how does GDPR affect online services that for their
 nature collect and process bits of PII that are publicly available? First and
 foremost, GDPR applys only to PII belonging to EU citizens, therefore we can say
 that an online service that collects PII can keep on providing its functions
-without nay further thought as long as it stays clear of EU citizens, as cynical
-as it may sound. But let's say some users will be pointing the service to PII of
-European users, will than that be sufficient to be found in breach of GDPR? The
-answer to this latter question is not a clear-cut \emph{no}, there are actually
-use-cases where collection can still be an option. Obviously those cases do not
-include when the Data Subject officially expressed consent to the organization
-scraping his or her PII, that is not how data scraping works, especially in the
-context of open source investigations. Although this may be a theoretical
-argument, organizations may have a \emph{legitimate interest} in scraping,
-storing and processing publicly available PII. In the specific context in which
-Linkero is designed, we are talking about an Intellectual Property owner, or an
-agent in their behalf, that has a vested interest in gathering information about
-an online shop that sells their products, under market value, or without being
-an officially approved reseller. Having said that, GDPR definitely limits and
-restricts, for better or worse, the ability to extract, store and process public
-PII.
+without any further thought as long as it stays clear of EU citizens But let's
+say some users will be pointing the service to PII of European users, will that
+be sufficient to be found in breach of GDPR? The answer to this latter question
+is not a clear-cut \emph{no}, there are actually use-cases where collection can
+still be an option. Obviously those cases do not include when Data Subjects
+who expressed consent to their PII to be collected and stored by anyone online,
+that is not how data scraping for intelligence purpose works, especially in the
+context of open source investigations. Although it is too early for similar
+cases to have been tried, GDPR accepts that organizations may have a
+\emph{legitimate interest} in scraping, storing and processing publicly
+available PII. In the specific context in which Linkero is designed, we are
+talking about an Intellectual Property owner, or an agent in their behalf, that
+has a vested interest in gathering information about an online shop that sells
+their products, under market value, or without being an officially approved
+reseller. Having said that, GDPR definitely limits and restricts, for better or
+worse, the ability to extract, store and process public PII.
 
 To conclude this section, it is interesting to mention how ensuring
 adequate privacy protection is a difficult balance and has its own trade-offs. This is
@@ -188,24 +190,24 @@ the case of the WHOIS protocol maintained by ICANN (i.e. Internet Corporation
 for Assigned Names and Numbers), where internet domain registrants' PII are
 kept and made public. With the introduction of GDPR, personal details of the
 person who registered a domain will have to be hidden. Details of the domain
-registrant are valuable information in order to identify the identity, or the
+registrant are valuable information in order to identify the person, or the
 signature of the person or group behind specific internet domains. This is
 particularly useful when security researchers try to attribute the ownership of
-phshing domains to a particular actor or group. Likewise, in counterfeit
-investigations, being able to tell how many and which domains were registered by
+phshing or spamming domains to a particular actor or group. Likewise, in
+counterfeit investigations, being able to tell how many and which domains were registered by
 the same actor is particularly useful, especially if you are trying to monitor
 the actor's activities. Information do not need to be accurate, in fact domain
 registrars do not verify the real identity of the person registering a domain.
-There are details that need to be valid, like contact details (e.g. email
-address, phone number, \ldots) because on them depends the correct funcioning of
+There are however details that need to be valid, like contact details (e.g.
+email address, phone number, \ldots) because on them depends the correct funcioning of
 the domain, which is in the registrant's interest. The disappearence of those
-PII from WHOIS cause a great deal of frustration in the security community, and
+PII from WHOIS caused a great deal of frustration in the security community, and
 ended up with ICANN filing an official litigation against the European Union
 asking for some sort of exhemption in order to keep offering relevant WHOIS
 data.
 
 GDPR was created and voted by EU member states in a period when information is
-bein considered the new oil of the global economy: access to personal data and
+being considered the new oil of the global economy: access to personal data and
 consumer behaviour generates huge amounts of revenues for corporations like
 Facebook and Google. And the reason for that is simple: targeted ads campaigns
 are extremely effective and efficient, and marketing departments are willing to pay

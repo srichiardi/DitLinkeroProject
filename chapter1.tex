@@ -2,30 +2,33 @@
 
 \section{Project background}
 The European Union Intellectual Property Office, in coolaboration with the
-OECD, estimated that in 2013 the value of imported counterfeit good is 461
-billions USD, which is 2.5\% of the total imports in the world trade (CIT
-SOURCE HERE). The report also calculates that 5\% of imported good in EU are
-counterfeit. Counterfeit is an unfair commercial practice which takes advantage
-of the brand identity and presence on the market built by the brand owner,
-without incurring in the same costs of brand development (product design,
+OECD, estimated that in 2013 the value of imported counterfeit good was
+\euro338 billion, which corresponded to 2.5\% of the total imports in the world
+trade \cite{OE16}. The report also calculates that 5\% of imported good in EU
+are counterfeit worth up to \euro85 billion. Counterfeit is an unfair commercial
+practice which takes advantage of the brand identity and presence on the market built by the brand
+owner, without incurring in the same costs of brand development (product design,
 quality standards and marketing). Other than a financial damage for the original
-brands, counterfeit products may pose safety risks, since they evade the strict
-quality and safety standards set by national and international agencies around
-the world. From counterfeit iphone batteries that explode to counterfeit
-air-bags that do not trigger, they all can cause physical damage to consumers.
+brands, counterfeit products may pose safety risks for end consumers as much as
+for the people that work to produce them, since they evade the strict quality
+and safety standards set by national and international agencies around the
+world. From counterfeit iphone batteries that explode to counterfeit air-bags
+that do not trigger, they all can cause physical damage to consumers.
 
 E-commerce has been rapidly expanding since it's early days in mid '90 when
 online marketplaces like eBay and Amazon were launched. Although it is hard to
 make a global estimate of market share for e-commerce companies, if we take the
 US market, the Census Bureau estimated that in 2009 online sales accounted for
 4\% of all retail sales, whereas in 2017 the e-commerce market share went up to
-9\%. As legitimate retailers increase their presence online,
-shops selling counterfeit follow suit. In 2017 the Guarda custom identified xxx
-worth of counterfeit goods entering the Irish border, many of those destined for
-the European continental market.
+9\% \cite{USDC18}. As legitimate retailers increase their presence online,
+shops selling counterfeit follow suit.
 
-This tool is designed to help users to extract data related to a specific brand
-from online platforms such as eBay, Mercadolibre, Allegro, in a tabular format.
+It is not surprising that many companies started to invest in fighting this
+trend, and that a good portion of the battleground is online. This tool is
+designed to help users to extract data related to a specific brands from online
+platforms such as eBay, Mercadolibre, Allegro, and present it in a tabular
+format.
+
 Online marketplaces offer API open to developers in order to enable automated
 interaction with their platforms. This tool will focus on extracting sales and
 business registration data. The data will be stored in a database so that users
@@ -67,21 +70,20 @@ online. This is the compliance requirement that is specific to companies
 providing \emph{web scraping} services. When we deal with open source
 intelligence and attribution, PII are the most valuable data for
 anti-counterfeit investigations, therefore we will talk about how GDPR affects
-services like Linkero and what are the requirements to guarantee compliance
-(https://blog.scrapinghub.com/web-scraping-gdpr-compliance-guide).
+services like Linkero and what are the requirements to guarantee compliance.
 
 
 \section{Objectives}
-The goals set for this project fall in two main categories: business goals and
-personal goals.
+The objectives set for this project fall in two main categories: business
+and personal.
 
-In relation to the first type, the goal is to build a business ready web
-application for brand monitoring investigations. Being \emph{business ready}
-means presenting a final application that run on a virtual server directly
-connected to the public internet, that implements all industry starndard
+In relation to the first type, the goal is to build a business-ready web
+platform for brand-monitoring investigations. Being \emph{business ready}
+means presenting a final application that runs on a virtual server directly
+connected to the public internet; that implements all industry starndard
 security features to guarantee that only authorized users can access its
-functions, and is scalable, designed to accomodate an exponentially gowing
-number of users. The other aspect of the first goal refers to the ability to
+features and data; and is scalable, designed to accomodate an exponentially
+gowing number of users. The other aspect of the first goal refers to the ability to
 provide basic case management, data extraction and keyword searches capabilities
 tailerd for brand monitoring and anti-counterfeit investigations.
 
@@ -97,21 +99,37 @@ This project will consist of a ready to deploy and use system for case
 management and web scraping data using eBay public API.
 
 Regular users will be able to login, change password, set their preferred email
-address for general notifications and report delivery, launch queries, download unlimited times
-completed reports from the web interface, delete old queries, and search via
-keyword within all data collected and stored by any user in the database. Also
-the system will be configured to provide security protection against external
+address for general notifications and report delivery, launch queries, download
+data from completed reports, delete old queries, and perform keyword searches
+within all data collected and stored by any user in the database.
+Also the system will be configured to provide security protection against external
 unauthorized access and use of the system. Site administrators will manage the
 registration, password reset and deletion of users profiles.
 
 
 \section{Challenges and learning requirements}
-Young family committments, full time job and travel arrangements, SSL
-configuration, DKIM configuration, app specific issues.
+There are technical and personal challenges that have some kind of impact
+on the delivery of this project. To start with I am new to most of the
+technology used: from the basic configuration and administration of a Unix
+server, NoSql databases, client side web technology, SSL and DKIM protocols,
+etc\ldots. This means that part of the time dedicated to the project will be
+spent bringing my knowledge and familiarity to a level that suits the project's
+requirements. Another element of technical challenge is determined by the use of
+a virtual server with only 1GB of memory and 1 single CPU. These limits are
+mainly dictated by financial reasons: this is the cheapest available VPS, which
+comes at \$5.00 USD a month. Considering that I needed a VPS for the entire
+development and testing of the project, which took almost 2 years, anything more
+expensive would have impancted my family finances. The other problem is that
+limited memory and processing power started to show their impact and the code
+had to optimized accordingly.
+
+On a presonal level I will have to take into account all the extra pressure
+that comes from being a father in a young family and professional
+responsibilities of a full time job.
 
 
 \section{Deliverables}
-Loren Ipsum
+The completed project will include:
 
 \begin{itemize}
   \item full documentation of the system design, development and functions;
