@@ -234,61 +234,128 @@ most vulnerable element, as the saying goes. In today's reality, any system
 facing the open and public internet has to be secured against peole trying to
 misuse it. It is not just big banks and multinational corporations that have to
 put in place sci-fi grade defenses, but the same private wifi routers and
-connected thermostat have to be protected against bad actors that would gladly
-take them over and deploy them as pieces of a bigger scheme to perform some
-fraudulent or criminal activities. It is well known that professional computer
-criminals constantly scan the internet to detect new connected devices and try
-to add them to their personal collection of bots for different purposes.
-Internet security is therefore a must regardless of the complexity of the system
-designed. Information Secutiry literature identifies three main goals of a good
-system security strategy: confidentiality, integrity and availability, also
-referred to as the \emph{CIA triad} \cite{DP00}. That means that a system
-security strategy aims at guaranteeing that data stored in the system will be
-accessed only by legitimate and relevant parties, that the same data will be
-kept in its original state away from sources that may alter it, intercept it
-or erase it, and that despite of the safety measures in place, and potential
-attacks, the data will still be accessible.
+connected thermostats have to be protected against bad actors that would gladly
+take them over and deploy them to perform some fraudulent or criminal
+activities. It is well known that professional computer criminals constantly
+scan the internet to detect new connected devices and try to add them to their
+personal collection of bots for different purposes.
+Internet security is therefore a must regardless of the complexity of the
+system. Information Security literature identifies three main goals of a good
+system security strategy, also referred to as the \emph{CIA triad} \cite{DP00}:
+confidentiality, integrity and availability. That means that a system security
+strategy aims at guaranteeing that data stored in the system will be accessed
+only by legitimate and relevant parties (confidentiality), that the same data
+will be kept in its original state away from sources that may alter it,
+intercept it or erase it (integrity), and that despite of the safety measures in
+place, if an attack succeedes, the data will still be accessible, and business
+will continue with minimal to no disruption (availability). In addition to the
+CIA triad, some experts also include \emph{accountability}, which essentially
+means that if an incident occurs, the remediation team should be able to
+identifiy exaclty where the breach happened and the location if not the identity
+of the person who executed the attack.
 
 The industry identifies two main types of threat: internal and external.
 The external threat is probably the first and most popular to come to mind,
 often depicted like the hooded boy wearing a Guy Fawkes mask and typing away on
 his laptop: the hacker. Put simply, it is a person or organization that attacks
 a system from the outside. The other threat that does not get as much
-attention, but can be equally damaging if not more so, is the internal threat.
-The internal threat is represented by an internal user that intentionally of by
-mistake causes some damage to the system.
+attention, but can be equally damaging, is the internal threat. The internal
+threat is represented by an internal user that intentionally or by mistake
+causes damage to the system. An attacker can be further classified based on
+his/her level of activity: a \emph{passive} attacker tend to sit and intercept
+data exchanges, without affecting the system resources, whereas an \emph{active}
+attacker directly alters system resources while the operation is underway.
 
-In conclusion, it is worth mentioning that there are three types of security
-measures that an organization can put in place to protect its servers: deterrent, preventive and
-reactive. Deterrent measures are meant to scare attackers off before they even
-consider to start their exploits. The criminal law with its system of penalties
-is definitely the first deterrent that comes to mind. But media articles
-detailing how sofisticate and complex is a detection system can offer the same
-purpose. Preventive measures on the other end are technologies that anticipate
-potential attacks and stop them before any damage occurs. Firewalls are a great
-example. Finally, reactive measures are the ones that are triggered after an
-attack occurred, and try to assess the damage and remediate where possible.
-Having a recent backup of all the data is a great antidote to ransomware
-attacks. In the next part of this section we will review in greater details some
-of the most common prevention technologies and solutions available.
+Any attack normally impacts one or more of system assets: hardware, software,
+data or networks.
 
-\subsection{Regular software updates}
+In conclusion, it is worth mentioning that there are five types of security
+measures that an organization can put in place to protect its servers:
+deterrent, prevention, detection, response and recovery. Deterrent measures are
+meant to scare attackers off before they even consider to start their exploits.
+The criminal law with its system of penalties is definitely the first deterrent
+that comes to mind. But media articles detailing how sofisticate and complex is
+a detection system can offer the same purpose. Preventive measures on the other
+end are technologies that anticipate potential attacks and stop them before any
+damage occurs. Firewalls are a great example. Since absolute prevention
+is rarely feasible, detection technologies can cover those situation in
+which an attack is found while still ongoing. Detection immediately
+triggers response measures, such as blacklisting an IP associated with a
+number of failed login attempts. Finally, recovery measures are the ones that
+are deployed after an attack occurred, and try to assess the damage and
+remediate where possible.
 
-\subsection{Firewalls}
+Information security is a very vast and complex discipline, which
+directly reflects the complexity of modern interconnected systems. For the
+purpose of this project however we will only consider the basic security
+configuration required to protect a standalone linux server.
 
-\subsection{Environment isolation}
+In the next part of this section we will review in greater details some of the
+prevention technologies and solutions available, particularly those that were
+considered for this project, focussing on prevention, detection, response and
+recovery measures.
 
-\subsection{Virtual Private Netwroks}
+\subsection{Prevention}
 
-\subsection{SSL and TLS encryption}
+\subsubsection{Regular software updates}
+Asset: software
+Attack type: active
+Attacker: external
+Applications running on the system are rarely bug-free. It is always good
+practice to keep every system application up-to-date with latest patches, since
+every time a new vulnerability is discovered, application developers tend
+to issue a new version or patch to close it.
 
-\subsection{SSH}
+\subsubsection{Environment isolation}
+Rather than a technology, \emph{isolation} is a principle and a policy that
+recommends every resource should be isolated from the rest, and access between
+them should be regulated and monitored. This is particularly critical in the
+context of systems that have public interfaces. Isolation applies to file
+management as well, requiring users files and folders to be isolated from one
+another, preventing one user's compromised credentials to be used to access
+everyone else's files. Finally, isolation applies to the same security
+mechanisms, since they should be isolated from the rest of the system, so that
+they cannot be compromised by the attacker.
 
-\subsection{Users and groups permission on \emph{need to do} basis}
+\subsubsection{Virtual Private Netwroks}
+VPN are a good solution to connect parts of the system that are not located on
+the same machine, or in the same network. Since communication between resources
+has to go through the public network, VPN offer a way to encrypt and protect
+data exchange based on asymmetric encryption technology.
 
-\subsection{Password policy}
+\subsubsection{SSL and TLS encryption}
+Similarly to VPN, SSL and TLS are two technologies that create an encrypted
+communication channel between a client and a server. The most common use case
+for these solutions is when login forms are required, so that a client can
+transfer login credentials to the server using a HTTPS connection, thus avoiding
+to transfer username and password in clear over a non-secure public network.
 
-\subsection{Encryption of data at rest}
+\subsubsection{SSH}
+The Secure Shell, SSH, is the default application for remote server management.
+Like VPN and SSL, it establishes an encrypted connection between a client and a
+server, relying on asymmetric encryption. It allows system administrators to
+login remotely to the server command line shell. It can be configured to either
+accept a standard password login, or to accept autmoatic logins from approved
+clients only.
+
+\subsubsection{Firewalls}
+Firewalls are also considered \emph{intrusion prevention systems}.
+
+\subsubsection{Users and groups least privileges}
+
+\subsubsection{Password policy}
+
+\subsubsection{Encryption of data at rest}
+
+\subsubsection{Physical security}
+
+\subsection{Detection}
+
+\subsection{Response}
+
+\subsection{Recovery}
+
+
 
 \subsection{Intrusion detection systems}
 
@@ -297,7 +364,6 @@ of the most common prevention technologies and solutions available.
 \subsection{Business continuity plan}
 Backups, duplication\ldots
 
-\subsection{Physical security}
 
 
 \section{Ergonomy of software interface}
