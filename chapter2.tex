@@ -339,7 +339,26 @@ accept a standard password login, or to accept autmoatic logins from approved
 clients only.
 
 \subsubsection{Firewalls}
-Firewalls are also considered \emph{intrusion prevention systems}.
+Firewalls can be described as \emph{intrusion prevention systems}. A firewall is
+an application that filters all incoming and outgoing network traffic between
+the internal network and the public internet, and responds to a set of rules to
+decide was is allowed and what is not. It provides a single choke point
+for network traffic, where the system can act as detection mechanism for
+suspicious connections, as well as traffic logger for audits. There are four
+different types and corresponding level of complexity: packet filtering,
+stateful inspection, application-level gateway and circuit-level gateway. The
+last two are the most sofisticated and require also a lot of CPU and memory
+resources, for this reasons are not suitable for this project.
+
+Packet filtering is the most basic capability of a firewall, and bases its
+decision on whether to allow or reject a connection on the information contained in an IP
+packet: source and destination IP, source and destination transport-level
+address, IP protocol and interface. Packet filter firewalls however are
+incapable of establishing when a connection to a port number above 1024 is
+legitimate or not. This is where a stateful inspection firewall comes into play.
+Stateful packet inspection works by keeping track of ongoing connections,
+session numbers, and originating party in order to prevent attacks like session
+hijacking.
 
 \subsubsection{Users and groups least privileges}
 
@@ -351,15 +370,13 @@ Firewalls are also considered \emph{intrusion prevention systems}.
 
 \subsection{Detection}
 
-\subsection{Response}
-
-\subsection{Recovery}
-
-
-
 \subsection{Intrusion detection systems}
 
 \subsection{Regular file, service and vulnerability audits}
+
+\subsection{Response}
+
+\subsection{Recovery}
 
 \subsection{Business continuity plan}
 Backups, duplication\ldots
