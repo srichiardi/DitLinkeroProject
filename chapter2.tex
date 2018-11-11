@@ -292,7 +292,7 @@ configuration required to protect a standalone linux server.
 
 In the next part of this section we will review in greater details some of the
 prevention technologies and solutions available, particularly those that were
-considered for this project, focussing on prevention, detection, response and
+considered for this project, focussing on prevention, detection and
 recovery measures.
 
 \subsection{Prevention}
@@ -423,16 +423,83 @@ security measures are being adopted by the service provider.
 \subsection{Detection}
 
 \subsubsection{Intrusion detection systems}
+Intrusion detection system are the second level of defence, in case all
+of the previous preventive measure fail to stop an external intruder. The basic
+idea behind an intrusion detection system (IDS) is that the way an intruder
+interacts with the system is substancially different from any other authorized
+user, thus his/her behavious can be described in quantitative terms (the
+intruder's signature) and this description can then be implemented in a system
+whose purpose is to ring an allarm when such behaviour is detected and block the
+intruder before any damage occurs \cite{WS15}.
+
+These are the main types of IDS currently available:
+\begin{itemize}
+  \item \bf{Host-based IDS}: application that runs on a specific host, and only
+  monitors activity on that host.
+  \item \bf{Network-based IDS}: application that runs on a host part of a larger
+  network, that monitors all the activities within that network.
+  \item bf{Distributed or hybrid IDS}: application that gathers data from a
+  cluster of sensors distributed across a network \cite{RS00}.
+\end{itemize}
+
+There are essencially two ways that an IDS can be programmed to detect
+intruders: we can either decide that a range of behaviours is legitimate,
+therefore everything else that deviate from that norm is an intruder, or we can
+list bad behaviours, and tell the IDS to trigger the allarm when any of the
+behaviours listed is detected. The first strategy is called \emph{anomaly
+detection} the latter \emph{signature detection}. Without going in too many
+details, anomaly detection is clearly the most effective of the two, and would
+be anyone's first choice if not for the fact that is very difficult to define a
+norm. So difficult that it requires very sophisticate approaches like
+statistical analysis and machine learning techniques \cite{GT09}. Signature
+detection on the other hand is a bit easier to implement, and guarantees a lower
+number of false positives, given that its database is stored with good quality
+intruders' signatures. The problem is that any new, unexpected and undefined
+intrusion behaviour will not be detected, leaving the system vulnerable to
+zero-day attacks \cite{WS15}.
 
 \subsubsection{Regular file, service and vulnerability audits}
+A secutiry auditing system is a very complex set of hardware and software tools,
+policy, processes and old fashion human labour. Such a system is beyond the scope of
+this project, but it is worth briefly mentioning it, for completness sake,
+within the discussion on information security.
 
-\subsection{Response}
+A well designed security auditing system has the following requirements:
+\begin{itemize}
+  \item being able to establish at any time whether a system's security is
+  intact or has been breached;
+  \item capture by default all data that is necessary to establish if an
+  intrusion occurred, when, how and possibly by who;
+  \item store relevant data for future analysis and forensics;
+  \item feed anomaly signatures back to an intrusion detection system signature
+  database \cite{WS15}.
+\end{itemize}
+
+An audit can be triggered right after a potential attack is detected as well as
+can be repeated periodically. An audit can be triggered in different ways:
+\begin{itemize}
+  \item \bf{basic alerting}: is the simplest for of trigger, which only requires
+  a single rule to trigger an alarm if a specific event occurs.
+  \item \bf{Baselining}: is the practice of defining a normal versus unusual
+  event or pattern. This feature overlaps with an IDS signature-based trigger.
+  \item \bf{Correlation}: is mutuated from statistical analysis and consists on
+  triggering an alarm or notification when an event or set of events is used to
+  infer the presence of a potential breach \cite{WS15}.
+\end{itemize}
 
 \subsection{Recovery}
 
 \subsection{Business continuity plan}
-Backups, duplication\ldots
-
+A business continuity plan is a set of measures, mechanisms that ensure an
+organization can go on or quickly restore basic and critical operations
+with minimal downtime \cite{TW10}. In a business continuity plan a series of
+scenarios are identified, for instance: loss of workspace, loss of personnel,
+loss of network infrastructure. Every scenario is coupled with a list of
+function critical resources that can be impacted and relative countermeasures
+to be executed along with roles and responsabilities assigned to
+specific people. Having a backup of all the data on the system
+is a preventive measure, using it to restore data that was lost, encrypted or
+corrupted during an attack is what recovery looks like.
 
 
 \section{Ergonomy of software interface}
