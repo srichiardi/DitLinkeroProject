@@ -361,18 +361,70 @@ session numbers, and originating party in order to prevent attacks like session
 hijacking.
 
 \subsubsection{Users and groups least privileges}
+Just like environment isolation, assigning users and groups with the right
+amount of privileges and permission is more a policy than a technology. This
+policy states that users should be given the minumum amaunt necessary of
+privileges in order to perform their tasks. This way if an account is
+compromised, there is a chance that damages can be controlled and limited.
+Permissions include the ability to read, write, execute, delete or share a
+specific resource. More advanced resource and permission management policies
+include a temporary aspect, in that permissions are granted for a limited amount
+of time, and are active only during working hours, or whenever a specific task
+needs to be performed.
 
 \subsubsection{Password policy}
+A password policy is design to make sure that all users comply with the industry
+best konwn standards of password security. A password policy should
+establish:
+\begin{itemize}
+  \item the strength of the password by insuring and checking that fa user
+  generate password uses the most varied combination of lower and upper case
+  letters, numbers and special symbols in a string of a minimum lenght in order
+  to guarantee that a bruteforce attack (attempting to guess the password
+  trying every possible combination) would require a significan amount of time
+  to succeed;
+  \item the lifetime of a password, which should be long enough not to cause
+  user friction, but short enough to guarantee that should the password be
+  compromised, there is a chance it will be too late to use it before
+  expiration;
+  \item a new password cannot be the same as any previously used;
+  \item a set of alternative contact details and security questions that should
+  be used to recover a lost or compromised password;
+  \item a maximum numbers of failed login attempts, after which the account is
+  locked and a password reset is required;
+  \item reccomendations about the right way of storing the password: making sure
+  the password is not written down or saved in an unsecure file.
+\end{itemize}
 
 \subsubsection{Encryption of data at rest}
+Systems that store data in databases may be compromised, when that happens if
+the data is stored in clear, the attacker can make a copy of the database, and
+access all the contents. Data that is not loaded in memory can be encrypted, so
+that simply making a copy and momving it outside of the current system, will not
+allow the attacker to access it, lacking the necessary decryption keys.
 
 \subsubsection{Physical security}
+Physical and infrastructure security is sometimes an overlooked aspect, when the
+focus is all on hardening the software and data, when it is actually as
+important. There are three main categories of threats to physical
+infrastructure: environmental, technical and human caused. Environmental threats
+includes both exceptional events like tornados, floods or earthquakes, as well
+as less traumatic events like the level of humidity, dust, external temperature, gas
+and other chemical elements, factors that in the long run can actually cause
+serious damage. Technical threats include poower surges or drops, and
+electromagnetic interferene. Finally the most common human-caused threats are:
+unauthorized physical access, vandalism, theft and misuse.
+
+For the purpose of this project however, no countermeasures were taken to
+mitigate those threats, since the system is composed of a single virtual server,
+run by the Virtual Private Server provider Linode ltd. We assume that safety and
+security measures are being adopted by the service provider.
 
 \subsection{Detection}
 
-\subsection{Intrusion detection systems}
+\subsubsection{Intrusion detection systems}
 
-\subsection{Regular file, service and vulnerability audits}
+\subsubsection{Regular file, service and vulnerability audits}
 
 \subsection{Response}
 
