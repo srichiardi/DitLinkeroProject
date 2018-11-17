@@ -501,16 +501,62 @@ specific people. Having a backup of all the data on the system
 is a preventive measure, using it to restore data that was lost, encrypted or
 corrupted during an attack is what recovery looks like.
 
-
-\section{Ergonomy of software interface}
-Loren Ipsum \ldots
-
-\section{Code development principles}
+\section{Design Engineering}
 Goal of a good software project is to produce software that not only works, but
-that is easy to understand, to test, mantain and expand if needed. One of
-the most widely quoted authors in this area is Robert Martin who
-developed five principles for good software development, also know as
-the S.O.L.I.D. principles.
+that is easy to understand, to test, mantain and expand if needed.
+Helwett-Packard developed five attributes \cite{RG87} that define the quality of
+a software product:
+\begin{description}
+\item [Functionality] concernes the set of functions and capabilities of the
+progrm, as well as its security.
+\item [Usability] relates to how well the intended users are able to operate the
+program.
+\item [Reliability] is the measure of frequency and severity of the progam
+failures.
+\item [Performance] indicates the program speed of response, resources
+consumption, efficiency and throughput.
+\item [Mantainability] is concerned with how the software is easy to
+troubleshoot, adapt, configure and extend.
+\end{description}
+
+Design engineering takes care of the quality of a software, and is the last
+stage of software modelling before code development can actually start
+\cite{RP05}.
+Design engineering is divided in four elements: data design, component-level design,
+interface design and architectural design. We will briefly explore each one
+here.
+
+\subsection{Component-level design}
+Component design refers to the procedural aspect of a software program:
+functions, processes and algorithms are the object of this element of design.
+Design engineering developed over the years a set of rules and guidelines that
+allow developers to write code that is mantainable and extendable:
+\begin{description}
+\item [Modularity] states that the final software should be the result of
+separate nuclear components, called modules, that will be integrated and
+interact with each other in order to produce the desired functionalities
+\cite{GM78}.
+\item [Information hiding] suggests that, as much as possible, the data used
+within one module for its operations, should be hidden from other modules. Only
+the bare minimun amount of information should be excanged between modules to
+ensure software operations \cite{DP72}.
+\item [Functional independence] is a concept directly derived by the previous
+two, and it says that a module should focus on a specific functionality
+(measured in level of cohesion) and it should have as little interaction with
+other modules as possible (expressed in terms of coupling) \cite{DP72}.
+\item [Refinement] rather than a prescription this is a top-down process of
+defining each element of the software starting from a high level of abstraction,
+and progressively narrowing down to more detailed procedural levels \cite{NW71}.
+\item [Refactoring] is another technique that aims at simplifying the design
+of a program without changing its functionality. The code is examined for
+ununsed elements, redundancy, inefficient or unnecessary algorithms \cite{RP05}.
+\end{description}
+
+\subsection{Interface design}
+
+
+\subsection{Architectural design}
+
 
 \section{Existing brand monitoring services}
 Loren Ipsum \ldots
