@@ -552,10 +552,87 @@ of a program without changing its functionality. The code is examined for
 ununsed elements, redundancy, inefficient or unnecessary algorithms \cite{RP05}.
 \end{description}
 
-\subsection{Interface design}
+Robert Martin took those rules and techniques and elaborated further into his
+five S.O.L.I.D. principles \cite{RM03}:
+\begin{description}
+\item [Single responsibility] states that each module or class should be
+responsible for one function, and that function should be well encapsulated
+within the module or class. This principle combines the concept of cohesion and
+information hiding.
+\item [Open-Closed] dictates that a module or a class should be built in such a
+way to prevent modification, but still offer an interface that allows it to be
+inherited and expanded. The reason is that, assuming a new requirement arise
+calling for a new functionality to be implemented, adding that functionality
+to an established class could alter its behaviour and cause unintended
+consequences in other parts of the code where that class is in use. Open-closed
+principle suggests instead a new subclass should be created in order
+to fulfil the new requirement, thus guaranteeing the stability of an
+application, while allowing for functionality extension.
+\item [Liskov substitution] is an extension of the \emph{open-closed} principle.
+It requires that any child or grand-child class can take its parent's class
+place in the application without altering the general functionality of the
+application. This principle is intended to guarantee consistency of interface
+within class types of the same family.
+\item [Interface segregation] recommends to develop simple
+client-specific interfaces, rather than one general purpose interface for every
+known client. One general purpose interface would include all functionalities
+that are relevant to any client, thus forcing every client to implement
+functionalities that are not necessarialy relevant. The other problem is that if
+a new requirement calls for a new interface to be added, all pre-existing
+clients should update their implementation to fit the new interface, whether
+they support it or not. To solve this issue, single functionalities should have
+their own interface, and clients can implement selectively just those that are
+relevant.
+\item [Dependency inversion] finally integrates the concept of module
+de-coupling, stating that higher level modules should not depend on lower level
+ones. The problem with modules dependences is that a change in one could force
+changes to its dependees, the assembly of modules could result is expensive
+operations to guarantee that every dependency is respected. This goes against
+module reusability. The solution is to add a standard interface between two
+modules. A good example to explain this principle is imagining the relation
+between a lamp and the home electrical supply: making them directly dependent
+equates to soldering the lamp wires to the electrical system, instead the
+electrical socket was developed and bacame the standard interface between any
+electrical tool and the electrical power supply \cite{RP05}.
+\end{description}
 
+\subsection{User interface design}
+User interface design is concerned with making sure the user will be able to
+actually use the software, by designing an interface that is meaningful and
+intuitive. Theo Mandel developed three \emph{golden rules} \cite{TM97}:
+\begin{description}
+\item[Place the user in control] means that the interface has to be designed
+with the user's needs in mind, not the developer. And these are some of the
+commond user's needs: a user needs to be able to perfom the same action in
+different ways (e.g. via console commands, mouse action, keyboard short cuts,
+etc.); a user sometime needs to suspend a task and move to a new one, before
+resuming the old one, as well as being able to \emph{undo} an action made by
+mistake; a user needs adjust its interaction according to his/her level of
+expertise (e.g. initial point and click can be replaced by macro recording of a
+sequence of actions); a user does not need to see nor interact with low level
+functions; a user needs to manipulate objects of a visual interface as he/she
+would do if those objects were a physical thing.
+\item[Reduce the user's memory load] requires for interfaces to be intuitive,
+without much study a user should be able to know what each part does just by
+looking at it. Mandel \cite{TM97} further specify this rule, by saying that the
+visual layout should be modelled based on a real-wold metaphor using well
+established visual cues; the initial default configuration should make sense for
+the average user, allowing the expert user to change it to his/her liking;
+information should be presented in a progressive way, starting from general
+task, down to more detailed functions.
+\item[Make interface consistent] demands that a standard layout should be
+defined and kept consistent throughout the rest of the program. Context layers
+are very important, allowing the user to know at a glance where his/her current
+task lays within the general process (e.g. window tiles, graphical icons, color
+coding, etc.), how the user was able to access the current interface and what
+are the available next steps. Interface consistency also requires that design
+takes interactive sequences that have become standard (e.g. \emph{Cntrl-C} is
+the standard for copying pieces of text) and makes them available in the
+application.
+\end{description}
 
 \subsection{Architectural design}
+
 
 
 \section{Existing brand monitoring services}
