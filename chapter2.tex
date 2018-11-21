@@ -12,7 +12,7 @@ will be explored with a reasoned summary of what is GDPR and how it impacts
 similar online services. Three sections will be dedicated to industry level best
 practices in relation to the security of servers facing the public internet, the
 usability of software interfaces and current guidelines to build reusable,
-mantainable and expandable code. Finally we will review briefly what are some of
+maintainable and expandable code. Finally we will review briefly what are some of
 the current services already offering brand monitoring tools and how they differ
 from one another.
 
@@ -32,7 +32,7 @@ public. For most people, it is publicly available content obtained from the
 internet \cite{MB15}.
 \end{displayquote}
 
-As Bezzell explains, OSINT is not necessarialy based on online sources, at least
+As Bezzell explains, OSINT is not necessarily based on online sources, at least
 in its most broad definition. Journalistic style, old fashion dossiers filled
 with newspaper clippings are a form of OSINT. However it is fair to say that
 whenever OSINT is mentioned today, it will automatically produce the expectation
@@ -44,7 +44,7 @@ ability of the researcher to focus the capability on a specific subject, be it
 a person, location or topic. [\ldots] What has changed this status quo is the
 arrival of the Internet, and particularly the explosion in the use of social
 media technology circa 2000. The rise of these two technologies created a
-multilingual, geographycally distributed, completely unregulated publishing
+multilingual, geographically distributed, completely unregulated publishing
 platform to which any user could also become an author and a publisher. [\ldots]
 By increasing the coverage and focus of OSINT the Internet effectively promoted
 OSINT from a supporting role to finally sit alongside other more clandestine and
@@ -52,15 +52,15 @@ less accessible investigative capabilities \cite{SB15}.
 \end{displayquote}
 
 This explosion of sources of information causes another problem: reliability.
-Unless we are sourcing information from a scientifical magazine which
+Unless we are sourcing information from a scientific magazine which
 follows the rigorous fact checking protocol of most scientific researches, then
 we are facing a vast landscape of information with various degrees of
-veridicity: reliable fact-checked sources on one side and \emph{fake news} at
+veracity: reliable fact-checked sources on one side and \emph{fake news} at
 the other end of the spectrum. The work of the OSINT investigator is to move in
 this virtually infinite universe of news, pick only relevant information and
 establish how reliable they are. Again this is not new, it is called
 \emph{intelligence analysis}: ``[\ldots] the application of individual and
-collective cognitive methods to weigh data and test hypoteses within a secret
+collective cognitive methods to weigh data and test hypothesis within a secret
 socio-cultural context'' \cite{JH07}. Information
 are scored from A (reliable) down to E (unreliable), plus F (reliability
 unknown).
@@ -70,12 +70,12 @@ roles to play. First off and foremost, should be used to establish if the items
 being sold are genuine or counterfeits. Secondly, it can be used to establish
 the extent of profits made (and therefore loss of income for the original brand)
 by the merchant selling them. And finally, OSINT can provide vital help in
-identifying the identity of the merchant as well as that of the manifacturer.
+identifying the identity of the merchant as well as that of the manufacturer.
 
 
 \section{GDPR}
 The General Data Protection Regulation (EU) 2016/679 (a.k.a. GDPR) is the latest
-legislative effort of the Europea Union, that regulates the collection
+legislative effort of the European Union, that regulates the collection
 and use of European citizens' data. The two main goals that guided this new
 legislation were already set in 2015 by the Council of the European Union, which
 stated:
@@ -97,22 +97,22 @@ legislation. \emph{Personally identifiable information}, or PII, is defined in
 privacy laws as one single piece of data that alone can identify a single person. For
 instance: the first and last name of a person, an email address, a physical
 address, a phone number, passport serial number, credit card number, a picture portraying an
-individual, a combiantion of username and password. GDPR applys to the
+individual, a combination of username and password. GDPR applies to the
 collection, processing and storage of PII. A \emph{Data Controller} is any
 organization that collects and manages PII belonging to European citizens. That
 includes online private companies (e.g. Google, Facebook the most obvious), as well as
 public institutions like primary and secondary schools and hospitals to name
 few. Another party that is involved in the handling of private data is the
-\emph{Data Processor}, which in some cases conicides with the the Data
+\emph{Data Processor}, which in some cases coincides with the the Data
 Controller itself, when data is analysed internally, or with any other organization (e.g.
-contractors, vendors, suppiers, etc.) that receives PII from the Data Controller
+contractors, vendors, suppliers, etc.) that receives PII from the Data Controller
 and processes it in its behalf. Finally the \emph{Data Protection Officer} is a
 public office that is appointed to overlook and audit every Data Controller in
 its area of control.
 
 What GDPR means for European citizens is that as of May 25\textsuperscript{th}
 2018, when it officially came into force, it grants much more rights over their
-own personal data, compared to previous legislations. These rights include
+own personal data, compared to previous legislation. These rights include
 \emph{data portability}, which is to say that any Data Controller has to
 structure the collection and storage of PII in such a way that those information
 can be removed, transferred and re-allocated to another Data Controller without
@@ -127,10 +127,10 @@ Controller, if they no longer require their services.
 
 GDPR also sets more stringent constraints to the operation of organizations
 that fall within its scope. GDPR is self-declared \emph{transnational in scope},
-meaning that it applys to every company, anywhere in the world, as long as they hold EU
+meaning that it applies to every company, anywhere in the world, as long as they hold EU
 citizens' PII data. Obviously, enforcement is an issue in cases such as
 companies that are based somewhere in the Cayman Islands. However this aspect is
-mainly ment at large multinational corporations, that could simply
+mainly meant at large multinational corporations, that could simply
 transfer their databases to another jurisdiction outside the EU in an attempt
 to circumvent its reach. Under the current definition of GDPR, those
 multinationals would still be subjected to EU law and would still be
@@ -139,7 +139,7 @@ regardless of where the PII data actually sits. GDPR also establishes a stronger
 \emph{Data Subject consent}. This means that Data Controllers can no longer
 assume that their users' data can be processed and used for whatever purpose,
 just because PII were given to them during the registration process. Nor they
-can pre-tick the data consent acknoledgment box, or ask the  user to tick a box
+can pre-tick the data consent acknowledgment box, or ask the  user to tick a box
 only if they do not consent to the treatment of their data. On the contrary,
 Data Controllers have to explicitly ask and receive users' consent, and consent
 has to be renewed over time. Finally, GDPR requires organization to \emph{report
@@ -149,7 +149,7 @@ notification has to carry adequate details to explain  how the incident
 occurred, how many users are affected, and how is the organization going to respond.
 
 With all these new rights and obligations in place, the last part of the
-legislation concernes to the \emph{sanctions} for organizations that fail to
+legislation concerns to the \emph{sanctions} for organizations that fail to
 comply. There are three levels of penalties that can be imposed:
 \begin{enumerate}
   \item a warning letter for the first time an organization is found in breach
@@ -165,7 +165,7 @@ comply. There are three levels of penalties that can be imposed:
 
 The question now is: how does GDPR affect online services that for their
 nature collect and process bits of PII that are publicly available? First and
-foremost, GDPR applys only to PII belonging to EU citizens, therefore we can say
+foremost, GDPR applies only to PII belonging to EU citizens, therefore we can say
 that an online service that collects PII can keep on providing its functions
 without any further thought as long as it stays clear of EU citizens But let's
 say some users will be pointing the service to PII of European users, will that
@@ -181,7 +181,7 @@ available PII. In the specific context in which Linkero is designed, we are
 talking about an Intellectual Property owner, or an agent in their behalf, that
 has a vested interest in gathering information about an online shop that sells
 their products, under market value, or without being an officially approved
-reseller. Having said that, GDPR definitely limits and restricts, for better or
+re-seller. Having said that, GDPR definitely limits and restricts, for better or
 worse, the ability to extract, store and process public PII.
 
 To conclude this section, it is interesting to mention how ensuring
@@ -193,17 +193,17 @@ person who registered a domain will have to be hidden. Details of the domain
 registrant are valuable information in order to identify the person, or the
 signature of the person or group behind specific internet domains. This is
 particularly useful when security researchers try to attribute the ownership of
-phshing or spamming domains to a particular actor or group. Likewise, in
+phishing or spamming domains to a particular actor or group. Likewise, in
 counterfeit investigations, being able to tell how many and which domains were registered by
 the same actor is particularly useful, especially if you are trying to monitor
 the actor's activities. Information do not need to be accurate, in fact domain
 registrars do not verify the real identity of the person registering a domain.
 There are however details that need to be valid, like contact details (e.g.
-email address, phone number, \ldots) because on them depends the correct funcioning of
-the domain, which is in the registrant's interest. The disappearence of those
+email address, phone number, \ldots) because on them depends the correct functioning of
+the domain, which is in the registrant's interest. The disappearance of those
 PII from WHOIS caused a great deal of frustration in the security community, and
 ended up with ICANN filing an official litigation against the European Union
-asking for some sort of exhemption in order to keep offering relevant WHOIS
+asking for some sort of exemption in order to keep offering relevant WHOIS
 data.
 
 GDPR was created and voted by EU member states in a period when information is
@@ -219,7 +219,7 @@ citizens to both target specifically voters in swing states, and to analyze
 general voters' opinion in order to design very effective slogans. The same
 actors fabricated made up stories---literally, fake news---that would appeal to
 the most visceral human fears in order to influence undecided voters. That
-happended also during the British referendum of Brexit, and was attempted during
+happened also during the British referendum of Brexit, and was attempted during
 the French presidential elections in 2017, and very likely in many other
 countries that did not receive as much media attention. At the same time we
 saw government bodies abusing their ability to tap into and collect
@@ -231,7 +231,7 @@ society.
 \section{Server security standards}
 A chain is a strong as its weakest link, and a system is as secure as its
 most vulnerable element, as the saying goes. In today's reality, any system
-facing the open and public internet has to be secured against peole trying to
+facing the open and public internet has to be secured against people trying to
 misuse it. It is not just big banks and multinational corporations that have to
 put in place sci-fi grade defenses, but the same private wifi routers and
 connected thermostats have to be protected against bad actors that would gladly
@@ -247,11 +247,11 @@ strategy aims at guaranteeing that data stored in the system will be accessed
 only by legitimate and relevant parties (confidentiality), that the same data
 will be kept in its original state away from sources that may alter it,
 intercept it or erase it (integrity), and that despite of the safety measures in
-place, if an attack succeedes, the data will still be accessible, and business
+place, if an attack succeeds, the data will still be accessible, and business
 will continue with minimal to no disruption (availability). In addition to the
 CIA triad, some experts also include \emph{accountability}, which essentially
 means that if an incident occurs, the remediation team should be able to
-identifiy exaclty where the breach happened and the location if not the identity
+identify exactly where the breach happened and the location if not the identity
 of the person who executed the attack.
 
 The industry identifies two main types of threat: internal and external.
@@ -274,7 +274,7 @@ measures that an organization can put in place to protect its servers:
 deterrent, prevention, detection, response and recovery. Deterrent measures are
 meant to scare attackers off before they even consider to start their exploits.
 The criminal law with its system of penalties is definitely the first deterrent
-that comes to mind. But media articles detailing how sofisticate and complex is
+that comes to mind. But media articles detailing how sophisticate and complex is
 a detection system can offer the same purpose. Preventive measures on the other
 end are technologies that anticipate potential attacks and stop them before any
 damage occurs. Firewalls are a great example. Since absolute prevention
@@ -288,11 +288,11 @@ remediate where possible.
 Information security is a very vast and complex discipline, which
 directly reflects the complexity of modern interconnected systems. For the
 purpose of this project however we will only consider the basic security
-configuration required to protect a standalone linux server.
+configuration required to protect a standalone Linux server.
 
 In the next part of this section we will review in greater details some of the
 prevention technologies and solutions available, particularly those that were
-considered for this project, focussing on prevention, detection and
+considered for this project, focusing on prevention, detection and
 recovery measures.
 
 \subsection{Prevention}
@@ -314,7 +314,7 @@ everyone else's files. Finally, isolation applies to the same security
 mechanisms, since they should be isolated from the rest of the system, so that
 they cannot be compromised by the attacker.
 
-\subsubsection{Virtual Private Netwroks}
+\subsubsection{Virtual Private Networks}
 VPN are a good solution to connect parts of the system that are not located on
 the same machine, or in the same network. Since communication between resources
 has to go through the public network, VPN offer a way to encrypt and protect
@@ -332,7 +332,7 @@ The Secure Shell, SSH, is the default application for remote server management.
 Like VPN and SSL, it establishes an encrypted connection between a client and a
 server, relying on asymmetric encryption. It allows system administrators to
 login remotely to the server command line shell. It can be configured to either
-accept a standard password login, or to accept autmoatic logins from approved
+accept a standard password login, or to accept automatic logins from approved
 clients only.
 
 \subsubsection{Firewalls}
@@ -344,7 +344,7 @@ for network traffic, where the system can act as detection mechanism for
 suspicious connections, as well as traffic logger for audits. There are four
 different types and corresponding level of complexity: packet filtering,
 stateful inspection, application-level gateway and circuit-level gateway. The
-last two are the most sofisticated and require also a lot of CPU and memory
+last two are the most sophisticated and require also a lot of CPU and memory
 resources, for this reasons are not suitable for this project.
 
 Packet filtering is the most basic capability of a firewall, and bases its
@@ -360,7 +360,7 @@ hijacking.
 \subsubsection{Users and groups least privileges}
 Just like environment isolation, assigning users and groups with the right
 amount of privileges and permission is more a policy than a technology. This
-policy states that users should be given the minumum amaunt necessary of
+policy states that users should be given the minimum amount necessary of
 privileges in order to perform their tasks. This way if an account is
 compromised, there is a chance that damages can be controlled and limited.
 Permissions include the ability to read, write, execute, delete or share a
@@ -371,14 +371,14 @@ needs to be performed.
 
 \subsubsection{Password policy}
 A password policy is design to make sure that all users comply with the industry
-best konwn standards of password security. A password policy should
+best known standards of password security. A password policy should
 establish:
 \begin{itemize}
   \item the strength of the password by insuring and checking that fa user
   generate password uses the most varied combination of lower and upper case
-  letters, numbers and special symbols in a string of a minimum lenght in order
-  to guarantee that a bruteforce attack (attempting to guess the password
-  trying every possible combination) would require a significan amount of time
+  letters, numbers and special symbols in a string of a minimum length in order
+  to guarantee that a brute-force attack (attempting to guess the password
+  trying every possible combination) would require a significant amount of time
   to succeed;
   \item the lifetime of a password, which should be long enough not to cause
   user friction, but short enough to guarantee that should the password be
@@ -389,15 +389,15 @@ establish:
   be used to recover a lost or compromised password;
   \item a maximum numbers of failed login attempts, after which the account is
   locked and a password reset is required;
-  \item reccomendations about the right way of storing the password: making sure
-  the password is not written down or saved in an unsecure file.
+  \item recommendations about the right way of storing the password: making sure
+  the password is not written down or saved in an unsecured file.
 \end{itemize}
 
 \subsubsection{Encryption of data at rest}
 Systems that store data in databases may be compromised, when that happens if
 the data is stored in clear, the attacker can make a copy of the database, and
 access all the contents. Data that is not loaded in memory can be encrypted, so
-that simply making a copy and momving it outside of the current system, will not
+that simply making a copy and moving it outside of the current system, will not
 allow the attacker to access it, lacking the necessary decryption keys.
 
 \subsubsection{Physical security}
@@ -405,11 +405,11 @@ Physical and infrastructure security is sometimes an overlooked aspect, when the
 focus is all on hardening the software and data, when it is actually as
 important. There are three main categories of threats to physical
 infrastructure: environmental, technical and human caused. Environmental threats
-includes both exceptional events like tornados, floods or earthquakes, as well
+includes both exceptional events like tornadoes, floods or earthquakes, as well
 as less traumatic events like the level of humidity, dust, external temperature, gas
 and other chemical elements, factors that in the long run can actually cause
-serious damage. Technical threats include poower surges or drops, and
-electromagnetic interferene. Finally the most common human-caused threats are:
+serious damage. Technical threats include power surges or drops, and
+electromagnetic interference. Finally the most common human-caused threats are:
 unauthorized physical access, vandalism, theft and misuse.
 
 For the purpose of this project however, no countermeasures were taken to
@@ -423,26 +423,26 @@ security measures are being adopted by the service provider.
 Intrusion detection system are the second level of defence, in case all
 of the previous preventive measure fail to stop an external intruder. The basic
 idea behind an intrusion detection system (IDS) is that the way an intruder
-interacts with the system is substancially different from any other authorized
-user, thus his/her behavious can be described in quantitative terms (the
+interacts with the system is substantially different from any other authorized
+user, thus his/her behaviours can be described in quantitative terms (the
 intruder's signature) and this description can then be implemented in a system
-whose purpose is to ring an allarm when such behaviour is detected and block the
+whose purpose is to ring an alarm when such behaviour is detected and block the
 intruder before any damage occurs \cite{WS15}.
 
 These are the main types of IDS currently available:
-\begin{itemize}
-  \item \bf{Host-based IDS}: application that runs on a specific host, and only
+\begin{description}
+  \item[Host-based IDS]: application that runs on a specific host, and only
   monitors activity on that host.
-  \item \bf{Network-based IDS}: application that runs on a host part of a larger
+  \item[Network-based IDS]: application that runs on a host part of a larger
   network, that monitors all the activities within that network.
-  \item bf{Distributed or hybrid IDS}: application that gathers data from a
+  \item[Distributed or hybrid IDS]: application that gathers data from a
   cluster of sensors distributed across a network \cite{RS00}.
-\end{itemize}
+\end{description}
 
-There are essencially two ways that an IDS can be programmed to detect
+There are essentially two ways that an IDS can be programmed to detect
 intruders: we can either decide that a range of behaviours is legitimate,
 therefore everything else that deviate from that norm is an intruder, or we can
-list bad behaviours, and tell the IDS to trigger the allarm when any of the
+list bad behaviours, and tell the IDS to trigger the alarm when any of the
 behaviours listed is detected. The first strategy is called \emph{anomaly
 detection} the latter \emph{signature detection}. Without going in too many
 details, anomaly detection is clearly the most effective of the two, and would
@@ -456,9 +456,9 @@ intrusion behaviour will not be detected, leaving the system vulnerable to
 zero-day attacks \cite{WS15}.
 
 \subsubsection{Regular file, service and vulnerability audits}
-A secutiry auditing system is a very complex set of hardware and software tools,
+A security auditing system is a very complex set of hardware and software tools,
 policy, processes and old fashion human labour. Such a system is beyond the scope of
-this project, but it is worth briefly mentioning it, for completness sake,
+this project, but it is worth briefly mentioning it, for completeness sake,
 within the discussion on information security.
 
 A well designed security auditing system has the following requirements:
@@ -474,45 +474,45 @@ A well designed security auditing system has the following requirements:
 
 An audit can be triggered right after a potential attack is detected as well as
 can be repeated periodically. An audit can be triggered in different ways:
-\begin{itemize}
-  \item \bf{basic alerting}: is the simplest for of trigger, which only requires
+\begin{description}
+  \item [basic alerting]: is the simplest for of trigger, which only requires
   a single rule to trigger an alarm if a specific event occurs.
-  \item \bf{Baselining}: is the practice of defining a normal versus unusual
+  \item [Baselining]: is the practice of defining a normal versus unusual
   event or pattern. This feature overlaps with an IDS signature-based trigger.
-  \item \bf{Correlation}: is mutuated from statistical analysis and consists on
+  \item [Correlation]: is taken from statistical analysis and consists on
   triggering an alarm or notification when an event or set of events is used to
   infer the presence of a potential breach \cite{WS15}.
-\end{itemize}
+\end{description}
 
 \subsection{Recovery}
 
-\subsection{Business continuity plan}
+\subsubsection{Business continuity plan}
 A business continuity plan is a set of measures, mechanisms that ensure an
 organization can go on or quickly restore basic and critical operations
 with minimal downtime \cite{TW10}. In a business continuity plan a series of
 scenarios are identified, for instance: loss of workspace, loss of personnel,
 loss of network infrastructure. Every scenario is coupled with a list of
 function critical resources that can be impacted and relative countermeasures
-to be executed along with roles and responsabilities assigned to
+to be executed along with roles and responsibilities assigned to
 specific people. Having a backup of all the data on the system
 is a preventive measure, using it to restore data that was lost, encrypted or
 corrupted during an attack is what recovery looks like.
 
 \section{Design Engineering}
 Goal of a good software project is to produce software that not only works, but
-that is easy to understand, to test, mantain and expand if needed.
+that is easy to understand, to test, maintain and expand if needed.
 Helwett-Packard developed five attributes \cite{RG87} that define the quality of
 a software product:
 \begin{description}
-\item [Functionality] concernes the set of functions and capabilities of the
-progrm, as well as its security.
+\item [Functionality] concerns the set of functions and capabilities of the
+program, as well as its security.
 \item [Usability] relates to how well the intended users are able to operate the
 program.
-\item [Reliability] is the measure of frequency and severity of the progam
+\item [Reliability] is the measure of frequency and severity of the program
 failures.
 \item [Performance] indicates the program speed of response, resources
 consumption, efficiency and throughput.
-\item [Mantainability] is concerned with how the software is easy to
+\item [Maintainability] is concerned with how the software is easy to
 troubleshoot, adapt, configure and extend.
 \end{description}
 
@@ -527,7 +527,7 @@ here.
 Component design refers to the procedural aspect of a software program:
 functions, processes and algorithms are the object of this element of design.
 Design engineering developed over the years a set of rules and guidelines that
-allow developers to write code that is mantainable and extendable:
+allow developers to write code that is maintainable and extendable:
 \begin{description}
 \item [Modularity] states that the final software should be the result of
 separate nuclear components, called modules, that will be integrated and
@@ -535,7 +535,7 @@ interact with each other in order to produce the desired functionalities
 \cite{GM78}.
 \item [Information hiding] suggests that, as much as possible, the data used
 within one module for its operations, should be hidden from other modules. Only
-the bare minimun amount of information should be excanged between modules to
+the bare minimum amount of information should be exchanged between modules to
 ensure software operations \cite{DP72}.
 \item [Functional independence] is a concept directly derived by the previous
 two, and it says that a module should focus on a specific functionality
@@ -546,7 +546,7 @@ defining each element of the software starting from a high level of abstraction,
 and progressively narrowing down to more detailed procedural levels \cite{NW71}.
 \item [Refactoring] is another technique that aims at simplifying the design
 of a program without changing its functionality. The code is examined for
-ununsed elements, redundancy, inefficient or unnecessary algorithms \cite{RP05}.
+unused elements, redundancy, inefficient or unnecessary algorithms \cite{RP05}.
 \end{description}
 
 Robert Martin took those rules and techniques and elaborated further into his
@@ -574,7 +574,7 @@ within class types of the same family.
 client-specific interfaces, rather than one general purpose interface for every
 known client. One general purpose interface would include all functionalities
 that are relevant to any client, thus forcing every client to implement
-functionalities that are not necessarialy relevant. The other problem is that if
+functionalities that are not necessarily relevant. The other problem is that if
 a new requirement calls for a new interface to be added, all pre-existing
 clients should update their implementation to fit the new interface, whether
 they support it or not. To solve this issue, single functionalities should have
@@ -582,14 +582,14 @@ their own interface, and clients can implement selectively just those that are
 relevant.
 \item [Dependency inversion] finally integrates the concept of module
 de-coupling, stating that higher level modules should not depend on lower level
-ones. The problem with modules dependences is that a change in one could force
+ones. The problem with modules dependencies is that a change in one could force
 changes to its dependees, the assembly of modules could result is expensive
 operations to guarantee that every dependency is respected. This goes against
-module reusability. The solution is to add a standard interface between two
+module re-usability. The solution is to add a standard interface between two
 modules. A good example to explain this principle is imagining the relation
 between a lamp and the home electrical supply: making them directly dependent
 equates to soldering the lamp wires to the electrical system, instead the
-electrical socket was developed and bacame the standard interface between any
+electrical socket was developed and became the standard interface between any
 electrical tool and the electrical power supply \cite{RP05}.
 \end{description}
 
@@ -600,7 +600,7 @@ intuitive. Theo Mandel developed three \emph{golden rules} \cite{TM97}:
 \begin{description}
 \item[Place the user in control] means that the interface has to be designed
 with the user's needs in mind, not the developer. And these are some of the
-commond user's needs: a user needs to be able to perfom the same action in
+commands user's needs: a user needs to be able to perform the same action in
 different ways (e.g. via console commands, mouse action, keyboard short cuts,
 etc.); a user sometime needs to suspend a task and move to a new one, before
 resuming the old one, as well as being able to \emph{undo} an action made by
@@ -658,12 +658,12 @@ executive decisions \cite{RM96}.
 
 \subsubsection{Architectural design}
 Architectural design aims at building a blueprint of the entire system, with
-special emphasys of how each component interacts with the others. There are two
+special emphasis of how each component interacts with the others. There are two
 aspects that describe an architecture: style and pattern \cite{RP05}.
 
 Style refers to the shape of the overall system structure, it is a static
 representation of the system: which components interface directly to
-each other, which are periferal, which are central, and so on. Examples of
+each other, which are peripheral, which are central, and so on. Examples of
 architectural styles include:
 \begin{description}
 \item[Data-centered] architecture refers to a system that is designed around its
@@ -671,10 +671,10 @@ database, where all other components are clients that exchange information only
 with the central server, with little or no interaction with each other.
 \item[Data-flow] architecture instead is applied to a system where data moves
 mainly in one direction, first as input, leaving the system as output, after all
-the modules located inbetween these two points have modifided somehow the
+the modules located in-between these two points have modified somehow the
 original input.
 \item[Call and return] is a style in which modularity is central to the overall
-operation, where each function is bronken down in a hierarchy of modules. This
+operation, where each function is broken down in a hierarchy of modules. This
 style has the advantage of being relatively easy to modify and scale.
 \item[Layered] architecture, finally, describes a system in which components are
 grouped from an outer layer, normally the user interface, through an application

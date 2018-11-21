@@ -1,4 +1,4 @@
-\begin{thebibliography}{7}
+\begin{thebibliography}{20}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -15,10 +15,46 @@ Stewart~K. Bertrom.
 \newblock \emph{The Tao of Open Source Intelligence}.
 \newblock IT Governance Publishing, 2015.
 
+\bibitem[Bosch(2000)]{JB00}
+J.~Bosch.
+\newblock \emph{Design \& Use of Software Architectures}.
+\newblock Addison-Wesley, 2000.
+
+\bibitem[Garcia-Teodoro(2009)]{GT09}
+P.~Garcia-Teodoro.
+\newblock \emph{Anomaly-Based Netowrk Intrusion Detection.}
+\newblock Computer \& Security, Vol. 28, 2009.
+
+\bibitem[Grady(1987)]{RG87}
+R.~B. Grady.
+\newblock \emph{Software metrics: establishing a company wide program}.
+\newblock Prentice Hall, 1987.
+
 \bibitem[Hayes(2007)]{JH07}
 Joseph Hayes.
 \newblock \emph{Analytic Culture in the U.S. Intelligence Community}.
 \newblock Ed. Center for the Study of Intelligence, 2007.
+
+\bibitem[Mandel(1997)]{TM97}
+Theo Mandel.
+\newblock \emph{The elements of user interface design}.
+\newblock Wiley, 1997.
+
+\bibitem[Martin(2003)]{RM03}
+Robert~C. Martin.
+\newblock \emph{Agile Software Development, Principles, Patterns, and
+  Practices}.
+\newblock Prentice Hall, 2003.
+
+\bibitem[Mattison(1996)]{RM96}
+R.~Mattison.
+\newblock \emph{Data Warehousing: Strategies, Technologies and Techniques}.
+\newblock McGraw Hill, 1996.
+
+\bibitem[Meyers(1978)]{GM78}
+G.~Meyers.
+\newblock \emph{Composite Structured Design}.
+\newblock Van Nostrand, 1978.
 
 \bibitem[OECD(2016)]{OE16}
 EUIPO OECD.
@@ -39,9 +75,39 @@ Presidency of~the Council.
   regulation).
 \newblock \emph{Official Journal of the European Union}, 2015.
 
+\bibitem[Parnas(1972)]{DP72}
+D.~L Parnas.
+\newblock On criteria to use in decomposing systems into modules.
+\newblock \emph{CACM}, 14\penalty0 (1):\penalty0 221--227, 1972.
+
 \bibitem[Pipkin(2000)]{DP00}
 Donald Pipkin.
 \newblock \emph{Information security: Protecting the global enterprise.}
 \newblock New York: Hewlett-Packard Company, 2000.
+
+\bibitem[Pressman(2005)]{RP05}
+Roger~S. Pressman.
+\newblock \emph{Software engineering}.
+\newblock McGraw-Hill, 2005.
+
+\bibitem[Shirey(2000)]{RS00}
+R.~Shirey.
+\newblock \emph{RFC 2828 Internet Security Glossary.}
+\newblock Internet Engineering Task Force, 2000.
+
+\bibitem[William~Stallings(2015)]{WS15}
+Lawrence~Brown William~Stallings.
+\newblock \emph{Computer Security, principles and practice.}
+\newblock Pearson Education Ltd, 2015.
+
+\bibitem[Wirth(1971)]{NW71}
+N.~Wirth.
+\newblock Program development by stepwise refinement.
+\newblock \emph{CACM}, 14\penalty0 (4):\penalty0 221--227, 1971.
+
+\bibitem[Wood(2010)]{TW10}
+T.~Wood.
+\newblock \emph{Disaster Recovery as a Cloud Service Economy Benefits.}
+\newblock Proceedings USELINUX HotCloud 10, 2010.
 
 \end{thebibliography}
