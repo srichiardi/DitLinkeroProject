@@ -298,9 +298,6 @@ recovery measures.
 \subsection{Prevention}
 
 \subsubsection{Regular software updates}
-Asset: software
-Attack type: active
-Attacker: external
 Applications running on the system are rarely bug-free. It is always good
 practice to keep every system application up-to-date with latest patches, since
 every time a new vulnerability is discovered, application developers tend
@@ -631,9 +628,86 @@ the standard for copying pieces of text) and makes them available in the
 application.
 \end{description}
 
-\subsection{Architectural design}
+\subsection{Software architecture}
+Software architecture encompasses two elements of software design: data design
+and architectural design. Here we will see the main concepts that are used to
+describe data and architectural design.
 
+\subsubsection{Data design}
+Just like this project, most recent software applications and services have been
+developed around the idea that accessing, storing and computing large amounts of
+data can offer innovative solutions. Which is a way of saying that data today is
+the new black gold, it is not a surprise than that designing what kind of data
+will be analysed and how it will be stored and structured is extremely crucial
+\cite{RP05}.
 
+At architectural level, data design is mainly concerned with the structures that
+will contain the data and how those integrate within the overall architecture.
+We are talking about using external databases to store the business data.
+Depending on the size and complexity of data requirements, we may see a small
+amount of centralized databases that store production data that is needed to
+provide live core business services. With bigger corporations and a growing
+number of diversity of database structures, it may become more difficult for
+data analysts to access information that is spread across multiple databases
+with multiple diverse data structures. \emph{Data warehouses} come to the
+rescue. Data warehouses essentially store copy of production business data in a
+separate environment, and make sure that all the data is kept using the same
+structure, thus allowing data analysts to perform data mining on current and
+historical data, in order to offer strategic insight for business
+executive decisions \cite{RM96}.
+
+\subsubsection{Architectural design}
+Architectural design aims at building a blueprint of the entire system, with
+special emphasys of how each component interacts with the others. There are two
+aspects that describe an architecture: style and pattern \cite{RP05}.
+
+Style refers to the shape of the overall system structure, it is a static
+representation of the system: which components interface directly to
+each other, which are periferal, which are central, and so on. Examples of
+architectural styles include:
+\begin{description}
+\item[Data-centered] architecture refers to a system that is designed around its
+database, where all other components are clients that exchange information only
+with the central server, with little or no interaction with each other.
+\item[Data-flow] architecture instead is applied to a system where data moves
+mainly in one direction, first as input, leaving the system as output, after all
+the modules located inbetween these two points have modifided somehow the
+original input.
+\item[Call and return] is a style in which modularity is central to the overall
+operation, where each function is bronken down in a hierarchy of modules. This
+style has the advantage of being relatively easy to modify and scale.
+\item[Layered] architecture, finally, describes a system in which components are
+grouped from an outer layer, normally the user interface, through an application
+and utility layer, down to the core layer which performs machine levels
+operations.
+\end{description}
+These are just a sample of the most common architectural styles \cite{RP05}.
+
+An architectural pattern instead describes the most dynamic aspect of the
+system: how each component interacts with the others, how they behave.
+Architectural patterns are also referred to as a solution to a standard software
+development problem. These are some examples of patterns and the problem they
+solve:
+\begin{description}
+\item[Concurrency] is the ability to perform multiple, different and
+independent tasks at the same time. One problem developer face is when the
+system has limited resources, like one single CPU, so that real multitasking
+cannot be achieved. An \emph{operating system process management} pattern
+provides that concurrency can be simulated by assigning a turn to each task for
+a limited amount of runtime. This solution offers a real advantage for tasks
+that depend on many read and write operations with external slow components.
+\item[Persistence] is the ability to store data, after the process that created
+it is finished. \emph{Application level persistence} pattern for instance
+provides that applications show generate and manage their own file format where
+to store user-generated data or software configurations. Another pattern that
+offers a solution is the \emph{database management system}.
+\item[Distribution] addresses the issue of components communication in a
+distributed environment, like clients exchanging emails: each client cannot
+assume that the recipient will be online in order to receive the communication.
+The \emph{broker} pattern's solution consists in building an agent to delegate
+to a communication, and the agent will guarantee the message delivery by waiting
+for the recipient to be ready to receive the message \cite{JB00}.
+\end{description}
 
 \section{Existing brand monitoring services}
 Loren Ipsum \ldots
