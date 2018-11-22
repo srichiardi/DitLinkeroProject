@@ -6,7 +6,7 @@ decisions made during the initial stages of the project. We will start looking
 at the discipline of Open Source Intelligence, which refers to all those
 protocols and techniques used by government and private agencies to piece
 together intelligence reports using publicly available sources, since Linkero is
-a tool that facilitates the structured collection and analysis of a limited
+a tool that facilitates the structured collection and analysis of a selected
 portion of open source data. The legal aspect of data collection and analysis
 will be explored with a reasoned summary of what is GDPR and how it impacts
 similar online services. Three sections will be dedicated to industry level best
@@ -156,22 +156,22 @@ comply. There are three levels of penalties that can be imposed:
   of GDPR, and if the breach is non-intentional;
   \item a more serious breach could result in the order to commit to regular
   periodic data protection audits;
-  \item and finally, if the breach is deemed to be serious enough, GDPR the
+  \item and finally, if the breach is deemed to be serious enough, GDPR
   prescribes two sets of financial fines depending of which obligations were
   missed by the Data Controller, the harsher of which could amount to up to
-  \euro20 millions or up to 4\% of the annual turnover estimated from the
-  prior financial year.
+  \euro20 millions or up to 4\% of the annual turnover estimated from the prior
+  financial year, depending on which is higher.
 \end{enumerate}
 
 The question now is: how does GDPR affect online services that for their
 nature collect and process bits of PII that are publicly available? First and
 foremost, GDPR applies only to PII belonging to EU citizens, therefore we can say
 that an online service that collects PII can keep on providing its functions
-without any further thought as long as it stays clear of EU citizens But let's
+without any further thought as long as it stays clear of EU citizens. But let's
 say some users will be pointing the service to PII of European users, will that
 be sufficient to be found in breach of GDPR? The answer to this latter question
 is not a clear-cut \emph{no}, there are actually use-cases where collection can
-still be an option. Obviously those cases do not include when Data Subjects
+still be an option. Obviously those cases do not include Data Subjects
 who expressed consent to their PII to be collected and stored by anyone online,
 that is not how data scraping for intelligence purpose works, especially in the
 context of open source investigations. Although it is too early for similar
@@ -229,24 +229,24 @@ regulation at a time when personal information can have serious impact on the
 society.
 
 \section{Server security standards}
-A chain is a strong as its weakest link, and a system is as secure as its
+A chain is as strong as its weakest link, and a system is as secure as its
 most vulnerable element, as the saying goes. In today's reality, any system
 facing the open and public internet has to be secured against people trying to
 misuse it. It is not just big banks and multinational corporations that have to
 put in place sci-fi grade defenses, but the same private wifi routers and
 connected thermostats have to be protected against bad actors that would gladly
-take them over and deploy them to perform some fraudulent or criminal
+take them over and deploy them to perform fraudulent or criminal
 activities. It is well known that professional computer criminals constantly
 scan the internet to detect new connected devices and try to add them to their
 personal collection of bots for different purposes.
 Internet security is therefore a must regardless of the complexity of the
 system. Information Security literature identifies three main goals of a good
 system security strategy, also referred to as the \emph{CIA triad} \cite{DP00}:
-confidentiality, integrity and availability. That means that a system security
+Confidentiality, Integrity and Availability. That means that a system security
 strategy aims at guaranteeing that data stored in the system will be accessed
 only by legitimate and relevant parties (confidentiality), that the same data
-will be kept in its original state away from sources that may alter it,
-intercept it or erase it (integrity), and that despite of the safety measures in
+will be kept in its original state away from sources that may alter,
+intercept or erase it (integrity), and that despite of the safety measures in
 place, if an attack succeeds, the data will still be accessible, and business
 will continue with minimal to no disruption (availability). In addition to the
 CIA triad, some experts also include \emph{accountability}, which essentially
@@ -264,13 +264,12 @@ threat is represented by an internal user that intentionally or by mistake
 causes damage to the system. An attacker can be further classified based on
 his/her level of activity: a \emph{passive} attacker tend to sit and intercept
 data exchanges, without affecting the system resources, whereas an \emph{active}
-attacker directly alters system resources while the operation is underway.
+attacker directly alters system resources while the operation is underway
+\cite{WS15}.
 
 Any attack normally impacts one or more of system assets: hardware, software,
-data or networks.
-
-In conclusion, it is worth mentioning that there are five types of security
-measures that an organization can put in place to protect its servers:
+data or networks. There are five types of security
+measures that an organization can put in place to protect its assets:
 deterrent, prevention, detection, response and recovery. Deterrent measures are
 meant to scare attackers off before they even consider to start their exploits.
 The criminal law with its system of penalties is definitely the first deterrent
@@ -283,7 +282,7 @@ which an attack is found while still ongoing. Detection immediately
 triggers response measures, such as blacklisting an IP associated with a
 number of failed login attempts. Finally, recovery measures are the ones that
 are deployed after an attack occurred, and try to assess the damage and
-remediate where possible.
+remediate where possible \cite{BL04}.
 
 Information security is a very vast and complex discipline, which
 directly reflects the complexity of modern interconnected systems. For the
@@ -312,7 +311,7 @@ management as well, requiring users files and folders to be isolated from one
 another, preventing one user's compromised credentials to be used to access
 everyone else's files. Finally, isolation applies to the same security
 mechanisms, since they should be isolated from the rest of the system, so that
-they cannot be compromised by the attacker.
+they cannot be compromised by the attacker \cite{WS15}.
 
 \subsubsection{Virtual Private Networks}
 VPN are a good solution to connect parts of the system that are not located on
@@ -345,7 +344,7 @@ suspicious connections, as well as traffic logger for audits. There are four
 different types and corresponding level of complexity: packet filtering,
 stateful inspection, application-level gateway and circuit-level gateway. The
 last two are the most sophisticated and require also a lot of CPU and memory
-resources, for this reasons are not suitable for this project.
+resources, for this reasons are not suitable for this project \cite{WC03}.
 
 Packet filtering is the most basic capability of a firewall, and bases its
 decision on whether to allow or reject a connection on the information contained in an IP
@@ -355,7 +354,7 @@ incapable of establishing when a connection to a port number above 1024 is
 legitimate or not. This is where a stateful inspection firewall comes into play.
 Stateful packet inspection works by keeping track of ongoing connections,
 session numbers, and originating party in order to prevent attacks like session
-hijacking.
+hijacking \cite{WS15}.
 
 \subsubsection{Users and groups least privileges}
 Just like environment isolation, assigning users and groups with the right
@@ -367,7 +366,7 @@ Permissions include the ability to read, write, execute, delete or share a
 specific resource. More advanced resource and permission management policies
 include a temporary aspect, in that permissions are granted for a limited amount
 of time, and are active only during working hours, or whenever a specific task
-needs to be performed.
+needs to be performed \cite{WS15}.
 
 \subsubsection{Password policy}
 A password policy is design to make sure that all users comply with the industry
@@ -415,7 +414,7 @@ unauthorized physical access, vandalism, theft and misuse.
 For the purpose of this project however, no countermeasures were taken to
 mitigate those threats, since the system is composed of a single virtual server,
 run by the Virtual Private Server provider Linode ltd. We assume that safety and
-security measures are being adopted by the service provider.
+security measures are being adopted by the service provider \cite{WS15}.
 
 \subsection{Detection}
 

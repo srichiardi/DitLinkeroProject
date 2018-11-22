@@ -1,4 +1,4 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{22}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -20,6 +20,11 @@ J.~Bosch.
 \newblock \emph{Design \& Use of Software Architectures}.
 \newblock Addison-Wesley, 2000.
 
+\bibitem[Cheswick(2003)]{WC03}
+W.~Cheswick.
+\newblock \emph{Firewalls and Internet Security.}
+\newblock Addison-Wesley, 2003.
+
 \bibitem[Garcia-Teodoro(2009)]{GT09}
 P.~Garcia-Teodoro.
 \newblock \emph{Anomaly-Based Netowrk Intrusion Detection.}
@@ -34,6 +39,11 @@ R.~B. Grady.
 Joseph Hayes.
 \newblock \emph{Analytic Culture in the U.S. Intelligence Community}.
 \newblock Ed. Center for the Study of Intelligence, 2007.
+
+\bibitem[Lampson(2004)]{BL04}
+B.~Lampson.
+\newblock \emph{Computer Security in the Real World.}
+\newblock Computer, 2004.
 
 \bibitem[Mandel(1997)]{TM97}
 Theo Mandel.
