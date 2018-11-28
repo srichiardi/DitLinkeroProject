@@ -1,4 +1,4 @@
-\begin{thebibliography}{22}
+\begin{thebibliography}{24}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -104,6 +104,18 @@ Roger~S. Pressman.
 R.~Shirey.
 \newblock \emph{RFC 2828 Internet Security Glossary.}
 \newblock Internet Engineering Task Force, 2000.
+
+\bibitem[Ubit(2018)]{RtduWsgi}
+Ubit.
+\newblock uwsgi, November 2018.
+\newblock URL \url{https://uwsgi-docs.readthedocs.io/en/latest/}.
+\newblock last accessed on 26 November 2018.
+
+\bibitem[Wikipedia(2018)]{WikiNginx}
+Wikipedia.
+\newblock Nginx, November 2018.
+\newblock URL \url{https://en.wikipedia.org/wiki/Nginx}.
+\newblock last edited on 26 November 2018.
 
 \bibitem[William~Stallings(2015)]{WS15}
 Lawrence~Brown William~Stallings.

@@ -9,13 +9,13 @@ system requirements, to conclude with class diagram, database structure and some
 code samples.
 
 \section{System architecture}
-The system achitecture figure \ref{sysarch} here below provides an overview of
-all different applications that work together to provide the main system
+The system achitecture figure \ref{fig:sysarch} here below provides an overview
+of all different applications that work together to provide the main system
 functionalities.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
-\includegraphics[scale=0.8]{imgs/SystemArchitecture.pdf}
+\includegraphics[scale=0.7]{imgs/SystemArchitecture.pdf}
 \caption{Linkero system architecture}
 \label{fig:sysarch}
 \end{figure}
@@ -51,7 +51,29 @@ of all the data collected in a .csv file attached to the email.
 
 \section{Technologies}
 
+The overall system was not written from scratch, there are many free and
+open-source applications that were assembled in order for the system to work.
+
 \subsection{Server operating system}
+Linkero is hosted on a Virtual Private Server provided by the company Linode
+\texttrademark. We chose the smallest package offering 1 GB Ram, 1 CPU Core and
+25 GB of SSD storage at \textdollar 5.00 USD a month.
+
+The plan offers different operating systems to chose from, and Linux Debian is
+the OS that was picked for this project. There are several advantages to us a
+Linux distribution:
+\begin{itemize}
+  \item Linux is a very lightweight system, which can run on hardware with even
+  smaller resources;
+  \item Linux is mantained by a global community who prioritize reliability and
+  security over functionalities;
+  \item Linux is opesource system, which means that its code can be read by
+  anyone, increasing the chances of finding bugs and vulnerabilities, which is
+  to say that Linux is very secure;
+  \item Linux is also one of the most popular server technologies, guaranteeing
+  that a system designed for Linux can access and be transferred to a vast
+  public already using Linux;
+\end{itemize}
 
 \subsection{Web application framework}
 
@@ -72,7 +94,7 @@ NGINX was chosen to serve the pages of this application.
 
 \section{Use cases}
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.4]{imgs/UseCasesDiag.pdf}
 \caption{Use cases diagram}
@@ -91,7 +113,7 @@ NGINX was chosen to serve the pages of this application.
 
 \section{Sequence diagrams}
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
 \includegraphics[angle=90, scale=0.7]{imgs/SequenceDiagram.pdf}
 \caption{Launch report sequence diagram}
