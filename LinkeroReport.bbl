@@ -1,4 +1,4 @@
-\begin{thebibliography}{24}
+\begin{thebibliography}{26}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -24,6 +24,18 @@ J.~Bosch.
 W.~Cheswick.
 \newblock \emph{Firewalls and Internet Security.}
 \newblock Addison-Wesley, 2003.
+
+\bibitem[Debian(2018)]{Debian}
+Debian.
+\newblock Debian linux gnu, November 2018.
+\newblock URL \url{https://www.debian.org/intro/about}.
+\newblock last accessed on 26 November 2018.
+
+\bibitem[Fundation(2018)]{Django}
+Django~Software Fundation.
+\newblock Django web framework, November 2018.
+\newblock URL \url{https://www.djangoproject.com/}.
+\newblock last accessed on 26 November 2018.
 
 \bibitem[Garcia-Teodoro(2009)]{GT09}
 P.~Garcia-Teodoro.

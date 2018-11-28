@@ -9,11 +9,11 @@ system requirements, to conclude with class diagram, database structure and some
 code samples.
 
 \section{System architecture}
-The system achitecture figure \ref{fig:sysarch} here below provides an overview
-of all different applications that work together to provide the main system
-functionalities.
+The system achitecture represented in figure \ref{fig:sysarch} provides an
+overview of all different applications that work together to perform the main
+system functionalities.
 
-\begin{figure}[H]
+\begin{figure}[h!]
 \centering
 \includegraphics[scale=0.7]{imgs/SystemArchitecture.pdf}
 \caption{Linkero system architecture}
@@ -64,7 +64,7 @@ the OS that was picked for this project. There are several advantages to us a
 Linux distribution:
 \begin{itemize}
   \item Linux is a very lightweight system, which can run on hardware with even
-  smaller resources;
+  smaller resources than the ones available for this project;
   \item Linux is mantained by a global community who prioritize reliability and
   security over functionalities;
   \item Linux is opesource system, which means that its code can be read by
@@ -73,28 +73,76 @@ Linux distribution:
   \item Linux is also one of the most popular server technologies, guaranteeing
   that a system designed for Linux can access and be transferred to a vast
   public already using Linux;
+  \item the Debian distribution development cycle emphasizes stability over
+  innovation, offering products that are well tested before being published;
+  \item installation and use are free and allowed under the GNU General Public
+  License, making it ideal for a small budget project;
+  \item the Debian distribution is one of the most rich in extra applications
+  ready to be installed from their officila directories \cite{Debian}.
 \end{itemize}
+
+All the reasons above make Linux Debian the ideal candidate for this project.
 
 \subsection{Web application framework}
 
+As mentioned before, the main business logic in this project is written in
+Python and runs on a uWSGI web server. However the actual set of objects and
+functions that constitute a web application have been developed using Django.
+Django is a ``web framework for perfectionists with deadlines'', quoting from
+Django developers' tagline \cite{Django}. There are several reasons that make
+Django a good candidate for this project:
+\begin{itemize}
+  \item the web development framework is freely distributed under the BSD
+  Licence;
+  \item Django offers object-relational mapping classes designed to interact
+  directly with a relational database using Python APIs, simplifying
+  interactions and code that involves data retrival and manipulations with a SQL
+  database;
+  \item Django has already built-in user authentication and authorization and session management
+  support, along with a pre-installed admin console with basinc
+  functionalities;
+  \item Django comes with several security features to prevent web-specific
+  attack, such as: cross-site scripting, cross-site request forgery,
+  SQL-injection, clickjacking;
+  \item Django is designed with scalability in mind: it enforces strict
+  separation between application layer and database layer, so that new hardware
+  can be added with no costly impact due to reconfiguration.
+\end{itemize}
+
+Chosing Django also means being able to access all the Python libraries
+available for data analysis, data mining and system administration.
+
 \subsection{Databases}
+There are three different databases that support all the data needs of this
+project.
 
-\subsubsection{Maria DB}
+\subsubsection{MariaDB}
+MariaDB is a version of MySQL that forket from the original development in order
+to remain free under the GNU GPL licence. There is no special reason to prefer
+this relational database over the parent MySQL, other than it is the default
+version available in the original Debian repositories, since all Debian software
+is protected by GNU GPL.
 
-\subsubsection{Mongo DB}
+MariaDB is used as default server for user authentication and session
+management, and to keep logs of user log-in, user IPs and browsing activity.
 
-\subsubsection{Redis DB}
+
+\subsubsection{MongoDB}
+
+\subsubsection{Redis}
 
 \subsection{Web engine}
 NGINX was chosen to serve the pages of this application.
 
 \subsection{Firewall}
 
+\subsection{Celery}
+
 \section{Development methodology}
 
 \section{Use cases}
 
-\begin{figure}[H]
+\begin{figure}[h!]
 \centering
 \includegraphics[scale=0.4]{imgs/UseCasesDiag.pdf}
 \caption{Use cases diagram}
@@ -107,13 +155,19 @@ NGINX was chosen to serve the pages of this application.
 
 \subsection{Non-functional requirements}
 
+\begin{itemize}
+  \item security
+  \item scalability
+  \item maintainability
+\end{itemize}
+
 \subsection{User requirements}
 
 \subsection{Requirements analysis}
 
 \section{Sequence diagrams}
 
-\begin{figure}[H]
+\begin{figure}[h!]
 \centering
 \includegraphics[angle=90, scale=0.7]{imgs/SequenceDiagram.pdf}
 \caption{Launch report sequence diagram}
