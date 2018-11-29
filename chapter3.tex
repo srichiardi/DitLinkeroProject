@@ -129,6 +129,52 @@ management, and to keep logs of user log-in, user IPs and browsing activity.
 
 \subsubsection{MongoDB}
 
+MongoDB\texttrademark is a NoSQL schemaless database that stores data in
+JSON-like record structures called documents. MongoDB Community Edition is made
+available as Debian package under the AGPL licence.
+
+MongoDB is used to store all the data generated while querying external
+sources, and is a vital component of the project. The reason for this choice is
+simple: MongoDB natural data format is JSON, and does not require the
+data schema to be declared in advance. This feature relieves much burden from
+the development stage because there is no need to commit to rigid data-schemas
+based on the information that are being extracted from external sources, there is
+also no need to map a JSON response to a SQL INSERT query. The final
+implementation will result in less hard-coded configuration, less maintenance,
+more flexibility to accept modification to existing sources and to add new
+sources. This doesn't mean that some of the data points extracted should not be
+indexed, it actually is recommended to index some crucial data-points to improve
+search performance, and MongoDB provides this feature.
+
+There are other features that make MongoDB attractive for this project:
+\begin{itemize}
+  \item field, range and regulare expressions queries are supported;
+  \item results can include user-defined JavaScript functions;
+  \item high availability is guaranteed thanks to built-in replication functions
+  that make copies of selected data. This feature is relevant if MongoDB is
+  deployed across a cluster of multiple machines;
+  \item high scalability is also a feature by design;
+  \item aggregation can be performed in three different ways, depending on the
+  requirement: aggregation pipeline, map-reduce and signle-purpose aggregation
+  methods;
+  \item finally, as of june 2018, the last version of MongoDB supports full ACID
+  transactions.
+\end{itemize}
+
+MongoDB does not support SQL style queries, but its query language is very
+intuitive, since it reproduces an object-oriented method calling style, for
+instance:
+\begin{lstlisting}
+db.inventory.find( {
+     status: "A",
+     $or: [ { qty: { $lt: 30 } }, { item: /^p/ } ]
+} )
+\end{lstlisting}
+in SQL equates to:
+\begin{lstlisting}[language=SQL, breaklines=true]
+SELECT * FROM inventory WHERE status = "A" AND ( qty < 30 OR item LIKE "p%")
+\end{lstlisting}
+
 \subsubsection{Redis}
 
 \subsection{Web engine}
