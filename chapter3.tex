@@ -32,7 +32,7 @@ all requests knocking ports 22, 80 and 443.
 NGINX is the web server, reverse proxy server \cite{WikiNginx}, which receives
 HTTP requests and assigns them to the correct internal web server.
 
-uWSGI is the web server that runs Python scripts, in the words of its
+uWSGI is the web engine that runs Python scripts, in the words of its
 developers: ``uWSGI itself is a vast project with many components, aiming to
 provide a full software stack for building hosting services'' \cite{RtduWsgi}.
 
@@ -60,14 +60,14 @@ Linkero is hosted on a Virtual Private Server provided by the company Linode
 25 GB of SSD storage at \textdollar 5.00 USD a month.
 
 The plan offers different operating systems to chose from, and Linux Debian is
-the OS that was picked for this project. There are several advantages to us a
+the OS that was picked for this project. There are several advantages to use a
 Linux distribution:
 \begin{itemize}
   \item Linux is a very lightweight system, which can run on hardware with even
   smaller resources than the ones available for this project;
   \item Linux is mantained by a global community who prioritize reliability and
-  security over functionalities;
-  \item Linux is opesource system, which means that its code can be read by
+  security over innovative/experimental functionalities;
+  \item Linux is an opesource system, which means that its code can be read by
   anyone, increasing the chances of finding bugs and vulnerabilities, which is
   to say that Linux is very secure;
   \item Linux is also one of the most popular server technologies, guaranteeing
@@ -78,7 +78,7 @@ Linux distribution:
   \item installation and use are free and allowed under the GNU General Public
   License, making it ideal for a small budget project;
   \item the Debian distribution is one of the most rich in extra applications
-  ready to be installed from their officila directories \cite{Debian}.
+  ready to be installed from their official directories \cite{Debian}.
 \end{itemize}
 
 All the reasons above make Linux Debian the ideal candidate for this project.
@@ -86,8 +86,8 @@ All the reasons above make Linux Debian the ideal candidate for this project.
 \subsection{Web application framework}
 
 As mentioned before, the main business logic in this project is written in
-Python and runs on a uWSGI web server. However the actual set of objects and
-functions that constitute a web application have been developed using Django.
+Python and runs on a uWSGI web engine, implementing Python's WSGI convention.
+However the actual set of objects and functions that constitute the web application have been developed using Django.
 Django is a ``web framework for perfectionists with deadlines'', quoting from
 Django developers' tagline \cite{Django}. There are several reasons that make
 Django a good candidate for this project:
@@ -96,17 +96,21 @@ Django a good candidate for this project:
   Licence;
   \item Django offers object-relational mapping classes designed to interact
   directly with a relational database using Python APIs, simplifying
-  interactions and code that involves data retrival and manipulations with a SQL
+  interactions and data retrival/manipulation operations with a SQL
   database;
-  \item Django has already built-in user authentication and authorization and session management
-  support, along with a pre-installed admin console with basinc
-  functionalities;
+  \item Django has already built-in user authentication, authorization and
+  session management support, along with a pre-installed admin console with basic
+  functionalities. This allows the development process to focus on core
+  functionalities, rather than having to code standard session management and
+  authentication procedures;
   \item Django comes with several security features to prevent web-specific
   attack, such as: cross-site scripting, cross-site request forgery,
   SQL-injection, clickjacking;
   \item Django is designed with scalability in mind: it enforces strict
   separation between application layer and database layer, so that new hardware
-  can be added with no costly impact due to reconfiguration.
+  can be added with no costly impact due to reconfiguration;
+  \item successive Django framework versions include backward compatibility and
+  try as much as possible to mantain consistent interfaces and API.
 \end{itemize}
 
 Chosing Django also means being able to access all the Python libraries
@@ -129,7 +133,7 @@ management, and to keep logs of user log-in, user IPs and browsing activity.
 
 \subsubsection{MongoDB}
 
-MongoDB\texttrademark is a NoSQL schemaless database that stores data in
+MongoDB\texttrademark is a NoSQL, schemaless database that stores data in
 JSON-like record structures called documents. MongoDB Community Edition is made
 available as Debian package under the AGPL licence.
 
@@ -164,7 +168,7 @@ There are other features that make MongoDB attractive for this project:
 MongoDB does not support SQL style queries, but its query language is very
 intuitive, since it reproduces an object-oriented method calling style, for
 instance:
-\begin{lstlisting}
+\begin{lstlisting}[language=Java, breaklines=true]
 db.inventory.find( {
      status: "A",
      $or: [ { qty: { $lt: 30 } }, { item: /^p/ } ]
@@ -176,13 +180,98 @@ SELECT * FROM inventory WHERE status = "A" AND ( qty < 30 OR item LIKE "p%")
 \end{lstlisting}
 
 \subsubsection{Redis}
-
-\subsection{Web engine}
-NGINX was chosen to serve the pages of this application.
-
-\subsection{Firewall}
+Finally, the last database implemented in this project is Redis\texttrademark.
+The choice of this database was dictated by the need of running an independent
+parallel Python thread that would receive requests for specific operations,
+and execute them asynchronically from the main web application. A graphical
+representation of this asynchronous execution is represented in the sequence
+diagram in figure \ref{fig:sqncdiag}. Redis is short for Remote Dictionary
+Server, is a database storing key-value data structures in the running
+memory, and is distributed under the BSD licence \cite{Redis}. Redis offers the
+option to transfer some data to permanent storage, but that is not its strength.
+Redis shines in a system with multiple parallel processes that need to
+exchange data between each other. Keeping the data in the running memory allows
+very quick I/O operations. Also Redis does not support complex queries, and data
+aggregate operations, but simple index lookups.
 
 \subsection{Celery}
+Celery is an ``asynchronous task queue'' \cite{Celery}, developed in Python and
+distributed under the BSD Licence. Celery regularly checks if one or more tasks
+are being logged in the Redis database, and executes them in order, while the
+main program regains control immediately after submitting a task, so that its
+execution is not dependent on the task.
+
+This choice is dictated by two factors:
+\begin{itemize}
+  \item gathering all the data for one single report can take minutes, or even
+  longer, depending on the volume of data requested and the speed of connection.
+  In a web application it would result in a bad user experience if the page used
+  to submit a report would hang for a long period of time waiting for data to be
+  returned.
+  \item Services offering API calls to access their data often limit the call
+  frequency. Since Linkero is designed to sustain a growing user population,
+  we would reach a stange where multiple users could submit concurrent reports,
+  and that would likely exceed the API rate limit.
+\end{itemize}
+
+In order to solve those two issues, Celery is the central server that receives
+and queues all user generated tasks, while executing them one at a time. From
+the user perspective, after submitting a report, a feedback message would
+acknowledge the fact that the report was submitted successfully, and that a
+notification will be sent via email once the report is ready. From the API call
+provider perspective, one single agent would make multiple API calls, making
+sure not to exceed the limit.
+
+In this configuration, Redis is a message borker that mediates between the web
+engine uWSGI and Celery, when tasks are scheduled.
+
+\subsection{Web server}
+NGINX was chosen to serve the pages of this application. NGINX is an http proxy
+and web server \cite{Nginx}, released under the BSD licence.
+
+The main reasons for chosing Nginx over other popular web servers is that its
+lighweight even under significant load (2.5MB for 10k simultaneous connections
+\cite{wkngx}), and offer native support of WSGI.
+
+There are other reasons that make NGINX a good candidate for the project:
+\begin{itemize}
+  \item acting as reverse proxy, NGINX adds a layer after the firewall,
+  obfuscating the location of web servers, thus improving the system security.
+  \item Performs system load balancing when multiple web servers are deployed.
+  \item Manages centrally TLS encryption on behalf of every web server under its
+  control.
+  \item It can host multiple web servers from a single IP.
+  \item Finally, it can cache static content, reducing the load to the origin
+  servers.
+\end{itemize}
+
+\subsection{Firewall}
+The firewall application IPtables used in this project comes as default with the
+Debian operating system and is distributed freely under the GPL licence
+\cite{iptables}. There are no particular reasons why this application was
+preferred over others other than:
+\begin{itemize}
+  \item it is easy to configure;
+  \item it is an established application, well documented;
+  \item offers filtering at network and transport layers, to provide stateful
+  connections inspection.
+\end{itemize}
+
+These are the rules implemented for this project:
+\begin{itemize}
+  \item the default policy on INPUT, FORWARD and OUTPUT chains is to reject
+  unless otherwise specified;
+  \item block every new incoming request for ports other than 22 (SSH),
+  25(SMTP), 80 (HTTP) and 443 (HTTPS);
+  \item DROP incoming connections form reserved addresses like (but not limited
+  to) 10.0.0.0/8, 169.254.0.0./16, 127.0.0.0/8 or 192.168.0.0/24;
+  \item DROP all packets whose state is INVALID;
+  \item block for 24 hours IPs that perform portscan;
+  \item allow loopback connections;
+  \item allow output traffic to ports 22 (SSH), 25 (SMTP), 53 (DNS), 80 (HTTP)
+  and 443 (HTTPS).
+\end{itemize}
+
 
 \section{Development methodology}
 
@@ -192,7 +281,7 @@ NGINX was chosen to serve the pages of this application.
 \centering
 \includegraphics[scale=0.4]{imgs/UseCasesDiag.pdf}
 \caption{Use cases diagram}
-\label{fig:sysarch}
+\label{fig:usecases}
 \end{figure}
 
 \section{Requirements}
@@ -217,7 +306,7 @@ NGINX was chosen to serve the pages of this application.
 \centering
 \includegraphics[angle=90, scale=0.7]{imgs/SequenceDiagram.pdf}
 \caption{Launch report sequence diagram}
-\label{fig:sysarch}
+\label{fig:sqncdiag}
 \end{figure}
 
 \section{Code samples}

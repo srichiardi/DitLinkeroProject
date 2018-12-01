@@ -1,4 +1,4 @@
-\begin{thebibliography}{26}
+\begin{thebibliography}{31}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -19,6 +19,12 @@ Stewart~K. Bertrom.
 J.~Bosch.
 \newblock \emph{Design \& Use of Software Architectures}.
 \newblock Addison-Wesley, 2000.
+
+\bibitem[Celery(2009)]{Celery}
+Project Celery.
+\newblock Celery, May 2009.
+\newblock URL \url{http://www.celeryproject.org/}.
+\newblock last version 5.0.2 on 22 November 2018.
 
 \bibitem[Cheswick(2003)]{WC03}
 W.~Cheswick.
@@ -78,6 +84,18 @@ G.~Meyers.
 \newblock \emph{Composite Structured Design}.
 \newblock Van Nostrand, 1978.
 
+\bibitem[NetFilter(1998)]{iptables}
+NetFilter.
+\newblock Iptables, 1998.
+\newblock URL \url{https://netfilter.org/}.
+\newblock last version 1.8.2 on 13 November 2018.
+
+\bibitem[Nginx(2004)]{Nginx}
+Project Nginx.
+\newblock Nginx, October 2004.
+\newblock URL \url{https://github.com/nginx/nginx}.
+\newblock last version 1.14.1 on 6 November 2018.
+
 \bibitem[OECD(2016)]{OE16}
 EUIPO OECD.
 \newblock \emph{Trade in Counterfeit and Pirated Goods: Mapping the Economic
@@ -112,6 +130,12 @@ Roger~S. Pressman.
 \newblock \emph{Software engineering}.
 \newblock McGraw-Hill, 2005.
 
+\bibitem[Salvatore(2009)]{Redis}
+Sanfilippo Salvatore.
+\newblock Redis, May 2009.
+\newblock URL \url{https://github.com/antirez/redis}.
+\newblock last version 5.0.2 on 22 November 2018.
+
 \bibitem[Shirey(2000)]{RS00}
 R.~Shirey.
 \newblock \emph{RFC 2828 Internet Security Glossary.}
@@ -123,9 +147,15 @@ Ubit.
 \newblock URL \url{https://uwsgi-docs.readthedocs.io/en/latest/}.
 \newblock last accessed on 26 November 2018.
 
-\bibitem[Wikipedia(2018)]{WikiNginx}
+\bibitem[Wikipedia(2018{\natexlab{a}})]{WikiNginx}
 Wikipedia.
-\newblock Nginx, November 2018.
+\newblock Nginx, November 2018{\natexlab{a}}.
+\newblock URL \url{https://en.wikipedia.org/wiki/Nginx}.
+\newblock last edited on 26 November 2018.
+
+\bibitem[Wikipedia(2018{\natexlab{b}})]{wkngx}
+Wikipedia.
+\newblock Nginx, November 2018{\natexlab{b}}.
 \newblock URL \url{https://en.wikipedia.org/wiki/Nginx}.
 \newblock last edited on 26 November 2018.
 
