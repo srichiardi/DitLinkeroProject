@@ -225,6 +225,13 @@ sure not to exceed the limit.
 In this configuration, Redis is a message borker that mediates between the web
 engine uWSGI and Celery, when tasks are scheduled.
 
+\subsection{Email server}
+The email server installed on this system is Exim \cite{exim} which is a very
+well established application, first released in 1995 under GNU licence. The
+chioce of this server is dictated by the fact that under the current version of
+the project a simple send-only email server is sufficient to allow the system to
+send out email notification to Linkero users once a report is completed.
+
 \subsection{Web server}
 NGINX was chosen to serve the pages of this application. NGINX is an http proxy
 and web server \cite{Nginx}, released under the BSD licence.
@@ -272,21 +279,208 @@ These are the rules implemented for this project:
   and 443 (HTTPS).
 \end{itemize}
 
+Working along with IPtables, Fail2Ban scans IPtables' log files and dynamically
+adds IPtables rules to ban those IPs that behave suspiciously. In
+this system installation Fail2Ban is configured to look at SSH login attempts
+that fail three times within 24 hours, and bans them for a full day. This
+setting targets mainly bots that try to brute-force their way into a server
+connected to the public internet, by attempting to login into SSH using a
+long list of combinations of username and password. An unusual username and
+strong password normally are sufficient to prevent unwanted intrusions, however
+leaving the system open to accept and evaluate any volume of login could leave
+it exposed to DDoS attacks. Banning activity coming from a suspicious IP is a
+way to relieve the pressure from the SSH application, leaving it available to
+legitimate users \cite{fail2ban}. As of November 2018, there are currently 603
+IPs being banned for a full day, and 8,845 that have been banned at some point
+in the last four months of activity.
+
 
 \section{Development methodology}
 
 \section{Use cases}
+The figure \ref{fig:usecases} represents how the two main end-users types of 
+interactions with the system.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.4]{imgs/UseCasesDiag.pdf}
+\includegraphics[scale=0.6]{imgs/UseCasesDiag.pdf}
 \caption{Use cases diagram}
 \label{fig:usecases}
 \end{figure}
 
+The figure provides a simplified set of possible actions, with no regard to the
+exact order in which they may be presented to the user under realistic
+circumstances. Use-cases are a scematic way to visualize the main functions of a
+system from the users' perspective.
+
+The follwing set of tables will flash out what each use-case requires and what
+provides:
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{l p{9cm}}  
+\toprule
+\bf{Use case name}    & Launch new report \\
+\midrule
+\bf{Actor}    & Investigator \\
+\midrule
+\bf{Description}    & The user selects the type of report he/she wants to
+generate, fills in the necessary input and submits the request. \\
+\midrule
+\bf{Preconditions}    & The user has to be logged into his/her profile. \\
+\midrule
+\bf{Trigger}    & Click on \emph{Submit} button. \\
+\bottomrule
+\end{tabular}
+\caption{Launch new report use case}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{l p{9cm}}  
+\toprule
+\bf{Use case name}    & Delete records \\
+\midrule
+\bf{Actor}    & Investigator, Admin \\
+\midrule
+\bf{Description}    & The user deletes records associated with a case. \\
+\midrule
+\bf{Preconditions}    & The user has to be logged into his/her profile. \\
+\midrule
+\bf{Trigger}    & Click on \emph{Delete} icon. \\
+\bottomrule
+\end{tabular}
+\caption{Delete records use case}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{l p{9cm}}  
+\toprule
+\bf{Use case name}    & Create user profile \\
+\midrule
+\bf{Actor}    & Admin \\
+\midrule
+\bf{Description}    & The user create a new profile with a username, email and
+password that will allow a new user to access the system functionalities.
+\\
+\midrule
+\bf{Preconditions}    & The user has to be logged into his/her profile. \\
+\midrule
+\bf{Trigger}    & Click on \emph{Save} button. \\
+\bottomrule
+\end{tabular}
+\caption{Create user profile use case}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{l p{9cm}}  
+\toprule
+\bf{Use case name}    & Download report \\
+\midrule
+\bf{Actor}    & Investigator \\
+\midrule
+\bf{Description}    & The user selects a report that has already been
+generated, and downloads a csv file with the data.
+\\
+\midrule
+\bf{Preconditions}    & The user has to be logged into his/her profile. Data
+from a report has to be already available and saved in the database.
+\\
+\midrule
+\bf{Trigger}    & Click on \emph{Download} icon. \\
+\bottomrule
+\end{tabular}
+\caption{Download report use case}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{l p{9cm}}  
+\toprule
+\bf{Use case name}    & Change email and password \\
+\midrule
+\bf{Actor}    & Investigator, Admin \\
+\midrule
+\bf{Description}    & The user can change the current password and email
+address.
+\\
+\midrule
+\bf{Preconditions}    & The user has to be logged into his/her profile.
+\\
+\midrule
+\bf{Trigger}    & Click on \emph{Save} button. \\
+\bottomrule
+\end{tabular}
+\caption{Change password use case}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{l p{9cm}}  
+\toprule
+\bf{Use case name}    & Search data \\
+\midrule
+\bf{Actor}    & Investigator \\
+\midrule
+\bf{Description}    & The user can submit a set of keywords and find out how
+many reports are available in the database associated with that term.
+\\
+\midrule
+\bf{Preconditions}    & The user has to be logged into his/her profile.
+\\
+\midrule
+\bf{Trigger}    & Click on \emph{Search} button. \\
+\bottomrule
+\end{tabular}
+\caption{Search use case}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{l p{9cm}}  
+\toprule
+\bf{Use case name}    & Delete user profile \\
+\midrule
+\bf{Actor}    & Admin \\
+\midrule
+\bf{Description}    & The user can delete the profile of a user that no longer
+needs access to the system.
+\\
+\midrule
+\bf{Preconditions}    & The user has to be logged into his/her profile.
+\\
+\midrule
+\bf{Trigger}    & Click on \emph{Delete} button. \\
+\bottomrule
+\end{tabular}
+\caption{Delete user profile use case}
+\end{table}
+
 \section{Requirements}
+We already mentioned some of the requirements and system constraints in the
+\emph{system architecture} section. In this section we will discuss in more
+details all the requirements considered for the current implementation.
+Requirements are further divided in functional, non-functional and user
+requirements.
 
 \subsection{Functional requirements}
+Functional requirements concerne the core business logic of the system:
+\begin{description}
+\item[F1] the system should connect successfully to external sources, public
+API, to retrieve relevant data.
+\item[F2] The system should collect data extracted from external sources and
+store it in a local database.
+\item[F3] The system should avoid storing duplicates of the same record within
+one report request.
+\item[F4] The system should assemble all the data gathered for one user's
+request and print it in a csv file format.
+\item[F5] The system should send a copy of the data, to the requesting user, in
+a csv file attached to a notification email.
+\item[F6] The system should limit the amount of API calls to each external data
+source, in order not to breach API user policy.
+\end{description}
 
 \subsection{Non-functional requirements}
 
@@ -297,14 +491,15 @@ These are the rules implemented for this project:
 \end{itemize}
 
 \subsection{User requirements}
-
-\subsection{Requirements analysis}
+\begin{itemize}
+  \item 
+\end{itemize}
 
 \section{Sequence diagrams}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[angle=90, scale=0.7]{imgs/SequenceDiagram.pdf}
+\includegraphics[angle=90, scale=0.6]{imgs/SequenceDiagram.pdf}
 \caption{Launch report sequence diagram}
 \label{fig:sqncdiag}
 \end{figure}
