@@ -296,6 +296,30 @@ in the last four months of activity.
 
 
 \section{Development methodology}
+For this project, considering its relative simplicity and limited headcount
+(one person working on it), Extreme Engineering seemed to be the right
+development methodology. The methodology is subdivided into four stages:
+planning, design, coding and testing \cite{RP05}. In the next three sections we
+will look at the list of requirements and use cases created for this
+project, the object oriented class diagrams and some examples of the resulting
+code. The next chapter will be dedicated to the testing performed and results.
+
+There are some discrepancies from the XP ortodossy. Extreme programming
+encourages for instance to assign priority to each use-case and estimate what is
+called \emph{project velocity}, otherwise known as the amount of weeks required
+to complete each use-case. With the current level of knowledge, each and every
+use-case could be realistically be developed under a week of full time work.
+However that did not reflects the reality of time dedicated to each use-case.
+
+Also, extreme programming focusses on the coding part of the development, which
+fits the business logic of the project. It is worth to montion that a lot of
+time was actually spent configuring off-the-shelf application that constitute
+vital parts of the system: enabling NGINX to interact with uWSGI, setting
+MongoDB user profiles and credientials, creating an SSL certificate and
+registering it in NGINX, and more. All these activities are vital for the
+successful implementation and working of the system, but do not feature in the
+XP paradigm.
+
 
 \section{Use cases}
 The figure \ref{fig:usecases} represents how the two main end-users types of 
@@ -494,6 +518,8 @@ source, in order not to breach API user policy.
 \begin{itemize}
   \item 
 \end{itemize}
+
+\section{Class diagrams}
 
 \section{Sequence diagrams}
 
