@@ -340,7 +340,7 @@ system from the users' perspective.
 The follwing set of tables will flash out what each use-case requires and what
 provides:
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \begin{tabular}{l p{9cm}}  
 \toprule
@@ -359,7 +359,7 @@ generate, fills in the necessary input and submits the request. \\
 \caption{Launch new report use case}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \begin{tabular}{l p{9cm}}  
 \toprule
@@ -377,7 +377,7 @@ generate, fills in the necessary input and submits the request. \\
 \caption{Delete records use case}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \begin{tabular}{l p{9cm}}  
 \toprule
@@ -397,7 +397,7 @@ password that will allow a new user to access the system functionalities.
 \caption{Create user profile use case}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \begin{tabular}{l p{9cm}}  
 \toprule
@@ -419,7 +419,7 @@ from a report has to be already available and saved in the database.
 \caption{Download report use case}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \begin{tabular}{l p{9cm}}  
 \toprule
@@ -440,7 +440,7 @@ address.
 \caption{Change password use case}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \begin{tabular}{l p{9cm}}  
 \toprule
@@ -461,7 +461,7 @@ many reports are available in the database associated with that term.
 \caption{Search use case}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \begin{tabular}{l p{9cm}}  
 \toprule
@@ -508,18 +508,50 @@ source, in order not to breach API user policy.
 
 \subsection{Non-functional requirements}
 
-\begin{itemize}
-  \item security
-  \item scalability
-  \item maintainability
-\end{itemize}
+\begin{description}
+  \item[N1] The system should restrict access to authorized users only.
+  \item[N2] The system should store users' passwords encrypted.
+  \item[N3] The system should store data gathered from external sources
+  encrypted while the data is at rest.
+  \item[N4] The system should be hardened against most common web attacks.
+  \item[N5] The system should be prepared to accomodate larger data
+  sets;
+  \item[N6] The system should be prepared to accomodate more web servers to
+  increase performance, redundancy and faul-tolerance.
+  \item[N7] The database should allow flexible storage of eterogeneous
+  dataschemes from different sources.
+\end{description}
 
 \subsection{User requirements}
-\begin{itemize}
-  \item 
-\end{itemize}
+\begin{description}
+\item[U1] The application should allow access to the authenticated user.
+\item[U2] The user should be able to change his/her password and email.
+\item[U3] The application should present the list of all queries run by the user
+in the last two weeks.
+\item[U4] The application should allow the user to search and filter through
+his/her cases based on case creation date range and platform (e.g. eBay,
+Mercadolibre, Alegro, Facebook, etc.).
+\item[U5] The application should provide input-forms to allow data extraction
+from all the external datasources available.
+\item[U6] The application should preform data gathering operations without
+stopping the user from performing other operations.
+\item[U7] When the data is ready to download the user should be notified.
+\item[U8] The user should be able to access both data and input provided for old
+cases.
+\item[U9] The user should be able to delete old cases and data associated with
+them.
+\end{description}
 
-\section{Class diagrams}
+\section{Class diagram}
+The class diagram in figure \ref{fig:clssdiag} represents the core modules of
+the web application.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[angle=90, scale=0.9]{imgs/ClassDiag.pdf}
+\caption{Class diagram}
+\label{fig:clssdiag}
+\end{figure}
 
 \section{Sequence diagrams}
 
