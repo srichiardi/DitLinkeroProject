@@ -1,189 +1,173 @@
-\begin{thebibliography}{33}
-\providecommand{\natexlab}[1]{#1}
-\providecommand{\url}[1]{\texttt{#1}}
-\expandafter\ifx\csname urlstyle\endcsname\relax
-  \providecommand{\doi}[1]{doi: #1}\else
-  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+\begin{thebibliography}{Wik18b}
 
-\bibitem[Bazzell(2015)]{MB15}
+\bibitem[Baz15]{MB15}
 Michael Bazzell.
-\newblock \emph{Open Source Intelligence Techniques}.
+\newblock {\em Open Source Intelligence Techniques}.
 \newblock Amazon.co.uk Ltd, 2015.
 
-\bibitem[Bertrom(2015)]{SB15}
+\bibitem[Ber15]{SB15}
 Stewart~K. Bertrom.
-\newblock \emph{The Tao of Open Source Intelligence}.
+\newblock {\em The Tao of Open Source Intelligence}.
 \newblock IT Governance Publishing, 2015.
 
-\bibitem[Bosch(2000)]{JB00}
+\bibitem[Bos00]{JB00}
 J.~Bosch.
-\newblock \emph{Design \& Use of Software Architectures}.
+\newblock {\em Design \& Use of Software Architectures}.
 \newblock Addison-Wesley, 2000.
 
-\bibitem[Celery(2009)]{Celery}
+\bibitem[Cel09]{Celery}
 Project Celery.
 \newblock Celery, May 2009.
-\newblock URL \url{http://www.celeryproject.org/}.
 \newblock last version 5.0.2 on 22 November 2018.
 
-\bibitem[Cheswick(2003)]{WC03}
+\bibitem[Che03]{WC03}
 W.~Cheswick.
-\newblock \emph{Firewalls and Internet Security.}
+\newblock {\em Firewalls and Internet Security.}
 \newblock Addison-Wesley, 2003.
 
-\bibitem[Debian(2018)]{Debian}
+\bibitem[Deb18]{Debian}
 Debian.
 \newblock Debian linux gnu, November 2018.
-\newblock URL \url{https://www.debian.org/intro/about}.
 \newblock last accessed on 26 November 2018.
 
-\bibitem[Fundation(2018)]{Django}
+\bibitem[Fun18]{Django}
 Django~Software Fundation.
 \newblock Django web framework, November 2018.
-\newblock URL \url{https://www.djangoproject.com/}.
 \newblock last accessed on 26 November 2018.
 
-\bibitem[Garcia-Teodoro(2009)]{GT09}
-P.~Garcia-Teodoro.
-\newblock \emph{Anomaly-Based Netowrk Intrusion Detection.}
-\newblock Computer \& Security, Vol. 28, 2009.
-
-\bibitem[Grady(1987)]{RG87}
+\bibitem[Gra87]{RG87}
 R.~B. Grady.
-\newblock \emph{Software metrics: establishing a company wide program}.
+\newblock {\em Software metrics: establishing a company wide program}.
 \newblock Prentice Hall, 1987.
 
-\bibitem[Hayes(2007)]{JH07}
+\bibitem[GT09]{GT09}
+P.~Garcia-Teodoro.
+\newblock {\em Anomaly-Based Netowrk Intrusion Detection.}
+\newblock Computer \& Security, Vol. 28, 2009.
+
+\bibitem[Hay07]{JH07}
 Joseph Hayes.
-\newblock \emph{Analytic Culture in the U.S. Intelligence Community}.
+\newblock {\em Analytic Culture in the U.S. Intelligence Community}.
 \newblock Ed. Center for the Study of Intelligence, 2007.
 
-\bibitem[Hazel(1995)]{exim}
+\bibitem[Haz95]{exim}
 Philip Hazel.
 \newblock Exim, 1995.
-\newblock URL \url{https://www.exim.org/}.
 \newblock last version 4 on 15 April 2018.
 
-\bibitem[Jaquier(2004)]{fail2ban}
+\bibitem[Jaq04]{fail2ban}
 Cyril Jaquier.
 \newblock Fail2ban, 2004.
-\newblock URL \url{https://www.fail2ban.org/}.
 \newblock last version 0.10.3.1 on 4 April 2018.
 
-\bibitem[Lampson(2004)]{BL04}
+\bibitem[Lam04]{BL04}
 B.~Lampson.
-\newblock \emph{Computer Security in the Real World.}
+\newblock {\em Computer Security in the Real World.}
 \newblock Computer, 2004.
 
-\bibitem[Mandel(1997)]{TM97}
+\bibitem[Man97]{TM97}
 Theo Mandel.
-\newblock \emph{The elements of user interface design}.
+\newblock {\em The elements of user interface design}.
 \newblock Wiley, 1997.
 
-\bibitem[Martin(2003)]{RM03}
+\bibitem[Mar03]{RM03}
 Robert~C. Martin.
-\newblock \emph{Agile Software Development, Principles, Patterns, and
+\newblock {\em Agile Software Development, Principles, Patterns, and
   Practices}.
 \newblock Prentice Hall, 2003.
 
-\bibitem[Mattison(1996)]{RM96}
+\bibitem[Mat96]{RM96}
 R.~Mattison.
-\newblock \emph{Data Warehousing: Strategies, Technologies and Techniques}.
+\newblock {\em Data Warehousing: Strategies, Technologies and Techniques}.
 \newblock McGraw Hill, 1996.
 
-\bibitem[Meyers(1978)]{GM78}
+\bibitem[Mey78]{GM78}
 G.~Meyers.
-\newblock \emph{Composite Structured Design}.
+\newblock {\em Composite Structured Design}.
 \newblock Van Nostrand, 1978.
 
-\bibitem[NetFilter(1998)]{iptables}
+\bibitem[Net98]{iptables}
 NetFilter.
 \newblock Iptables, 1998.
-\newblock URL \url{https://netfilter.org/}.
 \newblock last version 1.8.2 on 13 November 2018.
 
-\bibitem[Nginx(2004)]{Nginx}
+\bibitem[Ngi04]{Nginx}
 Project Nginx.
 \newblock Nginx, October 2004.
-\newblock URL \url{https://github.com/nginx/nginx}.
 \newblock last version 1.14.1 on 6 November 2018.
 
-\bibitem[OECD(2016)]{OE16}
+\bibitem[oC18]{USDC18}
+US~Department of~Commerce.
+\newblock Quarterly retaul e-commerce sales.
+\newblock {\em US Census Bureau News}, 2018.
+
+\bibitem[OEC16]{OE16}
 EUIPO OECD.
-\newblock \emph{Trade in Counterfeit and Pirated Goods: Mapping the Economic
+\newblock {\em Trade in Counterfeit and Pirated Goods: Mapping the Economic
   Impact}.
 \newblock OECD Publishing, Paris, 2016.
 
-\bibitem[of~Commerce(2018)]{USDC18}
-US~Department of~Commerce.
-\newblock Quarterly retaul e-commerce sales.
-\newblock \emph{US Census Bureau News}, 2018.
-
-\bibitem[of~the Council(2015)]{CoEU956515}
+\bibitem[otC15]{CoEU956515}
 Presidency of~the Council.
 \newblock Proposal for a regulation of the european parliament and of the
   council on the protection of individuals with regard to the processing of
   personal data and on the free movement of such data (general data protection
   regulation).
-\newblock \emph{Official Journal of the European Union}, 2015.
+\newblock {\em Official Journal of the European Union}, 2015.
 
-\bibitem[Parnas(1972)]{DP72}
+\bibitem[Par72]{DP72}
 D.~L Parnas.
 \newblock On criteria to use in decomposing systems into modules.
-\newblock \emph{CACM}, 14\penalty0 (1):\penalty0 221--227, 1972.
+\newblock {\em CACM}, 14(1):221--227, 1972.
 
-\bibitem[Pipkin(2000)]{DP00}
+\bibitem[Pip00]{DP00}
 Donald Pipkin.
-\newblock \emph{Information security: Protecting the global enterprise.}
+\newblock {\em Information security: Protecting the global enterprise.}
 \newblock New York: Hewlett-Packard Company, 2000.
 
-\bibitem[Pressman(2005)]{RP05}
+\bibitem[Pre05]{RP05}
 Roger~S. Pressman.
-\newblock \emph{Software engineering}.
+\newblock {\em Software engineering}.
 \newblock McGraw-Hill, 2005.
 
-\bibitem[Salvatore(2009)]{Redis}
+\bibitem[Sal09]{Redis}
 Sanfilippo Salvatore.
 \newblock Redis, May 2009.
-\newblock URL \url{https://github.com/antirez/redis}.
 \newblock last version 5.0.2 on 22 November 2018.
 
-\bibitem[Shirey(2000)]{RS00}
+\bibitem[Shi00]{RS00}
 R.~Shirey.
-\newblock \emph{RFC 2828 Internet Security Glossary.}
+\newblock {\em RFC 2828 Internet Security Glossary.}
 \newblock Internet Engineering Task Force, 2000.
 
-\bibitem[Ubit(2018)]{RtduWsgi}
+\bibitem[Ubi18]{RtduWsgi}
 Ubit.
 \newblock uwsgi, November 2018.
-\newblock URL \url{https://uwsgi-docs.readthedocs.io/en/latest/}.
 \newblock last accessed on 26 November 2018.
 
-\bibitem[Wikipedia(2018{\natexlab{a}})]{WikiNginx}
+\bibitem[Wik18a]{WikiNginx}
 Wikipedia.
-\newblock Nginx, November 2018{\natexlab{a}}.
-\newblock URL \url{https://en.wikipedia.org/wiki/Nginx}.
+\newblock Nginx, November 2018.
 \newblock last edited on 26 November 2018.
 
-\bibitem[Wikipedia(2018{\natexlab{b}})]{wkngx}
+\bibitem[Wik18b]{wkngx}
 Wikipedia.
-\newblock Nginx, November 2018{\natexlab{b}}.
-\newblock URL \url{https://en.wikipedia.org/wiki/Nginx}.
+\newblock Nginx, November 2018.
 \newblock last edited on 26 November 2018.
 
-\bibitem[William~Stallings(2015)]{WS15}
-Lawrence~Brown William~Stallings.
-\newblock \emph{Computer Security, principles and practice.}
-\newblock Pearson Education Ltd, 2015.
-
-\bibitem[Wirth(1971)]{NW71}
+\bibitem[Wir71]{NW71}
 N.~Wirth.
 \newblock Program development by stepwise refinement.
-\newblock \emph{CACM}, 14\penalty0 (4):\penalty0 221--227, 1971.
+\newblock {\em CACM}, 14(4):221--227, 1971.
 
-\bibitem[Wood(2010)]{TW10}
+\bibitem[Woo10]{TW10}
 T.~Wood.
-\newblock \emph{Disaster Recovery as a Cloud Service Economy Benefits.}
+\newblock {\em Disaster Recovery as a Cloud Service Economy Benefits.}
 \newblock Proceedings USELINUX HotCloud 10, 2010.
+
+\bibitem[WS15]{WS15}
+Lawrence~Brown William~Stallings.
+\newblock {\em Computer Security, principles and practice.}
+\newblock Pearson Education Ltd, 2015.
 
 \end{thebibliography}

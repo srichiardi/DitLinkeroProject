@@ -530,7 +530,7 @@ source, in order not to breach API user policy.
 in the last two weeks.
 \item[U4] The application should allow the user to search and filter through
 his/her cases based on case creation date range and platform (e.g. eBay,
-Mercadolibre, Alegro, Facebook, etc.).
+MercadoLibre, Allegro, Facebook, etc.).
 \item[U5] The application should provide input-forms to allow data extraction
 from all the external data sources available.
 \item[U6] The application should preform data gathering operations without
@@ -546,16 +546,106 @@ them.
 The class diagram in figure \ref{fig:clssdiag} represents the core modules of
 the web application.
 
-\begin{figure}[h!]
+Django provides three parent classes that represent web-forms, html page
+generators and data base tables called respectively: Forms, Views and Models.
+These classes can be inherited to produce specific objects to fit the needs of
+the project.
+
+The \emph{Forms} class for instance offers default fields that represent the
+values of its fields (e.g. text fields, date fields, numeric fields\ldots), and methods
+that allow data sanitization, html layout, data validity. Linkero inherit this
+class to produce the \emph{CaseFilerForm}, which is a simple form that enables
+users to limit the amount of cases to be displayed on the main page, by
+selecting a time range and a platform (e.g. show only cases from Jan to Feb
+2018, that pulled eBay data). The CaseFilterForm object was created by declaring
+the list of fields that should be part of the form, all other methods were
+inherited from the parent class.
+
+The \emph{Models} class is the core of Django's ORM (Object Relational Mapping)
+philosophy: it is a Python object that maps its fields to a database table (or
+document in MongoDB's case), and offers as many methods as SQL or NoSQL function
+to read and write data. Like for Forms, the Models parent class provides all the
+methods that are needed, while the developer is left with declaring the field
+types for each object. In this project, the \emph{CaseDetails} model represent
+information about a specific case: the case identification number, the creation
+date, the case owner, the platform which sourced the data, the inputs provided
+for the data search. Similarly the model \emph{EbayItem} stores all the
+information about an eBay item that was queried and stored in MongoDB.
+
+The \emph{Views} class represents the objects that receive a http request and
+return a response. Each child class will have their own implementation of one or
+both GET and POST methods. The class \emph{CaseView} for instance represents the
+home page being displayed after the user logs in: a table that summarizes all
+the cases generated in the last two weeks, and a menu to bring up modal forms to
+submit new data requests. The GET method is detecting when it is receiving a
+request to load the full page, or an AJAX GET request to load just a new
+filtered set of cases in the cases table. The POST method of the CaseView class
+receives requests to generate new reports.
+
+The last class in the diagram is \emph{EbayAPI}. This class does not inhering
+from any other built-in Django object. Instead it was created from scratch to
+provide querying facility with eBay public APIs. Its fields represent
+authentication details for the local database and the remote server, whereas its
+methods are designed to extract data based on user's input, leveraging eBay
+APIs like general search by keyword, get details by item number or get seller
+details by seller id.
+
+The diagram indicates also classes' level of coupling, or how much a modules
+shares data and interacts with other modules. Forms and Views are in one-to-one
+relations most of the time, since forms are unique, and each view incorporates
+one form for each type. Models and Views instead are in many-to-one relations,
+since each view can interact with multiple instances (i.e. database records)
+from the same class, but there is always one view object at any given time.
+
+\begin{figure}[H]
 \centering
 \includegraphics[angle=90, scale=0.9]{imgs/ClassDiag.pdf}
 \caption{Class diagram}
 \label{fig:clssdiag}
 \end{figure}
 
-\section{Sequence diagrams}
+\section{Sequence diagram}
+The sequence diagram represented in figure \ref{fig:sqncdiag} is probably the
+most elaborate process programmed performed by the core business logic
+in Linkero. It describes the sequence of operations that the system performs
+after receiving a request to generate a new report.
 
-\begin{figure}[h!]
+The entire sequence can be broken down into the following steps:
+\begin{enumerate}
+\item The process is triggered by the user submitting a POST request through a web-form
+designed to gather all necessary input to pull data from external
+resources.
+\item The \texttt{CaseView} object receives the request and immediately saves
+the details of the new case in the database by making a call to the
+\texttt{CaseDetails} object and using the \texttt{save()} method. The case
+details are saved and nothing is returned, assuming there are no errors or
+exceptions raised.
+\item Next, the \texttt{CaseView} instance submits a report
+request to the \texttt{Task} controller, the controller queues the request
+and returns the call to \texttt{CaseView} instance that in turn can send a
+response back to the client browser that initiated the process, confirming that
+the request for a new report was successfully submitted.
+\item The \texttt{Task} controller script continues the process
+asynchronously by requesting the \texttt{EbayAPI} to pull a list of items.
+\item The \texttt{Task} receives the results and saves them with the
+\texttt{save()} method of the \texttt{EbayItems} object.
+\item The \texttt{Task} controller proceeds to request details of the sellers
+extracted from the previews search by calling the \texttt{search\_sellers()}
+method of the \texttt{EbayAPI} object.
+\item The results are then saved by the \texttt{EbaySellers} object.
+\item Once the data necessary to generate a new report is ready, the
+\texttt{Task} script creates a new .csv file and parses the results there.
+\item The \texttt{Task} controller sends the data to the EmailServer objects
+that is responsible for sending an email notification to the user who requested
+the report.
+\item Finally, the \texttt{Task} controller changes the status of the request
+from \emph{running} to \emph{completed} by using the \texttt{update\_status()}
+method of the \texttt{CaseDetails} instance.
+\item While all other objects remains ready to answer calls, the \texttt{Task}
+script ends its cycle.
+\end{enumerate}
+
+\begin{figure}[H]
 \centering
 \includegraphics[angle=90, scale=0.6]{imgs/SequenceDiagram.pdf}
 \caption{Launch report sequence diagram}
@@ -563,3 +653,150 @@ the web application.
 \end{figure}
 
 \section{Code samples}
+In this section we will look at some code snippets that make up the
+\texttt{Task} script just described in the sequence diagram.
+
+The first part of the script is dedicated to load necessary libraries of
+function that support the script execution, including the \texttt{EbayApi}
+object, and the models connected with the MongoDB database:
+\begin{lstlisting}[language=Python, breaklines=true]
+import os
+import time
+import json
+from csv import DictWriter
+from io import StringIO
+from celery import task
+from pandas import merge
+from pandas.io.json import json_normalize
+from mongoengine import connect
+from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
+from cases.ebayapi import EbayApi
+from cases.models import EbayItem, EbaySellerDetails, ApiErrorLog, CaseDetails
+\end{lstlisting}
+
+Immediately after the task process is declared:
+\begin{lstlisting}[language=Python, breaklines=true]
+def send_ebay_listing_report(to_email, user_id=None, query_id=None,
+seller_id=None, keywords=None, ebay_sites=['US'], search_desc=False):
+\end{lstlisting}
+
+The following two lines create a connection to MongoDB, so that instances
+reporeseing its collections (read tables) will be able to retrieve and store
+data in them, and create an EbayApi instance:
+\begin{lstlisting}[language=Python, breaklines=true]
+    # connect to Mongo
+    mongo_client = connect('linkerodb', username='linkero-user',
+    password='password123')
+        
+    ea = EbayApi()
+\end{lstlisting}
+
+The script then uses the \texttt{find\_items\_multi\_sites()} method of the
+\texttt{EbayApi} instance to search and pull all items that match the criteria
+input by the user. If the search returns results, the script continues to
+generate the report, otherwise it jumps to a last step sending a notification
+to the user that no items were found:
+ \begin{lstlisting}[language=Python, breaklines=true]
+    items_dict, slr_list, find_error_list = ea.find_items_multi_sites(e_sites=ebay_sites, kwd=keywords, s_id=seller_id, s_desc=search_desc)
+    
+    # check if find items search returned results
+    if items_dict:
+\end{lstlisting}
+
+Assuming that the first exploratory search was successful, the script proceeds
+to pull the details for each item, and subsequently the business details for
+each seller:
+\begin{lstlisting}[language=Python, breaklines=true]
+		# pull item descriptions for each item
+		ebay_item_list = ea.get_multi_items_threaded(items_dict, q_id=query_id)
+        
+        # pull seller details
+        seller_list, seller_err_list = ea.get_multiple_sellers(seller_list=slr_list)
+        seller_collection_list = []
+        for slr in seller_list:
+            slr['lnkr_query_id'] = query_id
+            seller_collection_list.append(EbaySellerDetails(**slr))
+        # insert in bulk
+        EbaySellerDetails.objects.insert(seller_collection_list)
+\end{lstlisting}
+Probably not the most consistent class design implementation, but in the case of
+the \texttt{EbayApi} instance method \texttt{get\_multi\_items\_threaded()},
+items are saved in the corresponding MongoDB collection by the \texttt{EbayApi}
+instance itself; while seller details are retrieved by the \texttt{EbayApi} and
+passed back to the \texttt{Task} script in memory, and it is the \texttt{Task}
+script that calls the database object \texttt{EbaySellerDetails} to save the
+details retrieved. This \emph{double standard} was implemented after a series of
+tests, when we found that leaving the data in the \texttt{Task} script memory
+was cause overflow and the script would crash. It is worth to remember that the
+system that is currently running this project only has 1GB of memory.
+
+Continuing, the data extracted is then assembled into a csv file:
+\begin{lstlisting}[language=Python, breaklines=true]
+        # save the results in a CSV file and send it attached
+        e_items = EbayItem.objects(lnkr_query_id=query_id)
+        items_df = json_normalize(json.loads(e_items.to_json()))
+        
+        sellers_df = json_normalize(seller_list)
+        
+        df = merge(items_df, sellers_df, left_on='Seller.UserID', right_on='UserID')
+        
+        filename = "linkero_ebay-listings_{}.csv".format(time.strftime("%Y%m%d-%H%M"))
+\end{lstlisting}
+
+In order to save system hard-disk space, the script creates a file-like object
+\texttt{StringIO} that is compatible with Python file manipulation API,
+but is never committed to permanent storage:
+\begin{lstlisting}[language=Python, breaklines=true]
+        file_attachment = StringIO()
+        writer = DictWriter(file_attachment, fieldnames=headers)
+        writer.writeheader()
+        writer.writerows(df.to_dict('records'))
+        file_attachment.seek(0)
+        email.attach(filename, file_attachment.read(), 'text/csv')
+        email.send(fail_silently=False)
+        file_attachment.close()
+        
+        # update the case execution status
+        query_status = 'completed'
+        CaseDetails.objects(lnkr_query_id=query_id).update(set__file_name=filename)
+\end{lstlisting}
+The last line calls the MongoDB instance dedicated to case details,
+\texttt{CaseDetails}, and changes the status of the report from \emph{running}
+to \emph{completed}.
+
+The full code of the Django application is available at
+\url{https://github.com/srichiardi/linkero}.
+\vfill
+
+
+\section{Front end screenshots}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{imgs/login.png}
+\caption{Login page}
+\label{fig:login}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{imgs/HomeScreen.png}
+\caption{Home page}
+\label{fig:home}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{imgs/InputForm.png}
+\caption{eBay input modal form}
+\label{fig:inputform}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{imgs/PasswdChange.png}
+\caption{Password change form}
+\label{fig:pwdform}
+\end{figure}
+
