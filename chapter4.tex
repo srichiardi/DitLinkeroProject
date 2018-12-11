@@ -2,6 +2,78 @@
 
 \section{Unit testing}
 
+Example of how a Python unittest is prepared before adding the fix.
+
+The first test fails as expected, because the exception class
+\texttt{EbayBadSite} is not defined:
+\begin{lstlisting}[language=bash, breaklines=true]
+(Projects) stefano@attila:~/Projects/linkero$ python manage.py test
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+E
+======================================================================
+ERROR: test_bad_ebay_site (cases.tests.FindItemsTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/stefano/Projects/linkero/cases/tests.py", line 12, in test_bad_ebay_site
+    with self.assertRaises(EbayBadSite):
+NameError: name 'EbayBadSite' is not defined
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+FAILED (errors=1)
+Destroying test database for alias 'default'...
+\end{lstlisting}
+
+The second iteration brings a slightly different result. The exception class is
+now available, but there is no code that raises it, instead a different error
+arises when the bad input is used to retrieve any of the pre-loaded sites, the
+dictionary object throws a \texttt{KeyError} exception, signifying that the
+bad input \emph{PK} is nowhere in the list of pre-defined country codes:
+\begin{lstlisting}[language=bash, breaklines=true]
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+E
+======================================================================
+ERROR: test_bad_ebay_site (cases.tests.FindItemsTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/stefano/Projects/linkero/cases/tests.py", line 13, in test_bad_ebay_site
+    self.ea.find_items(ebay_site=wrong_site, keywords="baby oil")
+  File "/home/stefano/Projects/linkero/cases/ebayapi.py", line 39, in find_items
+    'GLOBAL-ID' : globalSiteMap[ebay_site]['globalID'],
+KeyError: 'PK'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+FAILED (errors=1)
+Destroying test database for alias 'default'...
+\end{lstlisting}
+
+Eventually, some iterations later, after including an initial step to check the
+input validity \ldots
+\begin{lstlisting}[language=Python, breaklines=true]
+    # check input provided
+    try:
+        global_site_id = globalSiteMap[ebay_site]['globalID']
+    except KeyError:
+        raise EbayBadSite("Wrong ebay site input!")
+\end{lstlisting}
+
+\ldots the test is a pass:
+\begin{lstlisting}[language=bash, breaklines=true]
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+OK
+Destroying test database for alias 'default'...
+\end{lstlisting}
+
 \section{Integration testing}
 
 \section{System testing}
