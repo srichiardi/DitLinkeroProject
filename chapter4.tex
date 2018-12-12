@@ -2,6 +2,23 @@
 
 \section{Unit testing}
 
+Preparing the test case:
+\begin{lstlisting}[language=Python, breaklines=true]
+from django.test import TestCase
+from cases.ebayapi import EbayApi, EbayBadSite
+
+# Create your tests here.
+class FindItemsTest(TestCase):
+    def setUp(self):
+        self.ea = EbayApi()
+    
+    # test if the method accepts an eBay site not correctly formatted
+    def test_bad_ebay_site(self):
+        wrong_site = 'PK'
+        with self.assertRaises(EbayBadSite):
+            self.ea.find_items(ebay_site=wrong_site, keywords="baby oil")
+\end{lstlisting}
+
 Example of how a Python unittest is prepared before adding the fix.
 
 The first test fails as expected, because the exception class
