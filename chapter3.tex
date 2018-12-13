@@ -681,9 +681,9 @@ def send_ebay_listing_report(to_email, user_id=None, query_id=None,
 seller_id=None, keywords=None, ebay_sites=['US'], search_desc=False):
 \end{lstlisting}
 
-The following two lines create a connection to MongoDB, so that instances
-reporeseing its collections (read tables) will be able to retrieve and store
-data in them, and create an EbayApi instance:
+In the following lines we create a connection to MongoDB, so that instances
+representing its collections (read tables) will be able to retrieve and store
+data in them, and we initiate an EbayApi instance:
 \begin{lstlisting}[language=Python, breaklines=true]
     # connect to Mongo
     mongo_client = connect('linkerodb', username='linkero-user',
