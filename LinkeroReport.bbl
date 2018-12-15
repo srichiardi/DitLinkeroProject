@@ -5,6 +5,11 @@ Michael Bazzell.
 \newblock {\em Open Source Intelligence Techniques}.
 \newblock Amazon.co.uk Ltd, 2015.
 
+\bibitem[Ber93]{EB93}
+E.~Berard.
+\newblock {\em Essays on Object-Oriented Software Engineering}.
+\newblock Addison-Wesley, 1993.
+
 \bibitem[Ber15]{SB15}
 Stewart~K. Bertrom.
 \newblock {\em The Tao of Open Source Intelligence}.
@@ -144,6 +149,11 @@ R.~Shirey.
 Ubit.
 \newblock uwsgi, November 2018.
 \newblock last accessed on 26 November 2018.
+
+\bibitem[Vli08]{VV08}
+Hans~Van Vliet.
+\newblock {\em Software Engineering, principles and practice}.
+\newblock John Wiley and Sons, 2008.
 
 \bibitem[Wik18a]{WikiNginx}
 Wikipedia.

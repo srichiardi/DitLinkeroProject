@@ -1,8 +1,89 @@
 \chapter{Testing and deployment}
 
-\section{Unit testing}
+\section{Testing strategy}
+Testing a system has two meaning: we need to find out if the system build works
+as intended (verification testing), but we also want to know if we built the
+right system (validation testing) \cite{VV08}. For this project we will assume
+we did build the right system, and we will focus on verifying that what we built
+performs correctly and complies with its original requirements.
 
-Preparing the test case:
+Testing is a tricky buisiness, since its ability to detect issues is only as
+good as the set of test cases that are developed. Testing exhaustively every
+outcome of a system component is not a feasible solution, since even a very
+simple program consisting of a single \texttt{for} loop running 100 iterations,
+testing a condition and returing a binary output, could generate
+2\textsuperscript{100} different outcomes, which would mean that a bruteforce
+testing with a machine able to execute 10 million instructions per second, would
+take $3 \times 10\textsuperscript{14}$ years \cite{VV08}.
+
+The alternative is to chose a limited set of test cases. The question then
+becomes, how do we chose an \emph{adequate} set of test cases? The answer is a
+matter of priority based on the original agreement beween the final user and the
+system developer:
+\begin{itemize}
+  \item the testing could prioritize making sure that every requirement is met
+  precisely as defined, which is considered \textbf{coverage-based testing}, but
+  this approach assumes that requirements are defined in quantative terms;
+  \item or testing could focus on fault detection, \textbf{fault-based testing},
+  which means that a lot of effort is first put into creating a testing
+  mechanism which needs to be calibrated by seeding intentional faults withing
+  the system so that we can calculate the test's detection rate;
+  \item finally, test cases can be designed based on known errors
+  that are normally found in any system, such as \emph{off-by-one} errors. The
+  testing therefore will focus con exploring the boundary points \cite{VV08}.
+\end{itemize}
+
+The above classification of test techniques applies to the component-level, so
+individual class and object methods are tested independently from the rest of
+the system, this practice is called \textbf{unit-testing}. Linkero was developed
+following the Extreme Programming methodology, which requires component tests to
+be written before the module, the test is meant for, is actually written. It is
+a test-driven approach that forces the developer do think in advance and
+anticipate the potential cases of failure as much as the expected outcome
+\cite{VV08}.
+
+In a traditional testing approact, unit-testing is followed by
+\textbf{integration-testing}, when individual components are then assembled and
+tested during their interaction with one another. Eduard Berard points out that
+integration testing is a practice that originates from a procedural software
+development culture and does not apply as well to object oriented languages. A
+solution is \emph{use-based} testing, which proceeds by first testing classes
+that are generally independent, and then proceeding by including dependent
+classes and continuing to the next layer \cite{EB93}. Linkero, being based on
+Python, is built follwing the object-oriented style, and does not displays that
+many layers, therefore integration testing will not be performed.
+
+\emph{System testing} is the last stage of testing before deployment, in which
+the system is tested as a whole. There are differnt type of system testing:
+\begin{description}
+\item[Recovery testing] is designed to cause failure status to verify how the
+system is able to restore its original state.
+\item[Security testing] verifies that protection mechanisms are in place against
+the most common attacks.
+\item[Stress testing] is a test that executes instructions that demand a very
+high level of resources in order to assess the system's ability to sustain a
+significant workload \cite{RP05}.
+\end{description}
+
+In this project we will consider only security testing, which is one of the main
+requirements identified on the outset.
+
+
+\section{Unit testing}
+Python as its own official testing framework: the \texttt{unittest} module. This
+framework allows to write test cases and, obviously enough, test if the output
+return as expected or not. Django integrates \texttt{unittest} in its libraries,
+and provides by default a \texttt{test.py} file for each web-app created, so
+that projects' tests can be stored and reused repeatedly.
+
+This is an example of the approach that we took for this project. Before
+creating a method that would search for eBay items based on keyworkds and
+a list of regional eBay sites (the type of results of an items search on eBay
+are dependant on the region selected: ``skateboards'' on ebay.com will return
+different results compared to ebay.co.uk). In this test case we wanted to check
+the ability of the method to return a meaninful error message with the wrong
+eBay site was provided. We prepared a test in \texttt{test.py}, feeding a wrong
+eBay site to the \texttt{find\_items()} method of the \texttt{EbayApi} class:
 \begin{lstlisting}[language=Python, breaklines=true]
 from django.test import TestCase
 from cases.ebayapi import EbayApi, EbayBadSite
@@ -19,8 +100,6 @@ class FindItemsTest(TestCase):
             self.ea.find_items(ebay_site=wrong_site, keywords="baby oil")
 \end{lstlisting}
 
-Example of how a Python unittest is prepared before adding the fix.
-
 The first test fails as expected, because the exception class
 \texttt{EbayBadSite} is not defined:
 \begin{lstlisting}[language=bash, breaklines=true]
@@ -31,7 +110,7 @@ E
 ======================================================================
 ERROR: test_bad_ebay_site (cases.tests.FindItemsTest)
 ----------------------------------------------------------------------
-Traceback (most recent call last):
+Traceback (most recent call last):]
   File "/home/stefano/Projects/linkero/cases/tests.py", line 12, in test_bad_ebay_site
     with self.assertRaises(EbayBadSite):
 NameError: name 'EbayBadSite' is not defined
@@ -91,12 +170,50 @@ OK
 Destroying test database for alias 'default'...
 \end{lstlisting}
 
-\section{Integration testing}
+This iterative approach was repeated for the other classes and methods. The
+class \texttt{EbayApi} for instance was tested for the following cases:
+\begin{itemize}
+  \item test if the \texttt{EbayBadSite} error raised by the
+  \texttt{get\_multiple\_items()} method when a bad eBay site is passed as
+  argument;
+  \item test if the \texttt{EbayTooManyItems} error is raised by
+  \texttt{get\_multiple\_items()} method if more than 20 items are passed at a
+  time.
+  \item test if the \texttt{EbayInvalidSellerId} error is raised by the
+  \texttt{get\_seller\_details()} method if an inexitent seller id is passed as
+  argument.
+\end{itemize}
 
-\section{System testing}
+The class \texttt{CasesView} was tested for:
+\begin{itemize}
+  \item the \texttt{post()} method returing a JSON response equivalent to
+  \begin{verbatim}
+  { 'status' : 'fail',
+  'error_msg' : 'provide at least one seller id or keyword'} \end{verbatim} when
+  the user leave black both seller id and keyword fields.
+  \item the \texttt{get()} method returing a JSON response equivalent to
+  \begin{verbatim}
+  { 'status' : 'fail',
+  'error_msg' : 'invalid input provided'} \end{verbatim} when the wrong platform
+  input is provided to seach for cases.
+\end{itemize}
 
-\section{Usability testing}
 
 \section{Security testing}
+Security testing was done with Zed Attack Proxy (ZAP), an application developed
+by the Open Web Application Security Project, an online community that focus on
+online security awareness and support for security testers and penetration
+testers.
+
+It identified six different low priority alerts:
+\begin{itemize}
+  \item Cookie not HttpOnly flag
+  \item Cookie without secure flag
+  \item Incomplete or No cache control and Pragma HTTP header set
+  \item Password autocomple in browser
+  \item Web browser XSS Protection not enabled
+  \item X-Content-Type-Options header missing
+\end{itemize}
+
 
 \section{Deployment}
