@@ -200,20 +200,64 @@ The class \texttt{CasesView} was tested for:
 
 
 \section{Security testing}
-Security testing was done with Zed Attack Proxy (ZAP), an application developed
-by the Open Web Application Security Project, an online community that focus on
-online security awareness and support for security testers and penetration
-testers.
+Security testing was done with Zed Attack Proxy (ZAP), an open source web
+application security scanner. The application is developed maintained by the
+Open Web Application Security Project, an online community that focus on online
+security awareness and support for security testers and penetration testers
+\cite{zap}.
 
-It identified six different low priority alerts:
-\begin{itemize}
-  \item Cookie not HttpOnly flag
-  \item Cookie without secure flag
-  \item Incomplete or No cache control and Pragma HTTP header set
-  \item Password autocomple in browser
-  \item Web browser XSS Protection not enabled
-  \item X-Content-Type-Options header missing
-\end{itemize}
+We performed the default active scan against \url{https://linkero.ie}. This
+first attack was performed on the public pages \texttt{/login/} and
+\texttt{/logout/}, and the tool identified six low priority issues:
+\begin{description}
+  \item[Password autocomple enabled]: this option in any other input field
+  allows the browser to predict the value while the user is typing. Values are
+  predicted based on previous inputs, previously stored. Allowing the password
+  to be stored for future autocompletion, is not a good idea. The fix involves
+  adding the option \texttt{autocomplete=off} in the HTML password input field.
+  \item[Web Browser XSS Protection Not Enabled]: X-XSS-Protection is a
+  value set by the web server in the HTTP response header to allow modern
+  browsers to enable XSS protection feature. This setting is disabled in default
+  Django settings. To fix this is necessary to specify
+  \texttt{SECURE\_BROWSER\_XSS\_FILTER = True} in the \texttt{settings.py} file.
+  \item[X-Content-Type-Options Header Missing]: another response header value,
+  this one clarifies if the client browser is allowed to sniff MIME content or
+  should only reder the content based on the contenty-type declared. This option
+  was introduced to prevent MIME abuse attacks, where malicious content would be
+  uploaded on a site, and tricking the site visitors to render it in a different
+  way from the official content type of the website, thus executing
+  malicious code. Django keeps this option disabled, and considering that
+  Linkero does not allow users to appload any content, it represent a very low
+  risk. In any case, this can be fixed by declarying
+  \texttt{SECURE\_CONTENT\_TYPE\_NOSNIFF = True} in the \texttt{settings.py}
+  file.
+  \item[Incomplete or No Cache-control and Pragma HTTP Header Set]: these
+  response header values prevent the client browser from caching the page
+  content. In this case the fix relies on setting the \texttt{@never-cache}
+  decorator on the web-app page that we do not want the user to cache. This has
+  to be done on every page.
+  \item[Cookie Without Secure Flag]: session cookies make sure that the user
+  that is contacting the server is the same that originally authenticated during
+  a login event, and was not replaced by another malicious actor after
+  authentication. This is only possible if sessions are not intercepted and read
+  by man-in-the-middle attacks. Django does not set the \texttt{Secure} flag by
+  default because not every site need user authentication and not every site has
+  SSL enabled. To fix this issue is sufficient to declare
+  \texttt{SESSION\_COOKIE\_SECURE = True} in \texttt{settings.py} file.
+  \item[Cookie No HttpOnly Flag]: finally, this header controls cookie access by
+  JavaScript. In a public forum, where invetted code can be uploaded by anyone,
+  a malicious actor could upload some JavaScript code designed to read other
+  clients' cookies, stealing their sessions. Linkero restricts significantly the
+  users ability to upload code, and there are limited options to share content.
+  On the other end, part of Linkero's client JQuery script needs to access
+  clients' cookies to append CSRF tokens to AJAX requests. We decided to keep
+  this option disabled, considering the risk near to null and the benefits of
+  improved usability that AJAX reuqests provide.
+\end{description}
+
+A second scan, after the necessary fixes were put in place, returned only a
+\textbf{Cookie No HttpOnly Flag} issue, which is something we expected and
+decided to accept.
 
 
 \section{Deployment}
