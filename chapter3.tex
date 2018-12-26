@@ -8,6 +8,78 @@ chosen and reasons behind. We will follow with use cases and
 system requirements, to conclude with class diagram, database structure and some
 code samples.
 
+\section{Development challenge}
+They system architecture described in the next session needs a little
+explanation, because it deviates from the standard three-tier architacture of
+many websites.
+
+Before this project I already developed a stand-alone, single thread,
+application that would generate similar reports. The application was written in
+Python and included a simple user interface, corresponding to what is now the
+eBay input form (see figure \ref{fig:inputform}). The application would take the
+user input, retrieve the data using eBay public API and would create and save in
+the local hard-drive a csv file. It was all that was needed, and worked well for
+one single user that needed access only to eBay data.
+
+More users and new features immediately showed the limits of the stand-alone
+application approach:
+\begin{itemize}
+  \item the installation process was not straight forward for non-technical
+  users, since a Python version needed to be installed along with some other
+  non-standard libraries;
+  \item some sort of version control system needed to be established and
+  maintained in order to guarantee that all users would run the latest version.
+\end{itemize}
+
+The idea of a web-application seemed the perfect solution for those two issues:
+\begin{itemize}
+  \item there would be no need to install the application locally, since every
+  user could just use the tool by simply logging in onto the website;
+  \item every user would be alligned on the latest version, since any new
+  feature would be implemented on the server and immediately available to
+  everyone.
+\end{itemize}
+
+However a centralized server calling external data-sources on behalf of
+different, potentially concurrent, clients created a different set of
+challenges. Online services who open up their database to external users via
+API, normally limit the number of requests a single user can make in two ways:
+\begin{itemize}
+  \item total number of requests per period (e.g. 10,000 API calls per day);
+  \item total number of requests per minute (e.g. 100 API calls each minute).
+\end{itemize}
+
+API users need to register to a \emph{developer program} and they need to
+include a API key in their GET or POST requests parameters, this way the data
+controller (who owns the data) can control the numer of requests submitted by
+each member. A work-around could have been to request each user to register an
+API key for each service they wished to access and save their API key in
+Likero's profile settings, but it seemed a step-back from the original idea of
+insulating the user from lower-level inner workings of the application.
+
+The other issue emering from the web-application approach, related to the time
+necessary to comple a report. The eBay API results from a text search are
+paginated, and each page returns a maximus of 100 items. There are a total of 22
+country sites where the same seach can be repeated. That means that a text
+search followed by item details extraction can take a long time to complete.
+While a stand alone application could run for as long as needed, while the user
+runs other programs, you could not ask the user of a web application to keep the
+tab open untill the request is completed.
+
+The solution I came up with is inspired by the \emph{broker pattern}: the broker
+is a component of the system that coordinates communications between different
+decoupled components \cite{}. In Likero the broker is the part of the
+application that takes data requests coming from different clients, and returns
+a \emph{report submitted} response to the client, so that the client knows
+his/her report has been scheduled and will receive a notification when it is
+ready, meanwhile the user can close the browser windows or request other
+reports. The broker on the other end, will queue the request and a single unit
+will then process every report in the queue sequentially, thus avoiding to
+exceed API call request limits with concurrent requests.
+
+In the next section I will discuss how this architecture was implemented in
+practice.
+
 \section{System architecture}
 The system architecture represented in figure \ref{fig:sysarch} provides an
 overview of all different applications that work together to perform the main
