@@ -261,3 +261,30 @@ decided to accept.
 
 
 \section{Deployment}
+The deployment is relatevly simple, since the platform was developed on the same
+virtual server that will be employed in production mode.
+
+The Django application framework can run in \emph{developer} or in
+\emph{production} mode. The first mode is designed to return detailed traceback
+reports, whenever the application generates an error. This is very useful during
+development stage, but it is a clear security concern if left enabled, since
+error messages are public.
+
+The other change required before deployment relates to the passwords that were
+created during the testing and development stages, and hard-encoded in the
+\texttt{settings.py} file. The entire Django application and its settings were
+cyclically uploaded on GitHub\texttrademark. I do not have a private
+GitHub account, therefore every information, including passwords used during
+development are publicly visible at \url{https://github.com/srichiardi/linkero}.
+That means that the passwords to access MariaDB and MongoDB need to be changed.
+Django also provides a defaul \texttt{SECRET_KEY}, a 50 chars long
+alphanumeric string used for:
+\begin{itemize}
+  \item providing unique ``recover my account'' URLs, or other one-time access
+  pages;
+  \item ensure that data in hidden form fields has not been tampered with
+  \cite{djsecr}.
+\end{itemize}
+The \texttt{SECRET_KEY} was stored just like any other password in the
+\texttt{settings.py} file, as such it needs to be replaced by a new one directly
+in the file stored on the actual virtual machine serving the site.
