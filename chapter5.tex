@@ -2,12 +2,49 @@
 
 \section{Lessons learned}
 Configuring third party applications can be as daunting and time consuming than
-developing your own code.
+developing your own code, and it is definitely more frustrating when for some
+unknown reason individual configurations do not seem to work.
 
 The Django framework is supposed to make web-developers' work quick and easy,
 unless it is the first time you use it: steep learning curve.
 
+Django's ORM is a convenient way to interact with a relational database, keeping
+the code consistent and clean, as long as there are no advanced table joins
+needed, in that case SQL is a much simpler language.
+
+I anspired to apply the principles of the SOLID method, but that remained in
+larg part an aspiration. I realized that, given the time constraints, having a
+working system was the priority over clean and elegant coding practices.
+
+Testing and breaking your own code is emotionally challenging, but a test-driven
+development, such as the approach recommended in the Extreme Programming
+methodology, is a way to circumvent this emotional attachment, and to design
+applications based on what they should do as well as how they could fail, which
+is an aspect that could otherwise be oversought.
+
+Estimating in advance the time required to comple each part of the project has
+been very difficult, especially when learning time needed to be factored in, the
+best strategy seemed to be to put as much hours as early as possible, rather
+than trying to distribute evenly the work throughout a period of 12 months.
+
 \section{Future work}
+Linkero is fully operational and is currently being used by 3 people on a weekly
+basis. Nonetheless, in its current implementation, it is a limited platform,
+especially for two principal aspects:
+\begin{itemize}
+  \item there is no text seach feature to retrieve historical data that is
+  currently available in the local database;
+  \item external data gathering ability is limited to eBay data.
+\end{itemize}
+
+The feature that should be implemented first is a search engine to take
+advantage of MongoDB's text searching capabilities. The reason for this is that,
+storing historical data only makes sense if it is possible to consume it
+afterward. Once the data is extracted and stored from external sources, it is
+possible to interrogate it in many different ways that are not always available
+through third party API. For instance, extremely useful is to see if one string
+(e.g.
+an email address) is 
 
 \section{Conclusions}
 
