@@ -7,23 +7,23 @@ right system (validation testing) \cite{VV08}. For this project I will assume
 I did build the right system, and I will focus on verifying that what I built
 performs correctly and complies with its original requirements.
 
-Testing is a tricky buisiness, since its ability to detect issues is only as
+Testing is a tricky business, since its ability to detect issues is only as
 good as the set of test cases that are developed. Testing exhaustively every
 outcome of a system component is not a feasible solution, since even a very
 simple program consisting of a single \texttt{for} loop running 100 iterations,
-testing a condition and returing a binary output, could generate
-2\textsuperscript{100} different outcomes, which would mean that a bruteforce
+testing a condition and returning a binary output, could generate
+2\textsuperscript{100} different outcomes, which would mean that a brute-force
 testing with a machine able to execute 10 million instructions per second, would
 take $3 \times 10\textsuperscript{14}$ years \cite{VV08}.
 
 The alternative is to chose a limited set of test cases. The question then
 becomes, how do we chose an \emph{adequate} set of test cases? The answer is a
-matter of priority based on the original agreement beween the final user and the
+matter of priority based on the original agreement between the final user and the
 system developer:
 \begin{itemize}
   \item the testing could prioritize making sure that every requirement is met
   precisely as defined, which is considered \textbf{coverage-based testing}, but
-  this approach assumes that requirements are defined in quantative terms;
+  this approach assumes that requirements are defined in quantitative terms;
   \item or testing could focus on fault detection, \textbf{fault-based testing},
   which means that a lot of effort is first put into creating a testing
   mechanism which needs to be calibrated by seeding intentional faults withing
@@ -42,7 +42,7 @@ a test-driven approach that forces the developer do think in advance and
 anticipate the potential cases of failure as much as the expected outcome
 \cite{VV08}.
 
-In a traditional testing approact, unit-testing is followed by
+In a traditional testing approach, unit-testing is followed by
 \textbf{integration-testing}, when individual components are then assembled and
 tested during their interaction with one another. Eduard Berard points out that
 integration testing is a practice that originates from a procedural software
@@ -50,11 +50,11 @@ development culture and does not apply as well to object oriented languages. A
 solution is \emph{use-based} testing, which proceeds by first testing classes
 that are generally independent, and then proceeding by including dependent
 classes and continuing to the next layer \cite{EB93}. Linkero, being based on
-Python, is built follwing the object-oriented style, and does not displays that
+Python, is built following the object-oriented style, and does not displays that
 many layers, therefore integration testing will not be performed.
 
 \emph{System testing} is the last stage of testing before deployment, in which
-the system is tested as a whole. There are differnt type of system testing:
+the system is tested as a whole. There are different type of system testing:
 \begin{description}
 \item[Recovery testing] is designed to cause failure status to verify how the
 system is able to restore its original state.
@@ -77,11 +77,11 @@ and provides by default a \texttt{test.py} file for each web-app created, so
 that projects' tests can be stored and reused repeatedly.
 
 This is an example of the approach that I took for this project. Before
-creating a method that would search for eBay items based on keyworkds and
+creating a method that would search for eBay items based on keywords and
 a list of regional eBay sites (the type of results of an items search on eBay
 are dependant on the region selected: ``skateboards'' on ebay.com will return
 different results compared to ebay.co.uk). In this test case I wanted to check
-the ability of the method to return a meaninful error message with the wrong
+the ability of the method to return a meaningful error message with the wrong
 eBay site was provided. I prepared a test in \texttt{test.py}, feeding a wrong
 eBay site to the \texttt{find\_items()} method of the \texttt{EbayApi} class:
 \begin{lstlisting}[language=Python, breaklines=true]
@@ -180,22 +180,22 @@ class \texttt{EbayApi} for instance was tested for the following cases:
   \texttt{get\_multiple\_items()} method if more than 20 items are passed at a
   time.
   \item test if the \texttt{EbayInvalidSellerId} error is raised by the
-  \texttt{get\_seller\_details()} method if an inexitent seller id is passed as
+  \texttt{get\_seller\_details()} method if an non-existent seller id is passed as
   argument.
 \end{itemize}
 
 The class \texttt{CasesView} was tested for:
 \begin{itemize}
-  \item the \texttt{post()} method returing a JSON response equivalent to
+  \item the \texttt{post()} method returning a JSON response equivalent to
   \begin{verbatim}
   { 'status' : 'fail',
   'error_msg' : 'provide at least one seller id or keyword'} \end{verbatim} when
   the user leave black both seller id and keyword fields.
-  \item the \texttt{get()} method returing a JSON response equivalent to
+  \item the \texttt{get()} method returning a JSON response equivalent to
   \begin{verbatim}
   { 'status' : 'fail',
   'error_msg' : 'invalid input provided'} \end{verbatim} when the wrong platform
-  input is provided to seach for cases.
+  input is provided to search for cases.
 \end{itemize}
 
 
@@ -213,7 +213,7 @@ first attack was performed on the public pages \texttt{/login/} and
   \item[Password autocomple enabled]: this option in any other input field
   allows the browser to predict the value while the user is typing. Values are
   predicted based on previous inputs, previously stored. Allowing the password
-  to be stored for future autocompletion, is not a good idea. The fix involves
+  to be stored for future auto-completion, is not a good idea. The fix involves
   adding the option \texttt{autocomplete=off} in the HTML password input field.
   \item[Web Browser XSS Protection Not Enabled]: X-XSS-Protection is a
   value set by the web server in the HTTP response header to allow modern
@@ -222,13 +222,13 @@ first attack was performed on the public pages \texttt{/login/} and
   \texttt{SECURE\_BROWSER\_XSS\_FILTER = True} in the \texttt{settings.py} file.
   \item[X-Content-Type-Options Header Missing]: another response header value,
   this one clarifies if the client browser is allowed to sniff MIME content or
-  should only reder the content based on the contenty-type declared. This option
+  should only render the content based on the content-type declared. This option
   was introduced to prevent MIME abuse attacks, where malicious content would be
   uploaded on a site, and tricking the site visitors to render it in a different
   way from the official content type of the website, thus executing
   malicious code. Django keeps this option disabled, and considering that
-  Linkero does not allow users to appload any content, it represent a very low
-  risk. In any case, this can be fixed by declarying
+  Linkero does not allow users to upload any content, it represent a very low
+  risk. In any case, this can be fixed by declaring
   \texttt{SECURE\_CONTENT\_TYPE\_NOSNIFF = True} in the \texttt{settings.py}
   file.
   \item[Incomplete or No Cache-control and Pragma HTTP Header Set]: these
@@ -245,14 +245,14 @@ first attack was performed on the public pages \texttt{/login/} and
   SSL enabled. To fix this issue is sufficient to declare
   \texttt{SESSION\_COOKIE\_SECURE = True} in \texttt{settings.py} file.
   \item[Cookie No HttpOnly Flag]: finally, this header controls cookie access by
-  JavaScript. In a public forum, where invetted code can be uploaded by anyone,
+  JavaScript. In a public forum, where un-vetted code can be uploaded by anyone,
   a malicious actor could upload some JavaScript code designed to read other
   clients' cookies, stealing their sessions. Linkero restricts significantly the
   users ability to upload code, and there are limited options to share content.
   On the other end, part of Linkero's client JQuery script needs to access
   clients' cookies to append CSRF tokens to AJAX requests. I decided to keep
   this option disabled, considering the risk near to null and the benefits of
-  improved usability that AJAX reuqests provide.
+  improved usability that AJAX requests provide.
 \end{description}
 
 A second scan, after the necessary fixes were put in place, returned only a
@@ -261,7 +261,7 @@ decided to accept.
 
 
 \section{Deployment}
-The deployment is relatevly simple, since the platform was developed on the same
+The deployment is relatively simple, since the platform was developed on the same
 virtual server that will be employed in production mode.
 
 The Django application framework can run in \emph{developer} or in
@@ -277,7 +277,7 @@ cyclically uploaded on GitHub\texttrademark. I do not have a private
 GitHub account, therefore every information, including passwords used during
 development are publicly visible at \url{https://github.com/srichiardi/linkero}.
 That means that the passwords to access MariaDB and MongoDB need to be changed.
-Django also provides a defaul \texttt{SECRET_KEY}, a 50 chars long
+Django also provides a default \texttt{SECRET_KEY}, a 50 chars long
 alphanumeric string used for:
 \begin{itemize}
   \item providing unique ``recover my account'' URLs, or other one-time access

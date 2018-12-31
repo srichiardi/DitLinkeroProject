@@ -10,7 +10,7 @@ code samples.
 
 \section{Development challenge}
 They system architecture described in the next session needs a little
-explanation, because it deviates from the standard three-tier architacture of
+explanation, because it deviates from the standard three-tier architecture of
 many websites.
 
 Before this project I already developed a stand-alone, single thread,
@@ -35,7 +35,7 @@ The idea of a web-application seemed the perfect solution for those two issues:
 \begin{itemize}
   \item there would be no need to install the application locally, since every
   user could just use the tool by simply logging in onto the website;
-  \item every user would be alligned on the latest version, since any new
+  \item every user would be aligned on the latest version, since any new
   feature would be implemented on the server and immediately available to
   everyone.
 \end{itemize}
@@ -51,24 +51,24 @@ API, normally limit the number of requests a single user can make in two ways:
 
 API users need to register to a \emph{developer program} and they need to
 include a API key in their GET or POST requests parameters, this way the data
-controller (who owns the data) can control the numer of requests submitted by
+controller (who owns the data) can control the number of requests submitted by
 each member. A work-around could have been to request each user to register an
 API key for each service they wished to access and save their API key in
 Likero's profile settings, but it seemed a step-back from the original idea of
 insulating the user from lower-level inner workings of the application.
 
-The other issue emering from the web-application approach, related to the time
-necessary to comple a report. The eBay API results from a text search are
-paginated, and each page returns a maximus of 100 items. There are a total of 22
-country sites where the same seach can be repeated. That means that a text
+The other issue emerging from the web-application approach, related to the time
+necessary to complete a report. The eBay API results from a text search are
+paginated, and each page returns a maximum of 100 items. There are a total of 22
+country sites where the same search can be repeated. That means that a text
 search followed by item details extraction can take a long time to complete.
 While a stand alone application could run for as long as needed, while the user
 runs other programs, you could not ask the user of a web application to keep the
-tab open untill the request is completed.
+tab open until the request is completed.
 
 The solution I came up with is inspired by the \emph{broker pattern}: the broker
 is a component of the system that coordinates communications between different
-decoupled components \cite{}. In Likero the broker is the part of the
+decoupled components \cite{}. In Linkero the broker is the part of the
 application that takes data requests coming from different clients, and returns
 a \emph{report submitted} response to the client, so that the client knows
 his/her report has been scheduled and will receive a notification when it is
@@ -185,7 +185,7 @@ Django a good candidate for this project:
   try as much as possible to maintain consistent interfaces and API.
 \end{itemize}
 
-Chosing Django also means being able to access all the Python libraries
+Choosing Django also means being able to access all the Python libraries
 available for data analysis, data mining and system administration.
 
 \subsection{Databases}
