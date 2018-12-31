@@ -3,8 +3,8 @@
 \section{Testing strategy}
 Testing a system has two meaning: we need to find out if the system build works
 as intended (verification testing), but we also want to know if we built the
-right system (validation testing) \cite{VV08}. For this project we will assume
-we did build the right system, and we will focus on verifying that what we built
+right system (validation testing) \cite{VV08}. For this project I will assume
+I did build the right system, and I will focus on verifying that what I built
 performs correctly and complies with its original requirements.
 
 Testing is a tricky buisiness, since its ability to detect issues is only as
@@ -65,7 +65,7 @@ high level of resources in order to assess the system's ability to sustain a
 significant workload \cite{RP05}.
 \end{description}
 
-In this project we will consider only security testing, which is one of the main
+In this project I will consider only security testing, which is one of the main
 requirements identified on the outset.
 
 
@@ -76,13 +76,13 @@ return as expected or not. Django integrates \texttt{unittest} in its libraries,
 and provides by default a \texttt{test.py} file for each web-app created, so
 that projects' tests can be stored and reused repeatedly.
 
-This is an example of the approach that we took for this project. Before
+This is an example of the approach that I took for this project. Before
 creating a method that would search for eBay items based on keyworkds and
 a list of regional eBay sites (the type of results of an items search on eBay
 are dependant on the region selected: ``skateboards'' on ebay.com will return
-different results compared to ebay.co.uk). In this test case we wanted to check
+different results compared to ebay.co.uk). In this test case I wanted to check
 the ability of the method to return a meaninful error message with the wrong
-eBay site was provided. We prepared a test in \texttt{test.py}, feeding a wrong
+eBay site was provided. I prepared a test in \texttt{test.py}, feeding a wrong
 eBay site to the \texttt{find\_items()} method of the \texttt{EbayApi} class:
 \begin{lstlisting}[language=Python, breaklines=true]
 from django.test import TestCase
@@ -206,7 +206,7 @@ Open Web Application Security Project, an online community that focus on online
 security awareness and support for security testers and penetration testers
 \cite{zap}.
 
-We performed the default active scan against \url{https://linkero.ie}. This
+I performed the default active scan against \url{https://linkero.ie}. This
 first attack was performed on the public pages \texttt{/login/} and
 \texttt{/logout/}, and the tool identified six low priority issues:
 \begin{description}
@@ -234,7 +234,7 @@ first attack was performed on the public pages \texttt{/login/} and
   \item[Incomplete or No Cache-control and Pragma HTTP Header Set]: these
   response header values prevent the client browser from caching the page
   content. In this case the fix relies on setting the \texttt{@never-cache}
-  decorator on the web-app page that we do not want the user to cache. This has
+  decorator on the web-app page that I do not want the user to cache. This has
   to be done on every page.
   \item[Cookie Without Secure Flag]: session cookies make sure that the user
   that is contacting the server is the same that originally authenticated during
@@ -250,13 +250,13 @@ first attack was performed on the public pages \texttt{/login/} and
   clients' cookies, stealing their sessions. Linkero restricts significantly the
   users ability to upload code, and there are limited options to share content.
   On the other end, part of Linkero's client JQuery script needs to access
-  clients' cookies to append CSRF tokens to AJAX requests. We decided to keep
+  clients' cookies to append CSRF tokens to AJAX requests. I decided to keep
   this option disabled, considering the risk near to null and the benefits of
   improved usability that AJAX reuqests provide.
 \end{description}
 
 A second scan, after the necessary fixes were put in place, returned only a
-\textbf{Cookie No HttpOnly Flag} issue, which is something we expected and
+\textbf{Cookie No HttpOnly Flag} issue, which is something I expected and
 decided to accept.
 
 

@@ -1,10 +1,10 @@
 \chapter{System implementation}
 
-In this chapter we will discuss the actual implementation of the original idea
-behind Linkero: a brand monitoring case management application. We will start
+In this chapter I will discuss the actual implementation of the original idea
+behind Linkero: a brand monitoring case management application. I will start
 from the architecture in order to show a general snapshot of the system, before
 talking in details about every single component, the technology that was
-chosen and reasons behind. We will follow with use cases and
+chosen and reasons behind. I will follow with use cases and
 system requirements, to conclude with class diagram, database structure and some
 code samples.
 
@@ -128,7 +128,7 @@ open-source applications that were assembled in order for the system to work.
 
 \subsection{Server operating system}
 Linkero is hosted on a Virtual Private Server provided by the company Linode
-\texttrademark. We chose the smallest package offering 1 GB Ram, 1 CPU Core and
+\texttrademark. I chose the smallest package offering 1 GB Ram, 1 CPU Core and
 25 GB of SSD storage at \textdollar 5.00 USD a month.
 
 The plan offers different operating systems to chose from, and Linux Debian is
@@ -282,8 +282,8 @@ This choice is dictated by two factors:
   returned.
   \item Services offering API calls to access their data often limit the call
   frequency. Since Linkero is designed to sustain a growing user population,
-  we would reach a stage where multiple users could submit concurrent reports,
-  and that would likely exceed the API rate limit.
+  the system would reach a stage where multiple users could submit concurrent
+  reports, and that would likely exceed the API rate limit.
 \end{itemize}
 
 In order to solve those two issues, Celery is the central server that receives
@@ -555,8 +555,8 @@ needs access to the system.
 \end{table}
 
 \section{Requirements}
-We already mentioned some of the requirements and system constraints in the
-\emph{system architecture} section. In this section we will discuss in more
+I already mentioned some of the requirements and system constraints in the
+\emph{system architecture} section. In this section I will discuss in more
 details all the requirements considered for the current implementation.
 Requirements are further divided in functional, non-functional and user
 requirements.
@@ -725,7 +725,7 @@ script ends its cycle.
 \end{figure}
 
 \section{Code samples}
-In this section we will look at some code snippets that make up the
+In this section I will look at some code snippets that make up the
 \texttt{Task} script just described in the sequence diagram.
 
 The first part of the script is dedicated to load necessary libraries of
@@ -753,9 +753,9 @@ def send_ebay_listing_report(to_email, user_id=None, query_id=None,
 seller_id=None, keywords=None, ebay_sites=['US'], search_desc=False):
 \end{lstlisting}
 
-In the following lines we create a connection to MongoDB, so that instances
+In the following lines I create a connection to MongoDB, so that instances
 representing its collections (read tables) will be able to retrieve and store
-data in them, and we initiate an EbayApi instance:
+data in them, and I initiate an EbayApi instance:
 \begin{lstlisting}[language=Python, breaklines=true]
     # connect to Mongo
     mongo_client = connect('linkerodb', username='linkero-user',
@@ -799,9 +799,9 @@ instance itself; while seller details are retrieved by the \texttt{EbayApi} and
 passed back to the \texttt{Task} script in memory, and it is the \texttt{Task}
 script that calls the database object \texttt{EbaySellerDetails} to save the
 details retrieved. This \emph{double standard} was implemented after a series of
-tests, when we found that leaving the data in the \texttt{Task} script memory
-was cause overflow and the script would crash. It is worth to remember that the
-system that is currently running this project only has 1GB of memory.
+tests, when I found that leaving the data in the \texttt{Task} script memory
+would cause memory overflow and the script would crash. It is worth to remember
+that the system that is currently running this project only has 1GB of memory.
 
 Continuing, the data extracted is then assembled into a csv file:
 \begin{lstlisting}[language=Python, breaklines=true]
