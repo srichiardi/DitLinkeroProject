@@ -9,24 +9,25 @@ system requirements, to conclude with class diagram, database structure and some
 code samples.
 
 \section{Development challenge}
-They system architecture described in the next session needs a little
-explanation, because it deviates from the standard three-tier architecture of
-many websites.
+They system architecture described in the next session \emph{System
+architecture} needs a little explanation, because it deviates from the standard
+three-tier architecture of many websites.
 
 Before this project I already developed a stand-alone, single thread,
-application that would generate similar reports. The application was written in
-Python and included a simple user interface, corresponding to what is now the
-eBay input form (see figure \ref{fig:inputform}). The application would take the
-user input, retrieve the data using eBay public API and would create and save in
-the local hard-drive a csv file. It was all that was needed, and worked well for
-one single user that needed access only to eBay data.
+application that would generate reports of eBay items and sellers. The
+application was written in Python and included a simple user interface,
+corresponding to what is now the eBay input form (see figure
+\ref{fig:inputform}). The application would take the user input, retrieve the
+data using eBay public API and would create and save in the local hard-drive a
+csv file. It was all that was needed, and worked well for one single user that
+needed access only to eBay data.
 
 More users and new features immediately showed the limits of the stand-alone
 application approach:
 \begin{itemize}
   \item the installation process was not straight forward for non-technical
   users, since a Python version needed to be installed along with some other
-  non-standard libraries;
+  non-standard libraries and dependencies;
   \item some sort of version control system needed to be established and
   maintained in order to guarantee that all users would run the latest version.
 \end{itemize}
@@ -45,30 +46,35 @@ different, potentially concurrent, clients created a different set of
 challenges. Online services who open up their database to external users via
 API, normally limit the number of requests a single user can make in two ways:
 \begin{itemize}
-  \item total number of requests per period (e.g. 10,000 API calls per day);
-  \item total number of requests per minute (e.g. 100 API calls each minute).
+  \item total number of requests per user (e.g. 10,000 API calls each user);
+  \item total number of requests per period (e.g. 100 API calls each minute).
 \end{itemize}
 
 API users need to register to a \emph{developer program} and they need to
 include a API key in their GET or POST requests parameters, this way the data
 controller (who owns the data) can control the number of requests submitted by
-each member. A work-around could have been to request each user to register an
-API key for each service they wished to access and save their API key in
-Likero's profile settings, but it seemed a step-back from the original idea of
+each member. A work-around solution could have been to request each user to
+register an API key for each service they wished to access and save their API key in
+Linkero's profile settings, so that each user was directly responsible for
+his/her own API calls quota. But it seemed a step-back from the original idea of
 insulating the user from lower-level inner workings of the application.
 
 The other issue emerging from the web-application approach, related to the time
-necessary to complete a report. The eBay API results from a text search are
-paginated, and each page returns a maximum of 100 items. There are a total of 22
-country sites where the same search can be repeated. That means that a text
-search followed by item details extraction can take a long time to complete.
-While a stand alone application could run for as long as needed, while the user
-runs other programs, you could not ask the user of a web application to keep the
-tab open until the request is completed.
+the system takes to complete a report. eBay API results from a text search
+are paginated, and each page returns a maximum of 100 items, over a maximum of
+100 pages. There are a total of 22 country sites where the same search can be
+repeated. After the search is completed we still need to retrieve the item
+details, which is done with a different API. Long story short: a report
+returning the maximum amount of results on all 22 eBay sites can take as long
+as 15 hours to complete, if requests are sequential and the transmission lag
+between request and response is half a second long. While a stand alone
+application could run for as long as needed, while the user runs other programs,
+you could not ask the user of a web application to keep the tab open until the
+request is completed.
 
 The solution I came up with is inspired by the \emph{broker pattern}: the broker
 is a component of the system that coordinates communications between different
-decoupled components \cite{}. In Linkero the broker is the part of the
+decoupled components \cite{JB00}. In Linkero, the broker is the part of the
 application that takes data requests coming from different clients, and returns
 a \emph{report submitted} response to the client, so that the client knows
 his/her report has been scheduled and will receive a notification when it is
@@ -93,13 +99,14 @@ system functionalities.
 \end{figure}
 
 As shown in the figure, client browser and client email are considered part of
-the system: the former because some functionalities are passed to the client to
-run locally in the form of JQuery functions, and the latter because it represent
-the final destination of data files generated by the system.
+the system: the browser is included because some functionalities are passed to
+the client to run locally in the form of JQuery functions, and the client email
+is considered part of the system, because it represents the final destination of
+data files generated by the system.
 
 Linux is the operating system running on a Virtual Private Server, that manages
 all other applications. The first point of entry is the Firewall, which monitors
-all requests knocking ports 22, 80 and 443.
+all requests knocking on ports 22, 80 and 443.
 
 NGINX is the web server, reverse proxy server \cite{WikiNginx}, which receives
 HTTP requests and assigns them to the correct internal web server.
@@ -157,12 +164,12 @@ All the reasons above make Linux Debian the ideal candidate for this project.
 
 \subsection{Web application framework}
 
-As mentioned before, the main business logic in this project is written in
-Python and runs on a uWSGI web engine, implementing Python's WSGI convention.
-However the actual set of objects and functions that constitute the web application have been developed using Django.
-Django is a ``web framework for perfectionists with deadlines'', quoting from
-Django developers' tag-line \cite{Django}. There are several reasons that make
-Django a good candidate for this project:
+The main business logic in this project is written in Python and runs on a uWSGI
+web engine, implementing Python's WSGI convention. However the actual set of
+objects and functions that constitute the web application have been developed
+using Django. Django is a ``web framework for perfectionists with deadlines'',
+quoting from Django developers' tag-line \cite{Django}. There are several
+reasons that make Django a good candidate for this project:
 \begin{itemize}
   \item the web development framework is freely distributed under the BSD
   Licence;
@@ -218,7 +225,7 @@ based on the information that are being extracted from external sources, there i
 also no need to map a JSON response to a SQL INSERT query. The final
 implementation will result in less hard-coded configuration, less maintenance,
 more flexibility to accept modification to existing sources and to add new
-sources. This doesn't mean that some of the data points extracted should not be
+sources. This does not mean that some of the data points extracted should not be
 indexed, it actually is recommended to index some crucial data-points to improve
 search performance, and MongoDB provides this feature.
 
@@ -275,10 +282,10 @@ execution is not dependent on the task.
 
 This choice is dictated by two factors:
 \begin{itemize}
-  \item gathering all the data for one single report can take minutes, or even
-  longer, depending on the volume of data requested and the speed of connection.
-  In a web application it would result in a bad user experience if the page used
-  to submit a report would hang for a long period of time waiting for data to be
+  \item gathering all the data for one single report can take hours, depending
+  on the volume of data requested and the speed of connection. In a web
+  application it would result in a bad user experience if the page used to
+  submit a report would hang for a long period of time waiting for data to be
   returned.
   \item Services offering API calls to access their data often limit the call
   frequency. Since Linkero is designed to sustain a growing user population,
@@ -302,7 +309,7 @@ The email server installed on this system is Exim \cite{exim} which is a very
 well established application, first released in 1995 under GNU licence. The
 choice of this server is dictated by the fact that under the current version of
 the project a simple send-only email server is sufficient to allow the system to
-send out email notification to Linkero users once a report is completed.
+send out email notifications to Linkero users once a report is completed.
 
 \subsection{Web server}
 NGINX was chosen to serve the pages of this application. NGINX is an http proxy
@@ -369,19 +376,27 @@ in the last four months of activity.
 
 \section{Development methodology}
 For this project, considering its relative simplicity and limited headcount
-(one person working on it), Extreme Engineering seemed to be the right
-development methodology. The methodology is subdivided into four stages:
-planning, design, coding and testing \cite{RP05}. In the next three sections we
-will look at the list of requirements and use cases created for this
-project, the object oriented class diagrams and some examples of the resulting
-code. The next chapter will be dedicated to the testing performed and results.
+(one person working on it), Extreme Programming seemed to be the right
+development methodology. The methodology is subdivided into four main
+principles:
+\begin{description}
+\item[listening]: listen to users' requirements and feedback.
+\item[simplicity]: keep the design simple and clear.
+\item[test-driven development]: write the test before the actual code.
+\item[iterative releases]: divide the system in versions that can be developed
+over short plan and release cycles \cite{RP05}.
+\end{description} 
+In the next three sections we will look at the list of requirements and use
+cases created for this project, the object oriented class diagrams and some
+examples of the resulting code. The next chapter will be dedicated to the
+testing performed and results.
 
-There are some discrepancies from the XP orthodoxy. Extreme programming
-encourages for instance to assign priority to each use-case and estimate what is
-called \emph{project velocity}, otherwise known as the amount of weeks required
-to complete each use-case. With the current level of knowledge, each and every
-use-case could be realistically be developed under a week of full time work.
-However that did not reflects the reality of time dedicated to each use-case.
+Extreme programming encourages to assign priority to each use-case
+and estimate what is called \emph{project velocity}, otherwise known as the
+amount of weeks required to complete each use-case. With the current level of
+knowledge, each and every use-case could be realistically be developed under a
+week of full time work. However that did not reflects the reality of time
+dedicated to each use-case.
 
 Also, extreme programming focuses on the coding part of the development, which
 fits the business logic of the project. It is worth to mention that a lot of
@@ -623,38 +638,39 @@ generators and data base tables called respectively: Forms, Views and Models.
 These classes can be inherited to produce specific objects to fit the needs of
 the project.
 
-The \emph{Forms} class for instance offers default fields that represent the
+The \texttt{Forms} class for instance offers default fields that represent the
 values of its fields (e.g. text fields, date fields, numeric fields\ldots), and methods
-that allow data sanitization, html layout, data validity. Linkero inherit this
-class to produce the \emph{CaseFilerForm}, which is a simple form that enables
+that allow data sanitization, html layout, data validity. Linkero inherits this
+class to produce the \texttt{CaseFilerForm}, which is a simple form that enables
 users to limit the amount of cases to be displayed on the main page, by
 selecting a time range and a platform (e.g. show only cases from Jan to Feb
-2018, that pulled eBay data). The CaseFilterForm object was created by declaring
+2018, that pulled eBay data). The \texttt{CaseFilerForm} object was created by declaring
 the list of fields that should be part of the form, all other methods were
 inherited from the parent class.
 
-The \emph{Models} class is the core of Django's ORM (Object Relational Mapping)
+The \texttt{Models} class is the core of Django's ORM (Object Relational Mapping)
 philosophy: it is a Python object that maps its fields to a database table (or
-document in MongoDB's case), and offers as many methods as SQL or NoSQL function
-to read and write data. Like for Forms, the Models parent class provides all the
-methods that are needed, while the developer is left with declaring the field
-types for each object. In this project, the \emph{CaseDetails} model represent
-information about a specific case: the case identification number, the creation
-date, the case owner, the platform which sourced the data, the inputs provided
-for the data search. Similarly the model \emph{EbayItem} stores all the
-information about an eBay item that was queried and stored in MongoDB.
+document in MongoDB's case), and offers as many methods as SQL or NoSQL
+functions to read and write data. Like for Forms, the Models parent class
+provides all the methods that are needed, while the developer is left with
+declaring the field types for each object. In this project, the
+\texttt{CaseDetails} model represents information about a specific case: the
+case identification number, the creation date, the case owner, the platform which
+sourced the data, the inputs provided for the data search. Similarly the model
+\texttt{EbayItem} stores all the information about an eBay item that was queried
+and stored in MongoDB.
 
-The \emph{Views} class represents the objects that receive a http request and
-return a response. Each child class will have their own implementation of one or
-both GET and POST methods. The class \emph{CaseView} for instance represents the
+The \texttt{Views} class represents the objects that receives a http request and
+returns a response. Each child class will have their own implementation of one
+or both GET and POST methods. The class \texttt{CaseView} for instance represents the
 home page being displayed after the user logs in: a table that summarizes all
 the cases generated in the last two weeks, and a menu to bring up modal forms to
-submit new data requests. The GET method is detecting when it is receiving a
+submit new data requests. The GET method detects when it is receiving a
 request to load the full page, or an AJAX GET request to load just a new
-filtered set of cases in the cases table. The POST method of the CaseView class
-receives requests to generate new reports.
+filtered set of cases in the cases table. The POST method of the
+\texttt{CaseView} class receives requests to generate new reports.
 
-The last class in the diagram is \emph{EbayAPI}. This class does not inhering
+The last class in the diagram is \texttt{EbayAPI}. This class does not inherit
 from any other built-in Django object. Instead it was created from scratch to
 provide querying facility with eBay public APIs. Its fields represent
 authentication details for the local database and the remote server, whereas its
@@ -667,7 +683,7 @@ shares data and interacts with other modules. Forms and Views are in one-to-one
 relations most of the time, since forms are unique, and each view incorporates
 one form for each type. Models and Views instead are in many-to-one relations,
 since each view can interact with multiple instances (i.e. database records)
-from the same class, but there is always one view object at any given time.
+from the same class, but there is always only one view object at any given time.
 
 \begin{figure}[H]
 \centering
@@ -678,9 +694,9 @@ from the same class, but there is always one view object at any given time.
 
 \section{Sequence diagram}
 The sequence diagram represented in figure \ref{fig:sqncdiag} is probably the
-most elaborate process programmed performed by the core business logic
-in Linkero. It describes the sequence of operations that the system performs
-after receiving a request to generate a new report.
+most elaborate process performed by the core business logic in Linkero. It
+describes the sequence of operations that the system performs after receiving a
+request to generate a new report.
 
 The entire sequence can be broken down into the following steps:
 \begin{enumerate}

@@ -303,7 +303,9 @@ recovery measures.
 Applications running on the system are rarely bug-free. It is always good
 practice to keep every system application up-to-date with latest patches, since
 every time a new vulnerability is discovered, application developers tend
-to issue a new version or patch to close it.
+to issue a new version or patch to close it \cite{WS15}. This system is set to
+look for security updates issued by the Linux distribution Debian, every 24
+hours.
 
 \subsubsection{Environment isolation}
 Rather than a technology, \emph{isolation} is a principle and a policy that
@@ -314,20 +316,30 @@ management as well, requiring users files and folders to be isolated from one
 another, preventing one user's compromised credentials to be used to access
 everyone else's files. Finally, isolation applies to the same security
 mechanisms, since they should be isolated from the rest of the system, so that
-they cannot be compromised by the attacker \cite{WS15}.
+they cannot be compromised by the attacker \cite{WS15}. For this project,
+isolation was implemented by giving each application (e.g. web server, email
+server, databases, etc\ldots) its individual user profile and access, so that if
+one is compromised, the indruder will still be limited to the set of tasks
+granted to that application.
 
 \subsubsection{Virtual Private Networks}
 VPN are a good solution to connect parts of the system that are not located on
 the same machine, or in the same network. Since communication between resources
 has to go through the public network, VPN offer a way to encrypt and protect
-data exchange based on asymmetric encryption technology.
+data exchange based on asymmetric encryption technology \cite{WS15}. Currently
+there are no VPN deployed in this project, since every element is installed
+on the same single server. However VPN would be the ideal solution, if the
+system grows and specific applications, like databases, would have their
+dedicated machines.
 
 \subsubsection{SSL and TLS encryption}
 Similarly to VPN, SSL and TLS are two technologies that create an encrypted
 communication channel between a client and a server. The most common use case
 for these solutions is when login forms are required, so that a client can
 transfer login credentials to the server using a HTTPS connection, thus avoiding
-to transfer username and password in clear over a non-secure public network.
+to transfer username and password in clear over a non-secure public network
+\cite{WS15}. For this project, an SSL certificate was issued for free by
+\emph{Let's encrypt}\texttrademark (\url{https://letsencrypt.org}).
 
 \subsubsection{SSH}
 The Secure Shell, SSH, is the default application for remote server management.
@@ -335,7 +347,8 @@ Like VPN and SSL, it establishes an encrypted connection between a client and a
 server, relying on asymmetric encryption. It allows system administrators to
 login remotely to the server command line shell. It can be configured to either
 accept a standard password login, or to accept automatic logins from approved
-clients only.
+clients only \cite{WS15}. Every admin interaction on this system happens through
+SSH tunnel.
 
 \subsubsection{Firewalls}
 Firewalls can be described as \emph{intrusion prevention systems}. A firewall is
@@ -357,7 +370,8 @@ incapable of establishing when a connection to a port number above 1024 is
 legitimate or not. This is where a stateful inspection firewall comes into play.
 Stateful packet inspection works by keeping track of ongoing connections,
 session numbers, and originating party in order to prevent attacks like session
-hijacking \cite{WS15}.
+hijacking \cite{WS15}. I will discuss the details of the system firewall in the
+next chapter.
 
 \subsubsection{Users and groups least privileges}
 Just like environment isolation, assigning users and groups with the right
@@ -374,14 +388,14 @@ needs to be performed \cite{WS15}.
 \subsubsection{Password policy}
 A password policy is design to make sure that all users comply with the industry
 best known standards of password security. A password policy should
-establish:
+establish that:
 \begin{itemize}
-  \item the strength of the password by insuring and checking that fa user
-  generate password uses the most varied combination of lower and upper case
-  letters, numbers and special symbols in a string of a minimum length in order
-  to guarantee that a brute-force attack (attempting to guess the password
-  trying every possible combination) would require a significant amount of time
-  to succeed;
+  \item the strength of the password by insuring and checking that a user
+  generated password uses the most varied combination of lower and upper case
+  letters, numbers and special symbols in a string of a minimum length of
+  eight characters, in order to guarantee that a brute-force attack (attempting
+  to guess the password trying every possible combination) would require a
+  significant amount of time to succeed;
   \item the lifetime of a password, which should be long enough not to cause
   user friction, but short enough to guarantee that should the password be
   compromised, there is a chance it will be too late to use it before
@@ -400,7 +414,8 @@ Systems that store data in databases may be compromised, when that happens if
 the data is stored in clear, the attacker can make a copy of the database, and
 access all the contents. Data that is not loaded in memory can be encrypted, so
 that simply making a copy and moving it outside of the current system, will not
-allow the attacker to access it, lacking the necessary decryption keys.
+allow the attacker to access it, lacking the necessary decryption keys
+\cite{WS15}.
 
 \subsubsection{Physical security}
 Physical and infrastructure security is sometimes an overlooked aspect, when the
@@ -492,8 +507,8 @@ can be repeated periodically. An audit can be triggered in different ways:
 A business continuity plan is a set of measures, mechanisms that ensure an
 organization can go on or quickly restore basic and critical operations
 with minimal downtime \cite{TW10}. In a business continuity plan a series of
-scenarios are identified, for instance: loss of workspace, loss of personnel,
-loss of network infrastructure. Every scenario is coupled with a list of
+\emph{disaster} scenarios are identified, for instance: loss of workspace, loss
+of personnel, loss of network infrastructure. Every scenario is coupled with a list of
 function critical resources that can be impacted and relative countermeasures
 to be executed along with roles and responsibilities assigned to
 specific people. Having a backup of all the data on the system
@@ -602,15 +617,15 @@ intuitive. Theo Mandel developed three \emph{golden rules} \cite{TM97}:
 \begin{description}
 \item[Place the user in control] means that the interface has to be designed
 with the user's needs in mind, not the developer. And these are some of the
-commands user's needs: a user needs to be able to perform the same action in
-different ways (e.g. via console commands, mouse action, keyboard short cuts,
-etc.); a user sometime needs to suspend a task and move to a new one, before
-resuming the old one, as well as being able to \emph{undo} an action made by
-mistake; a user needs adjust its interaction according to his/her level of
-expertise (e.g. initial point and click can be replaced by macro recording of a
-sequence of actions); a user does not need to see nor interact with low level
-functions; a user needs to manipulate objects of a visual interface as he/she
-would do if those objects were a physical thing.
+most common needs from a user perspective: a user needs to be able to perform
+the same action in different ways (e.g. via console commands, mouse action,
+keyboard short cuts, etc.); a user sometime needs to suspend a task and move to
+a new one, before resuming the old one, as well as being able to \emph{undo} an
+action made by mistake; a user needs adjust its interaction according to his/her
+level of expertise (e.g. initial point and click can be replaced by macro
+recording of a sequence of actions); a user does not need to see nor interact
+with low level functions; a user needs to manipulate objects of a visual
+interface as he/she would do if those objects were a physical thing.
 \item[Reduce the user's memory load] requires for interfaces to be intuitive,
 without much study a user should be able to know what each part does just by
 looking at it. Mandel \cite{TM97} further specify this rule, by saying that the
@@ -712,12 +727,12 @@ for the recipient to be ready to receive the message \cite{JB00}.
 \end{description}
 
 \section{Existing brand monitoring services}
-There are several other online companies offering what they call \emph{brand
-monitoring} services. This type of services has two major definitions:
+There are several  online companies offering what they call \emph{brand
+monitoring} services. This type of service has two major definitions:
 \begin{itemize}
-  \item on one end, brand monitoring refers to activities whose purpose is to
-  analyze the online presence of a brand to gain insight about the market
-  reception and placement of one's brand \cite{techpd}.
+  \item on the one end, brand monitoring refers to activities whose purpose is
+  to analyze the online presence of a brand to gain insight about its the market
+  reception and placement \cite{techpd}.
   \item on the other end, it refers to activities whose aim is to protect the
   intellectual property of a brand by collecting information on online
   activities that may infringe it \cite{cscbrand}.
