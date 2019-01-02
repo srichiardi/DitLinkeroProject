@@ -1,4 +1,4 @@
-\begin{thebibliography}{OWA17}
+\begin{thebibliography}{oECtECoHRE18}
 
 \bibitem[Baz15]{MB15}
 Michael Bazzell.
@@ -20,6 +20,11 @@ J.~Bosch.
 \newblock {\em Design \& Use of Software Architectures}.
 \newblock Addison-Wesley, 2000.
 
+\bibitem[Bra18]{cscbrand}
+CSC~Digital Brand.
+\newblock Brand monitoring, 2018.
+\newblock accessed on 28 December 2018.
+
 \bibitem[Cel09]{Celery}
 Project Celery.
 \newblock Celery, May 2009.
@@ -30,12 +35,22 @@ W.~Cheswick.
 \newblock {\em Firewalls and Internet Security.}
 \newblock Addison-Wesley, 2003.
 
+\bibitem[CR17]{CR17}
+Shane~Fuller Chad~Russell.
+\newblock {\em Handbook on European data protection law}.
+\newblock John Wiley \& Sons Ltd, 2017.
+
 \bibitem[Deb18]{Debian}
 Debian.
 \newblock Debian linux gnu, November 2018.
 \newblock last accessed on 26 November 2018.
 
-\bibitem[Fun18]{Django}
+\bibitem[Fun18a]{djsecr}
+Django~Software Fundation.
+\newblock Cryptographic signing, 2018.
+\newblock accessed on 28 December 2018.
+
+\bibitem[Fun18b]{Django}
 Django~Software Fundation.
 \newblock Django web framework, November 2018.
 \newblock last accessed on 26 November 2018.
@@ -112,6 +127,11 @@ EUIPO OECD.
   Impact}.
 \newblock OECD Publishing, Paris, 2016.
 
+\bibitem[oECtECoHRE18]{EU18}
+The~Council of~Europe~(CoE) and the European Court~of Human Rights~(ECtHR).
+\newblock {\em GDPR for Dummies}.
+\newblock Publications Office of the European Union, Luxembourg, 2018.
+
 \bibitem[otC15]{CoEU956515}
 Presidency of~the Council.
 \newblock Proposal for a regulation of the european parliament and of the
@@ -150,6 +170,11 @@ R.~Shirey.
 \newblock {\em RFC 2828 Internet Security Glossary.}
 \newblock Internet Engineering Task Force, 2000.
 
+\bibitem[Tec18]{techpd}
+Technopedia.
+\newblock Brand monitoring, 2018.
+\newblock accessed on 28 December 2018.
+
 \bibitem[Ubi18]{RtduWsgi}
 Ubit.
 \newblock uwsgi, November 2018.
@@ -159,6 +184,11 @@ Ubit.
 Hans~Van Vliet.
 \newblock {\em Software Engineering, principles and practice}.
 \newblock John Wiley and Sons, 2008.
+
+\bibitem[Wat18]{wtchd}
+Watchdog.
+\newblock Watchdog app, 2018.
+\newblock accessed on 28 December 2018.
 
 \bibitem[Wik18a]{WikiNginx}
 Wikipedia.

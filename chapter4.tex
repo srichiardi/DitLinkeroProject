@@ -277,7 +277,7 @@ cyclically uploaded on GitHub\texttrademark. I do not have a private
 GitHub account, therefore every information, including passwords used during
 development are publicly visible at \url{https://github.com/srichiardi/linkero}.
 That means that the passwords to access MariaDB and MongoDB need to be changed.
-Django also provides a default \texttt{SECRET_KEY}, a 50 chars long
+Django also provides a default \texttt{SECRET\_KEY}, a 50 chars long
 alphanumeric string used for:
 \begin{itemize}
   \item providing unique ``recover my account'' URLs, or other one-time access
@@ -285,7 +285,7 @@ alphanumeric string used for:
   \item ensure that data in hidden form fields has not been tampered with
   \cite{djsecr}.
 \end{itemize}
-The \texttt{SECRET_KEY} was stored just like any other password in the
+The \texttt{SECRET\_KEY} was stored just like any other password in the
 \texttt{settings.py} file, as such it needs to be replaced by a new one
 by editing directly the file stored on the actual virtual machine serving
 the site.
