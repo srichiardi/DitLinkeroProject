@@ -380,7 +380,8 @@ For this project, considering its relative simplicity and limited headcount
 development methodology. The methodology is subdivided into four main
 principles:
 \begin{description}
-\item[listening]: listen to users' requirements and feedback.
+\item[listening]: listen to users' requirements and feedback, contantly
+throughout the entire development cycle.
 \item[simplicity]: keep the design simple and clear.
 \item[test-driven development]: write the test before the actual code.
 \item[iterative releases]: divide the system in versions that can be developed
@@ -634,7 +635,7 @@ The class diagram in figure \ref{fig:clssdiag} represents the core modules of
 the web application.
 
 Django provides three parent classes that represent web-forms, html page
-generators and data base tables called respectively: Forms, Views and Models.
+generators and database tables called respectively: Forms, Views and Models.
 These classes can be inherited to produce specific objects to fit the needs of
 the project.
 
@@ -745,7 +746,7 @@ In this section I will look at some code snippets that make up the
 \texttt{Task} script just described in the sequence diagram.
 
 The first part of the script is dedicated to load necessary libraries of
-function that support the script execution, including the \texttt{EbayApi}
+functions that support the script execution, including the \texttt{EbayApi}
 object, and the models connected with the MongoDB database:
 \begin{lstlisting}[language=Python, breaklines=true]
 import os
