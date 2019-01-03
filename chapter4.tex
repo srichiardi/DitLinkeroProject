@@ -8,13 +8,14 @@ I did build the right system, and I will focus on verifying that what I built
 performs correctly and complies with its original requirements.
 
 Testing is a tricky business, since its ability to detect issues is only as
-good as the set of test cases that are developed. Testing exhaustively every
-outcome of a system component is not a feasible solution, since even a very
-simple program consisting of a single \texttt{for} loop running 100 iterations,
-testing a condition and returning a binary output, could generate
-2\textsuperscript{100} different outcomes, which would mean that a brute-force
-testing with a machine able to execute 10 million instructions per second, would
-take $3 \times 10\textsuperscript{14}$ years \cite{VV08}.
+good as the set of test cases that are developed for this purpose. Testing
+exhaustively every outcome of a system component is not a feasible solution,
+since even a very simple program consisting of a single \texttt{for} loop
+running 100 iterations, testing a condition and returning a binary output, could
+generate 2\textsuperscript{100} different outcomes, which would mean that a
+brute-force testing with a machine able to execute 10 million instructions per
+second, would take $3 \times 10\textsuperscript{14}$ years to complete
+\cite{VV08}.
 
 The alternative is to chose a limited set of test cases. The question then
 becomes, how do we chose an \emph{adequate} set of test cases? The answer is a
@@ -26,7 +27,7 @@ system developer:
   this approach assumes that requirements are defined in quantitative terms;
   \item or testing could focus on fault detection, \textbf{fault-based testing},
   which means that a lot of effort is first put into creating a testing
-  mechanism which needs to be calibrated by seeding intentional faults withing
+  mechanism which needs to be calibrated by seeding intentional faults within
   the system so that we can calculate the test's detection rate;
   \item finally, test cases can be designed based on known errors
   that are normally found in any system, such as \emph{off-by-one} errors. The
@@ -37,10 +38,9 @@ The above classification of test techniques applies to the component-level, so
 individual class and object methods are tested independently from the rest of
 the system, this practice is called \textbf{unit-testing}. Linkero was developed
 following the Extreme Programming methodology, which requires component tests to
-be written before the module, the test is meant for, is actually written. It is
-a test-driven approach that forces the developer do think in advance and
-anticipate the potential cases of failure as much as the expected outcome
-\cite{VV08}.
+be written before the module to test is actually written. It is a test-driven
+approach that forces the developer do think in advance and anticipate the
+potential cases of failure as much as the expected outcome \cite{VV08}.
 
 In a traditional testing approach, unit-testing is followed by
 \textbf{integration-testing}, when individual components are then assembled and
@@ -70,20 +70,25 @@ requirements identified on the outset.
 
 
 \section{Unit testing}
-Python as its own official testing framework: the \texttt{unittest} module. This
-framework allows to write test cases and, obviously enough, test if the output
+To guarantee the correct functioning of the system, I decided to test each
+method of the core business logic, which is the part of the system that takes
+users' report requests and retrieves data from external sources.
+
+Python has its own official testing framework: the \texttt{unittest} module.
+This framework allows to write test cases and, obviously enough, test if the output
 return as expected or not. Django integrates \texttt{unittest} in its libraries,
 and provides by default a \texttt{test.py} file for each web-app created, so
 that projects' tests can be stored and reused repeatedly.
 
-This is an example of the approach that I took for this project. Before
-creating a method that would search for eBay items based on keywords and
-a list of regional eBay sites (the type of results of an items search on eBay
-are dependant on the region selected: ``skateboards'' on ebay.com will return
-different results compared to ebay.co.uk). In this test case I wanted to check
-the ability of the method to return a meaningful error message with the wrong
-eBay site was provided. I prepared a test in \texttt{test.py}, feeding a wrong
-eBay site to the \texttt{find\_items()} method of the \texttt{EbayApi} class:
+This is an example of the approach that I took for this project. The test
+is written before creating a method that would search for eBay items based on
+keywords within list of regional eBay sites (the type of results of an items
+search on eBay are dependant on the region selected: ``skateboards'' on ebay.com
+will return different results compared to ebay.co.uk). In this test case I
+wanted to check the ability of the \texttt{find\_items()} method to return a
+meaningful error message with the wrong eBay site was provided. I prepared a
+test in \texttt{test.py}, feeding a wrong eBay site to the
+\texttt{find\_items()} method of the \texttt{EbayApi} class:
 \begin{lstlisting}[language=Python, breaklines=true]
 from django.test import TestCase
 from cases.ebayapi import EbayApi, EbayBadSite
@@ -205,7 +210,7 @@ application security scanner. The application is developed maintained by the
 Open Web Application Security Project, an online community that focus on online
 security awareness and support for security testers and penetration testers
 \cite{zap}, and it is considered one of the most reliable to detect
-vulnerabilities.
+web-based vulnerabilities.
 
 I performed the default active scan against \url{https://linkero.ie}. This
 first attack was performed on the public pages \texttt{/login/} and
@@ -226,9 +231,9 @@ first attack was performed on the public pages \texttt{/login/} and
   should only render the content based on the content-type declared. This option
   was introduced to prevent MIME abuse attacks, where malicious content would be
   uploaded on a site, and tricking the site visitors to render it in a different
-  way from the official content type of the website, thus executing
+  way from the official content type of the website, and potentially executing
   malicious code. Django keeps this option disabled, and considering that
-  Linkero does not allow users to upload any content, it represent a very low
+  Linkero does not allow users to upload any content, it represents a very low
   risk. In any case, this can be fixed by declaring
   \texttt{SECURE\_CONTENT\_TYPE\_NOSNIFF = True} in the \texttt{settings.py}
   file.
@@ -241,19 +246,19 @@ first attack was performed on the public pages \texttt{/login/} and
   that is contacting the server is the same that originally authenticated during
   a login event, and was not replaced by another malicious actor after
   authentication. This is only possible if sessions are not intercepted and read
-  by man-in-the-middle attacks. Django does not set the \texttt{Secure} flag by
-  default because not every site need user authentication and not every site has
+  during man-in-the-middle attacks. Django does not set the \texttt{Secure} flag
+  by default because not every site need user authentication and not every site has
   SSL enabled. To fix this issue is sufficient to declare
   \texttt{SESSION\_COOKIE\_SECURE = True} in \texttt{settings.py} file.
   \item[Cookie No HttpOnly Flag]: finally, this header controls cookie access by
   JavaScript. In a public forum, where un-vetted code can be uploaded by anyone,
   a malicious actor could upload some JavaScript code designed to read other
   clients' cookies, stealing their sessions. Linkero restricts significantly the
-  users ability to upload code, and there are limited options to share content.
-  On the other end, part of Linkero's client JQuery script needs to access
-  clients' cookies to append CSRF tokens to AJAX requests. I decided to keep
-  this option disabled, considering the risk near to null and the benefits of
-  improved usability that AJAX requests provide.
+  users ability to upload code, and there are limited options to share
+  user-generated content. On the other end, part of Linkero's client JQuery
+  script needs to access clients' cookies to append CSRF tokens to AJAX
+  requests. I decided to keep this option disabled, considering the risk near to
+  null and the benefits of improved usability that AJAX requests provide.
 \end{description}
 
 A second scan, after the necessary fixes were put in place, returned only a
@@ -272,8 +277,8 @@ development stage, but it is a clear security concern if left enabled, since
 error messages are public.
 
 The other change required before deployment relates to the passwords that were
-created during the testing and development stages, and hard-encoded in the
-\texttt{settings.py} file. The entire Django application and its settings were
+in use during the testing and development stages, especially if hard-encoded in
+the \texttt{settings.py} file. The entire Django application and its settings were
 cyclically uploaded on GitHub\texttrademark. I do not have a private
 GitHub account, therefore every information, including passwords used during
 development are publicly visible at \url{https://github.com/srichiardi/linkero}.
@@ -281,7 +286,7 @@ That means that the passwords to access MariaDB and MongoDB need to be changed.
 Django also provides a default \texttt{SECRET\_KEY}, a 50 chars long
 alphanumeric string used for:
 \begin{itemize}
-  \item providing unique ``recover my account'' URLs, or other one-time access
+  \item generate unique ``recover my account'' URLs, or other one-time access
   pages;
   \item ensure that data in hidden form fields has not been tampered with
   \cite{djsecr}.

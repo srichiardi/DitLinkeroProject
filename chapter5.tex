@@ -1,35 +1,64 @@
 \chapter{Evaluation}
 
 \section{Lessons learned}
-Configuring third party applications can be as daunting and time consuming than
-developing your own code, and it is definitely more frustrating when for some
-unknown reason individual configurations do not seem to work.
+There was a lot of learning involved into this project, and it was not all about
+technical skills. In this section I would like to summarize some of the lessons
+I learned from experience rather than books and manuals.
 
-The Django framework is supposed to make web-developers' work quick and easy,
-unless it is the first time you use it: steep learning curve.
+First, when I was thinking about the project, designing the system in
+my head, I was focussing on the part that I needed to develop and
+code myself. I knew I needed to install and configure third party
+applications in order for the system to work, but I did not give them
+much weight in terms of workload. As I discovered, configuring third party
+applications can be as daunting and time consuming as developing your own
+code, and it is definitely more frustrating when for some unknown reason
+individual configurations do not seem to work.
 
-Django's ORM is a convenient way to interact with a relational database, keeping
-the code consistent and clean, as long as there are no advanced table joins
-needed, in that case SQL is a much simpler language.
+Since I was familiar with Python, and I needed to make extensive use of
+Python's data analysis capabilities, I opted to develop the website using Django
+framework, rather than Ruby-on-Rails or PHP. In Django's developers words,
+``Django is a web framework for perfectionists with deadlines''.  What I
+realized is that Django is powerful in that offers some ready made solutions
+to handle some of the most common standard features in websites like
+authentication, session management, security controls, admin console, etc\ldots.
+Also, it forces the developer to organize the code following principles like
+functional independence and modularity, which in the long term will let the
+system scale and expand with new features without major restructuring. On the
+other hand, something I realized, is that Django allows you to develop quickly
+only if you know very well its features. In my case, I had to bang my head hard
+several times before undestanding how Django structures its different
+components, and how they interact with each other.
 
-I aspired to apply the principles of the SOLID method, but that remained in
-large part an aspiration. I realized that, given the time constraints, having a
-working system was the priority over clean and elegant coding practices.
+Another feature of Django is its ORM (Object-Reational Mapper) implementation:
+objects that provide a high level abstraction layer over a relational database. Django
+provides the Model class to represent a database table, and to interact with it
+using Python's coding style, and the developer does not need to write a
+single SQL statement. It makes the code more consistent and clear. The problem I
+had is that I am already proficient with SQL, and I found some statements,
+especially those requiring several joined tables, to be easier in SQL than using
+Python ORM.
 
-Testing and breaking your own code is emotionally challenging, but a test-driven
-development, such as the approach recommended in the Extreme Programming
-methodology, is a way to circumvent this emotional attachment, and to design
-applications based on what they should do as well as how they could fail, which
-is an aspect that could otherwise be over-sought.
+I realized how difficult is to estimate the time required to complete a system.
+For instance, I had to prioritize and leave out the text search functionality,
+and I did not have the time to refine and refactor the code to comply with the
+SOLID coding principles. On the other hand I figured out that in cases such as
+this, where lack of experience and the nature of the task itself, made it hard
+to define a clear timeline, it is probably the best strategy to put in as much
+hours of work as early as possible, rather than trying to distribute evenly the
+work throughout a period of 12 months. And of course, personal life interferes
+in ways that are sometimes in predictable.
 
-Estimating in advance the time required to complete each part of the project has
-been very difficult, especially when learning time needed to be factored in, the
-best strategy seemed to be to put as much hours as early as possible, rather
-than trying to distribute evenly the work throughout a period of 12 months.
+Finally, I experienced first hand how testing and breaking your own code is
+emotionally challenging, but a test-driven development, such as the approach
+recommended in the Extreme Programming methodology, is a way to circumvent this
+emotional attachment, and to design applications based on what they should do as
+well as how they could fail, which is an aspect that could otherwise be
+over-sought.
+
 
 \section{Future work}
-Linkero is fully operational and is currently being used by 3 people on a weekly
-basis. Nonetheless, in its current implementation, it is a limited platform,
+Linkero, in its current implementation, is fully operational and is being used
+by 3 people on a weekly basis. Nonetheless, right now it is a limited platform,
 especially for two principal aspects:
 \begin{itemize}
   \item there is no text search feature to retrieve historical data that is
@@ -43,7 +72,15 @@ storing historical data only makes sense if it is possible to consume it
 afterward. Once the data is extracted and stored from external sources, it is
 possible to interrogate it in many different ways that are not always available
 through third party API. For instance, extremely useful is to see if one string
-(e.g. an email address) is 
+(e.g. an email address) was captured across different platforms: this could lead
+an investigator to link an eBay account, with a Facebook profile, leading to the
+identification of the person selling or supplying counterfeit items.
+
+This text search feature however only make sense if a more diverse set of
+data is available. That is why the ability of Linkero to offer data gathering
+across different platforms, such as other e-commerce as well as social media
+sites, is equally important. Expanding searching ability within and without
+Linkero's database is where this platform can add real value.
 
 \section{Conclusions}
 
