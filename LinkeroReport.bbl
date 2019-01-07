@@ -22,12 +22,16 @@ J.~Bosch.
 
 \bibitem[Bra18]{cscbrand}
 CSC~Digital Brand.
-\newblock Brand monitoring, 2018.
+\newblock Brand monitoring.
+\newblock
+  \url{https://www.cscdigitalbrand.services/en/brand-monitoring-services/},
+  2018.
 \newblock accessed on 28 December 2018.
 
 \bibitem[Cel09]{Celery}
 Project Celery.
-\newblock Celery, May 2009.
+\newblock Celery.
+\newblock \url{http://www.celeryproject.org/}, May 2009.
 \newblock last version 5.0.2 on 22 November 2018.
 
 \bibitem[Che03]{WC03}
@@ -42,17 +46,20 @@ Shane~Fuller Chad~Russell.
 
 \bibitem[Deb18]{Debian}
 Debian.
-\newblock Debian linux gnu, November 2018.
+\newblock Debian linux gnu.
+\newblock \url{https://www.debian.org/intro/about}, November 2018.
 \newblock last accessed on 26 November 2018.
 
 \bibitem[Fun18a]{djsecr}
 Django~Software Fundation.
-\newblock Cryptographic signing, 2018.
+\newblock Cryptographic signing.
+\newblock \url{https://docs.djangoproject.com/en/2.1/topics/signing/}, 2018.
 \newblock accessed on 28 December 2018.
 
 \bibitem[Fun18b]{Django}
 Django~Software Fundation.
-\newblock Django web framework, November 2018.
+\newblock Django web framework.
+\newblock \url{https://www.djangoproject.com/}, November 2018.
 \newblock last accessed on 26 November 2018.
 
 \bibitem[Gra87]{RG87}
@@ -72,12 +79,14 @@ Joseph Hayes.
 
 \bibitem[Haz95]{exim}
 Philip Hazel.
-\newblock Exim, 1995.
+\newblock Exim.
+\newblock \url{https://www.exim.org/}, 1995.
 \newblock last version 4 on 15 April 2018.
 
 \bibitem[Jaq04]{fail2ban}
 Cyril Jaquier.
-\newblock Fail2ban, 2004.
+\newblock Fail2ban.
+\newblock \url{https://www.fail2ban.org}, 2004.
 \newblock last version 0.10.3.1 on 4 April 2018.
 
 \bibitem[Lam04]{BL04}
@@ -108,12 +117,14 @@ G.~Meyers.
 
 \bibitem[Net98]{iptables}
 NetFilter.
-\newblock Iptables, 1998.
+\newblock Iptables.
+\newblock \url{https://netfilter.org}, 1998.
 \newblock last version 1.8.2 on 13 November 2018.
 
 \bibitem[Ngi04]{Nginx}
 Project Nginx.
-\newblock Nginx, October 2004.
+\newblock Nginx.
+\newblock \url{https://github.com/nginx/nginx}, October 2004.
 \newblock last version 1.14.1 on 6 November 2018.
 
 \bibitem[oC18]{USDC18}
@@ -142,7 +153,8 @@ Presidency of~the Council.
 
 \bibitem[OWA17]{zap}
 OWASP.
-\newblock Owasp-zap, 2017.
+\newblock Owasp-zap.
+\newblock \url{https://en.wikipedia.org/wiki/OWASP_ZAP}, 2017.
 \newblock last version 2.7.0 on 28 November 2017.
 
 \bibitem[Par72]{DP72}
@@ -162,7 +174,8 @@ Roger~S. Pressman.
 
 \bibitem[Sal09]{Redis}
 Sanfilippo Salvatore.
-\newblock Redis, May 2009.
+\newblock Redis.
+\newblock \url{https://github.com/antirez/redis}, May 2009.
 \newblock last version 5.0.2 on 22 November 2018.
 
 \bibitem[Shi00]{RS00}
@@ -172,12 +185,15 @@ R.~Shirey.
 
 \bibitem[Tec18]{techpd}
 Technopedia.
-\newblock Brand monitoring, 2018.
+\newblock Brand monitoring.
+\newblock \url{https://www.techopedia.com/definition/30310/brand-monitoring},
+  2018.
 \newblock accessed on 28 December 2018.
 
 \bibitem[Ubi18]{RtduWsgi}
 Ubit.
-\newblock uwsgi, November 2018.
+\newblock uwsgi.
+\newblock \url{https://uwsgi-docs.readthedocs.io/en/latest/}, November 2018.
 \newblock last accessed on 26 November 2018.
 
 \bibitem[Vli08]{VV08}
@@ -187,17 +203,20 @@ Hans~Van Vliet.
 
 \bibitem[Wat18]{wtchd}
 Watchdog.
-\newblock Watchdog app, 2018.
+\newblock Watchdog app.
+\newblock \url{https://watchdogapp.com}, 2018.
 \newblock accessed on 28 December 2018.
 
 \bibitem[Wik18a]{WikiNginx}
 Wikipedia.
-\newblock Nginx, November 2018.
+\newblock Nginx.
+\newblock \url{https://en.wikipedia.org/wiki/Nginx}, November 2018.
 \newblock last edited on 26 November 2018.
 
 \bibitem[Wik18b]{wkngx}
 Wikipedia.
-\newblock Nginx, November 2018.
+\newblock Nginx.
+\newblock \url{https://en.wikipedia.org/wiki/Nginx}, November 2018.
 \newblock last edited on 26 November 2018.
 
 \bibitem[Wir71]{NW71}
